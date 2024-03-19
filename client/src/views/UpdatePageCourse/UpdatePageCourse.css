@@ -1,0 +1,37 @@
+.UpdatePageCourse {
+  padding: 50px;
+  background-color: var(--white);
+}
+.UpdatePageCourse .page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-theme);
+}
+.UpdatePageCourse .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.UpdatePageCourse h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.UpdatePageCourse .page-content {
+  border: 5px solid white;
+  margin-top: 20px;
+}
+.UpdatePageCourse li {
+  font-weight: bold;
+}
+.UpdatePageCourse li button {
+  border: none;
+  margin: 10px;
+  padding: 5px;
+  width: 56px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.UpdatePageCourse li button.Remove {
+  color: white;
+  background-color: var(--color-theme);
+}

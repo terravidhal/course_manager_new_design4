@@ -1,0 +1,24 @@
+.CreatePageCourse {
+  padding: 50px;
+  background-color: var(--white);
+}
+.CreatePageCourse .page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-theme);
+}
+.CreatePageCourse .page-top h1 {
+}
+.CreatePageCourse .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.CreatePageCourse h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.CreatePageCourse .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}

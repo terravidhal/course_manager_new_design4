@@ -1,0 +1,68 @@
+.DetailsPageStudent {
+  background-color: var(--white);
+  height: 100vh;
+}
+.DetailsPageStudent .page-top h1 {
+  color: var(--color-theme);
+}
+.DetailsPageStudent .page-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.DetailsPageStudent .details-img {
+  flex: 1;
+  border-radius: 5px;
+}
+.DetailsPageStudent .details-img img {
+  width: 400px;
+  border-radius: 5px;
+}
+.DetailsPageStudent .fields {
+  flex: 3;
+  border-radius: 5px;
+}
+.DetailsPageStudent .fields p span.infos {
+  color: var(--color-theme);
+  margin-right: 10px;
+}
+.DetailsPageStudent .page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 70%;
+  padding-top: 10px;
+}
+.DetailsPageStudent h4 {
+  color: gray;
+}
+.DetailsPageStudent .page-content {
+  padding: 20px 0;
+  margin: 0px auto;
+  padding-bottom: 40px;
+  width: 70%;
+}
+.DetailsPageStudent span.infos {
+  font-weight: bold;
+}
+.DetailsPageStudent .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+
+@media (max-width: 991px) {
+  .DetailsPageStudent .page-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .DetailsPageStudent .page-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .DetailsPageStudent .details-img img {
+    width: 200px;
+    border-radius: 5px;
+  }
+}

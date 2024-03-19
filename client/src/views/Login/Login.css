@@ -1,0 +1,140 @@
+.Login {
+  padding: 50px;
+  background-color: #a3c7cd;
+}
+.Login .page-top {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+
+.Login .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.Login h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.Login .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}
+.Login .error-text {
+  color: var(--oranges);
+  display: block;
+}
+.Login .suggest {
+  text-align: center;
+  width: 100%;
+}
+.Login .suggest a {
+  color: var(--color-theme);
+}
+
+.Login form {
+  padding: 20px;
+  min-height: 250px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.Login form p {
+  width: 70%;
+}
+.Login .form-left {
+  flex: 1;
+}
+.Login .form-right {
+  flex: 1;
+}
+.Login .field {
+  margin-bottom: 10px;
+}
+.Login label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.Login .studPpties {
+  color: var(--color-theme);
+}
+.Login .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.Login input,
+.Login select {
+  margin-top: 10px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+
+.Login input.desc {
+  height: 50px;
+}
+.Login input[type="submit"],
+.Login button[type="submit"] {
+  margin: 5px 0;
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Login .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.Login .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.Login .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.Login .relative {
+  position: relative;
+}
+.Login .absolute {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .Login form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .Login .page-top {
+    flex-direction: column;
+    align-items: start;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+}

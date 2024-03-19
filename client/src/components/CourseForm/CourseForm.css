@@ -1,0 +1,99 @@
+.CourseForm {
+  padding: 20px;
+
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  grid-template-rows: 1fr 16fr;
+}
+.CourseForm form {
+  display: flex;
+  gap: 40px;
+  box-sizing: border-box;
+}
+.CourseForm form p {
+  width: 70%;
+}
+.CourseForm .form-left {
+  flex: 1;
+}
+.CourseForm .form-right {
+  flex: 1;
+}
+.CourseForm .field {
+  margin-bottom: 10px;
+}
+.CourseForm label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.CourseForm .studPpties {
+  color: var(--color-theme);
+}
+.CourseForm .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.CourseForm input {
+  margin-top: 10px;
+}
+.CourseForm input[type="text"],
+.CourseForm input[type="number"],
+.CourseForm select {
+  /* width: 70%; */
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+.CourseForm input.desc {
+  height: 50px;
+}
+.CourseForm input[type="submit"],
+.CourseForm button[type="submit"] {
+  margin: 5px 0;
+
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.CourseForm .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.CourseForm .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.CourseForm .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 991px) {
+  .CourseForm form {
+    flex-direction: column;
+  }
+  .CreatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+}

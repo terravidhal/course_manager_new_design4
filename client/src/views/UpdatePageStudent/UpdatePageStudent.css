@@ -1,0 +1,139 @@
+.UpdatePageStudent {
+  padding: 50px;
+}
+
+.UpdatePageStudent {
+  padding: 50px;
+  background-color: var(--white);
+}
+.UpdatePageStudent .page-top {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+.UpdatePageStudent .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.UpdatePageStudent h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.UpdatePageStudent .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}
+.UpdatePageStudent .error-text {
+  color: var(--oranges);
+  display: block;
+}
+
+.UpdatePageStudent form {
+  padding: 20px;
+  min-height: 450px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.UpdatePageStudent form p {
+  width: 70%;
+}
+.UpdatePageStudent .form-left {
+  flex: 1;
+}
+.UpdatePageStudent .form-right {
+  flex: 1;
+}
+.UpdatePageStudent .field {
+  margin-bottom: 10px;
+}
+.UpdatePageStudent label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.UpdatePageStudent .studPpties {
+  color: var(--color-theme);
+}
+.UpdatePageStudent .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.UpdatePageStudent input,
+.UpdatePageStudent select {
+  margin-top: 10px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+
+.UpdatePageStudent input.desc {
+  height: 50px;
+}
+.UpdatePageStudent input[type="submit"],
+.UpdatePageStudent button[type="submit"] {
+  margin: 5px 0;
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.UpdatePageStudent .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.UpdatePageStudent .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.UpdatePageStudent .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.UpdatePageStudent .relative {
+  position: relative;
+}
+.UpdatePageStudent .absolute {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+}
+.UpdatePageStudent .infos-pwd {
+  font-size: 0.8rem;
+  color: gray;
+  font-style: italic;
+}
+
+@media (max-width: 991px) {
+  .UpdatePageStudent form {
+    flex-direction: column;
+  }
+  .UpdatePageStudent .page-top {
+    flex-direction: column;
+    align-items: start;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+}

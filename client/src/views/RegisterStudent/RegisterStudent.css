@@ -1,0 +1,154 @@
+.RegisterStudent {
+  padding: 50px;
+  background-color: #a3c7cd;
+}
+.RegisterStudent .page-top {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+.RegisterStudent .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.RegisterStudent h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.RegisterStudent .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}
+.RegisterStudent .error-text {
+  color: var(--oranges);
+  display: block;
+}
+.RegisterStudent .suggest {
+  text-align: center;
+  width: 100%;
+}
+.RegisterStudent .suggest a {
+  color: var(--color-theme);
+}
+.RegisterStudent .super-fields {
+  display: flex;
+  gap: 20px;
+}
+
+.RegisterStudent form {
+  padding: 20px;
+  min-height: 250px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.RegisterStudent form p {
+  width: 70%;
+}
+.RegisterStudent .form-left {
+  flex: 1;
+}
+.RegisterStudent .form-right {
+  flex: 1;
+}
+.RegisterStudent .field {
+  margin-bottom: 10px;
+  flex: 1;
+}
+.RegisterStudent label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.RegisterStudent .studPpties {
+  color: var(--color-theme);
+}
+.RegisterStudent .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.RegisterStudent input,
+.RegisterStudent select {
+  margin-top: 10px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+
+.RegisterStudent input.desc {
+  height: 50px;
+}
+.RegisterStudent input[type="submit"],
+.RegisterStudent button[type="submit"] {
+  margin: 5px 0;
+  /* width: 70%; */
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.RegisterStudent .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.RegisterStudent .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.RegisterStudent .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.RegisterStudent .relative {
+  position: relative;
+}
+.RegisterStudent .absolute {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+}
+.RegisterStudent .infos-pwd {
+  font-size: 0.8rem;
+  color: gray;
+  font-style: italic;
+}
+
+@media (max-width: 991px) {
+  .RegisterStudent form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .RegisterStudent .page-top {
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 10px;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+  .RegisterStudent .super-fields {
+    flex-direction: column;
+  }
+}

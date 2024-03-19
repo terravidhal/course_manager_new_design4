@@ -1,0 +1,41 @@
+.CreateBlocReviews{
+
+}
+.CreateBlocReviews .f-textarea h3{
+    color: var(--black);
+}
+.CreateBlocReviews .f-textarea textarea{
+    display: block;
+    height: 10rem;
+  resize: none;
+  background-color: var(--light-bg);
+  border-radius: .5rem;
+  border: var(--border);
+  padding: 1.4rem;
+  color: var(--black);
+  width: 100%;
+  margin: .5rem 0;
+  outline: none;
+}
+.CreateBlocReviews .f-rating{
+ margin-top: 1rem;
+}
+.CreateBlocReviews .f-rating label{
+ font-weight: bold;
+ color: var(--black);
+ margin-right: 10px;
+}
+.CreateBlocReviews button{
+ padding: 10px;
+ background-color: var(--color-theme);
+ color: var(--white);
+ border: none;
+
+ border-radius: .5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  padding: 0.7rem 3rem;
+  text-align: center;
+  margin-top: 2rem;
+}

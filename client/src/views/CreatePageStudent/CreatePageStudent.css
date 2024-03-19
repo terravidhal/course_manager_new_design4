@@ -1,0 +1,137 @@
+.CreatePageStudent {
+  padding: 50px;
+  background-color: var(--white);
+}
+.CreatePageStudent .page-top {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+.CreatePageStudent .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.CreatePageStudent h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.CreatePageStudent .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}
+.CreatePageStudent .error-text {
+  color: var(--oranges);
+  display: block;
+}
+
+.CreatePageStudent form {
+  padding: 20px;
+  min-height: 450px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.CreatePageStudent form p {
+  width: 70%;
+}
+.CreatePageStudent .form-left {
+  flex: 1;
+}
+.CreatePageStudent .form-right {
+  flex: 1;
+}
+.CreatePageStudent .field {
+  margin-bottom: 10px;
+}
+.CreatePageStudent label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.CreatePageStudent .studPpties {
+  color: var(--color-theme);
+}
+.CreatePageStudent .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.CreatePageStudent input,
+.CreatePageStudent select {
+  margin-top: 10px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+
+.CreatePageStudent input.desc {
+  height: 50px;
+}
+.CreatePageStudent input[type="submit"],
+.CreatePageStudent button[type="submit"] {
+  margin: 5px 0;
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.CreatePageStudent .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.CreatePageStudent .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.CreatePageStudent .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.CreatePageStudent .relative {
+  position: relative;
+}
+.CreatePageStudent .absolute {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+}
+.CreatePageStudent .infos-pwd {
+  font-size: 0.8rem;
+  color: gray;
+  font-style: italic;
+}
+
+
+@media (max-width: 991px) {
+  .CreatePageStudent form {
+    flex-direction: column;
+  }
+  .CreatePageStudent .page-top {
+    flex-direction: column;
+    align-items: start;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+}

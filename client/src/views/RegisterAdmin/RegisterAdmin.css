@@ -1,0 +1,153 @@
+.RegisterAdmin {
+  padding: 50px;
+  background-color: #a3c7cd;
+}
+.RegisterAdmin .page-top {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+.RegisterAdmin .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.RegisterAdmin h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.RegisterAdmin .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}
+.RegisterAdmin .error-text {
+  color: var(--oranges);
+  display: block;
+}
+.RegisterAdmin .suggest {
+  text-align: center;
+  width: 100%;
+}
+.RegisterAdmin .suggest a {
+  color: var(--color-theme);
+}
+.RegisterAdmin .super-fields {
+  display: flex;
+  gap: 20px;
+}
+
+.RegisterAdmin form {
+  padding: 20px;
+  min-height: 250px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.RegisterAdmin form p {
+  width: 70%;
+}
+.RegisterAdmin .form-left {
+  flex: 1;
+}
+.RegisterAdmin .form-right {
+  flex: 1;
+}
+.RegisterAdmin .field {
+  margin-bottom: 10px;
+  flex: 1;
+}
+.RegisterAdmin label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.RegisterAdmin .studPpties {
+  color: var(--color-theme);
+}
+.RegisterAdmin .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.RegisterAdmin input,
+.RegisterAdmin select {
+  margin-top: 10px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+
+.RegisterAdmin input.desc {
+  height: 50px;
+}
+.RegisterAdmin input[type="submit"],
+.RegisterAdmin button[type="submit"] {
+  margin: 5px 0;
+  /* width: 70%; */
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.RegisterAdmin .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.RegisterAdmin .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.RegisterAdmin .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.RegisterAdmin .relative {
+  position: relative;
+}
+.RegisterAdmin .absolute {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+}
+.RegisterAdmin .infos-pwd {
+  font-size: 0.8rem;
+  color: gray;
+  font-style: italic;
+}
+
+@media (max-width: 991px) {
+  .RegisterAdmin form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .RegisterAdmin .page-top {
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 10px;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+  .RegisterAdmin .super-fields {
+    flex-direction: column;
+  }
+}

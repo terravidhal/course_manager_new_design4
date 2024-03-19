@@ -1,0 +1,46 @@
+.profilPopup {
+    width: 300px;
+    background-color: var(--white);
+    position: absolute;
+    right: 30px;
+    top: 51px;
+    z-index: 2;
+  border-radius: 5px;
+  padding: 1.5rem;
+  text-align: center;
+  transform-origin: top right;
+  transition: .2s linear;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0);
+}
+.profilPopup.show {
+    transform: scale(1);
+}
+.profilPopup .profil-name {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.profilPopup .profil-name::first-letter {
+  text-transform: capitalize;
+}
+.profilPopup .profil-role {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: gray;
+}
+.profilPopup .profil-picture {
+  margin-bottom: 10px;
+}
+.profilPopup .view-profile {
+  list-style-type: none;
+}
+.profilPopup button {
+   width: 100%;
+   padding: 10px;
+   background-color: var(--color-theme);
+   color: white;
+   border: none;
+   border-radius: 5px;
+   font-size: 1.5rem;
+  cursor: pointer;
+}

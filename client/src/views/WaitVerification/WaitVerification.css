@@ -1,0 +1,68 @@
+
+.WaitVerification {
+    padding: 50px;
+    background-color: #a3c7cd;
+}
+.WaitVerification .page-top{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+.WaitVerification .page-top h1{
+  
+}
+.WaitVerification .page-top a{
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.WaitVerification h4{
+  color: rgba(255, 255, 255, 0.733);
+}
+
+.WaitVerification  button {
+    box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .WaitVerification  button.primary {
+    background: #1eb2a6 !important;
+    border: 1px solid #1eb2a6 !important;
+    color: #fff !important;
+  }
+  .WaitVerification  button.secondary {
+    background: #fff !important;
+    border: 1px solid #fff !important;
+    color: #1eb2a6 !important;
+  }
+  .WaitVerification  .box img{
+    width: 180px;
+    position: fixed;
+    left: 27%;
+    top: 37%;
+  }
+ 
+ @media (max-width: 991px) {
+    .WaitVerification .page-top {
+     flex-direction: column;
+     align-items: start;
+     margin-bottom: 10px;
+   }
+    .UpdatePageCourse .page-top {
+     flex-direction: column;
+     align-items: start !important;
+   }
+ }
+
+
+
+
+

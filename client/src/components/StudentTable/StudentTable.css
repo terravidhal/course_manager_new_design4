@@ -1,0 +1,19 @@
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center !important;
+}
+.StudentTable td.options a,
+.CourseTable td.instruct a {
+  font-size: 1.5rem;
+  color: var(--color-theme);
+}
+.StudentTable td.options a.btt.orange,
+.CourseTable td.instruct a.btt.orange {
+  position: relative;
+  left: -5px;
+}
+.StudentTable td.options a button {
+  border: none;
+}

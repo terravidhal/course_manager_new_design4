@@ -1,0 +1,137 @@
+.CreatePageInstructor {
+  padding: 50px;
+  background-color: var(--white);
+}
+.CreatePageInstructor .page-top {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--color-theme);
+}
+.CreatePageInstructor .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.CreatePageInstructor h4 {
+  color: rgba(255, 255, 255, 0.733);
+}
+.CreatePageInstructor .page-content {
+  border: 1px solid white;
+  margin-top: 20px;
+}
+.CreatePageInstructor .error-text {
+  color: var(--oranges);
+  display: block;
+}
+
+.CreatePageInstructor form {
+  padding: 20px;
+  min-height: 450px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.CreatePageInstructor form p {
+  width: 70%;
+}
+.CreatePageInstructor .form-left {
+  flex: 1;
+}
+.CreatePageInstructor .form-right {
+  flex: 1;
+}
+.CreatePageInstructor .field {
+  margin-bottom: 10px;
+}
+.CreatePageInstructor label {
+  font-weight: bold;
+  color: var(--color-theme);
+}
+.CreatePageInstructor .studPpties {
+  color: var(--color-theme);
+}
+.CreatePageInstructor .field.stud-lab {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+.CreatePageInstructor input,
+.CreatePageInstructor select {
+  margin-top: 10px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  height: 30px;
+}
+
+.CreatePageInstructor input.desc {
+  height: 50px;
+}
+.CreatePageInstructor input[type="submit"],
+.CreatePageInstructor button[type="submit"] {
+  margin: 5px 0;
+  width: 100%;
+  padding: 8px 0;
+  background-color: var(--color-theme);
+  outline: none;
+  border: 0px;
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.CreatePageInstructor .validate_form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.CreatePageInstructor .submit_btn.active {
+  background-color: var(--color-theme);
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+}
+.CreatePageInstructor .submit_btn {
+  background-color: red;
+  color: white;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.CreatePageInstructor .relative {
+  position: relative;
+}
+.CreatePageInstructor .absolute {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+}
+.CreatePageInstructor .infos-pwd {
+  font-size: 0.8rem;
+  color: gray;
+  font-style: italic;
+}
+
+
+@media (max-width: 991px) {
+  .CreatePageInstructor form {
+    flex-direction: column;
+  }
+  .CreatePageInstructor .page-top {
+    flex-direction: column;
+    align-items: start;
+  }
+  .UpdatePageCourse .page-top {
+    flex-direction: column;
+    align-items: start !important;
+  }
+}

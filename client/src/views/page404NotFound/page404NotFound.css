@@ -1,0 +1,62 @@
+.page404NotFound {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(56, 56, 56);
+  font-family: "Ubuntu", sans-serif;
+}
+.page404NotFound img {
+  margin-top: 10px;
+  width: 410px;
+}
+.page404NotFound .wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.page404NotFound .wrapper h1 {
+  font-size: 3rem;
+  margin-top: 10px;
+}
+.page404NotFound .wrapper .message {
+  font-size: 1.5rem;
+  padding: 20px;
+  width: 60%;
+  text-align: center;
+}
+.page404NotFound .wrapper .btn {
+  background: var(--color-theme);
+  padding: 20px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px solid transparent;
+}
+.page404NotFound .wrapper .btn:hover {
+  background: white;
+  border: 1px solid;
+  color: var(--color-theme);
+  /* color: #91e2a8; */
+}
+.page404NotFound .wrapper .copyRights {
+  margin-top: 50px;
+}
+
+@media (max-width: 480px) {
+  .page404NotFound img {
+    margin-top: 10px;
+    width: 210px;
+  }
+  .page404NotFound .wrapper h1 {
+    font-size: 2rem;
+    margin-top: 10px;
+  }
+  .page404NotFound .wrapper .btn {
+    font-size: 1rem;
+  }
+}

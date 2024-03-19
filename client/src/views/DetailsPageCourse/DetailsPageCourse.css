@@ -1,0 +1,161 @@
+.DetailsPageCourse {
+  background-color: var(--white);
+  height: 100vh;
+}
+.DetailsPageCourse .page-top {
+  background-color: var(--white);
+}
+.DetailsPageCourse .page-top h1 {
+  color: var(--color-theme);
+}
+.DetailsPageCourse .details-img {
+  flex: 1;
+  border-radius: 5px;
+}
+.DetailsPageCourse .details-img img {
+  width: 400px;
+  border-radius: 5px;
+}
+.DetailsPageCourse .fields {
+  flex: 3;
+  border-radius: 5px;
+}
+.DetailsPageCourse .fields p span.infos {
+  color: var(--color-theme);
+  margin-right: 10px;
+}
+.DetailsPageCourse .img-container p {
+  display: flex;
+  align-items: center;
+  color: var(--black);
+}
+.DetailsPageCourse .img-container p span.infos i{
+  color: var(--color-theme);
+  font-size: 2rem;
+  margin-right: 20px;
+}
+.DetailsPageCourse .page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 70%;
+  padding-top: 10px;
+}
+.DetailsPageCourse h4 {
+  color: gray;
+}
+.DetailsPageCourse .page-content {
+  padding: 20px;
+  margin: 0px auto;
+  padding-bottom: 40px;
+  width: 70%;
+  background-color: var(--white);
+  /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); */
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
+  border-radius: .5rem;
+  margin-bottom: 10px;
+}
+.DetailsPageCourse .page-content  h1 {
+  color: var(--black);
+  border-bottom: var(--border);
+  padding-bottom: 10px;
+}
+.DetailsPageCourse span.infos {
+  font-weight: bold;
+  color: var(--black);
+  width: 56px;
+}
+.DetailsPageCourse p.link a{
+  color: rgb(17, 138, 213);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.DetailsPageCourse .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+.DetailsPageCourse .img-container .img {
+ display: flex;
+ gap: 20px;
+}
+.DetailsPageCourse .img-container .img .img-img{
+  flex: 1;
+  overflow: auto;
+}
+.DetailsPageCourse .img-container .img .img-img img.special{
+  width: 370.917px;
+  height: 247.283px;
+}
+.DetailsPageCourse .img-container .img .img-infos{
+  flex: 0.7;
+}
+.DetailsPageCourse .img-container .img .img-infos-2{
+  flex: 0.5;
+}
+.DetailsPageCourse .img-container img  {
+ width: 100%;
+ border-radius: 5px;
+}
+.DetailsPageCourse .img-container .info {
+  border-bottom: var(--border);
+}
+.DetailsPageCourse .img-container  .info p span {
+  color: var(--light-color);
+}
+.DetailsPageCourse .img-container .title{
+  color: var(--black);
+}
+.DetailsPageCourse .img-container .info i{
+  color: var(--color-theme);
+  margin-right: 1rem;
+}
+.DetailsPageCourse .img-container .tutor span  {
+  color: var(--light-color);
+}
+.DetailsPageCourse .img-container .tutor .bloc-tutor  {
+  height: 80px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+}
+.DetailsPageCourse .img-container .tutor img {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+.DetailsPageCourse .img-container .tutor  {
+   display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.DetailsPageCourse .img-container .tutor h3 {
+   margin: 5px  0;
+   color: var(--black);
+}
+.DetailsPageCourse .img-container .description {
+    line-height: 1.5;
+    color: var(--light-color);
+}
+
+
+@media (max-width: 991px) {
+  .DetailsPageCourse .page-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .DetailsPageCourse .page-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .DetailsPageCourse .details-img img {
+    width: 200px;
+    border-radius: 5px;
+  }
+  .DetailsPageCourse .img-container .img {
+    flex-direction: column;
+   }
+}
+

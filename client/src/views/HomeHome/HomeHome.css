@@ -1,0 +1,159 @@
+.HomeHome a {
+  color: white;
+  text-decoration: none;
+}
+.HomeHome .header.top-1 {
+  display: flex;
+  justify-content: space-between;
+  background: transparent !important;
+  padding: 50px;
+  padding-left: 130px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  align-items: center;
+}
+.HomeHome .header.top-2 {
+  padding: 5px;
+  padding-left: 60px;
+  background-color: #efefef27;
+}
+.HomeHome .header.top-2 ul {
+  display: flex;
+}
+.HomeHome .header.top-2 ul li {
+  list-style-type: none;
+  font-size: 15px;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+}
+.HomeHome .header.top-2 ul li.active {
+  color: var(--color-theme);
+}
+.HomeHome .header.top-1 .title-1:hover {
+  color: var(--color-theme);
+  cursor: pointer;
+}
+.HomeHome .header.top-1 .title-1 {
+  font-weight: 800;
+  font-size: 30px;
+  color: #fff;
+  z-index: 3;
+  position: relative;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.HomeHome .header.top-1 .title-2 {
+  color: #fff;
+  line-height: 1.1;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: block;
+  font-weight: 500;
+}
+.HomeHome .header.top-1 .social-icons {
+  color: #fff;
+  line-height: 1.1;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: block;
+  font-weight: 500;
+}
+.HomeHome .header.top-1 .social-icons {
+  display: flex;
+  justify-content: space-around;
+}
+.HomeHome .header.top-1 .social-icons .social i {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-theme);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.HomeHome .card-1 {
+  position: absolute;
+  left: 100px;
+  top: 300px;
+  max-width: 451px;
+}
+.HomeHome .card-1 .title-card {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  display: inline-block;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 0;
+}
+.HomeHome .card-1 .message-card1 {
+  font-weight: 600;
+  color: #fff;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.HomeHome .card-1 .message-card2 {
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: #ffffffa9;
+}
+.HomeHome .buttons {
+  margin-top: 20px;
+}
+.HomeHome .buttons button {
+  box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 20px;
+}
+.HomeHome .buttons button.primary {
+  background: var(--color-theme) !important;
+  border: 1px solid var(--color-theme) !important;
+  color: #fff !important;
+}
+.HomeHome .buttons button.secondary {
+  background: #fff !important;
+  border: 1px solid #fff !important;
+  color: var(--color-theme) !important;
+}
+
+@media (max-width: 991px) {
+  .HomeHome .header.top-1 .social-icons {
+    display: none;
+  }
+ 
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+  .HomeHome .card-1 {
+    left: 30px;
+  }
+  .HomeHome .header.top-1 {
+    padding-left: 30px;
+  }
+  .HomeHome .header.top-2 ul {
+    display: block;
+  }
+  .HomeHome .header.top-2 ul li {
+    padding-top: 0;
+    padding-bottom: 0.8rem;
+  }
+}

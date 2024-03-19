@@ -1,0 +1,222 @@
+.InstructorByCourse {
+  background-color: var(--white);
+  height: 100vh;
+}
+.InstructorByCourse .page-top h1 {
+  color: var(--color-theme);
+  visibility: hidden;
+}
+.InstructorByCourse .page-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px !important;
+}
+.InstructorByCourse .details-img {
+  flex: 1;
+  border-radius: 5px;
+}
+.InstructorByCourse .details-img img {
+  width: 400px;
+  border-radius: 5px;
+}
+.InstructorByCourse .fields {
+  flex: 3;
+  border-radius: 5px;
+}
+.InstructorByCourse .fields p span.infos {
+  color: var(--color-theme);
+  margin-right: 10px;
+}
+.InstructorByCourse .page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 70%;
+  padding-top: 10px;
+}
+.InstructorByCourse h4 {
+  color: gray;
+}
+.InstructorByCourse .page-content {
+  padding: 20px 0;
+  margin: 0px auto;
+  padding-bottom: 40px;
+  width: 70%;
+}
+.InstructorByCourse span.infos {
+  font-weight: bold;
+}
+.InstructorByCourse .page-top a {
+  font-size: 1.5rem;
+  color: var(--oranges);
+  font-weight: bold;
+}
+
+/**/
+
+
+@media (max-width: 991px) {
+  .InstructorByCourse .page-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .InstructorByCourse .page-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .InstructorByCourse .details-img img {
+    width: 200px;
+    border-radius: 5px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.InstructorByCourse .s-container{
+    min-height: 80vh;
+    width: 90%;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.InstructorByCourse img{
+    width: 350px;
+    border-radius: 50%;
+}
+
+.InstructorByCourse .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 40%;
+}
+
+.InstructorByCourse .subtitle{
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    text-align: center;
+    color: #767676;
+}
+
+.InstructorByCourse .title{
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 3rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    color: var(--color-theme);
+  }
+.InstructorByCourse .title2{
+    font-size: 1.5rem;
+    margin-top: 0;
+    font-weight: bold;
+    line-height: 3rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #767676;
+}
+
+.InstructorByCourse .title span{
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.InstructorByCourse .buttons{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.InstructorByCourse .icons{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.InstructorByCourse .icons i{
+    cursor: pointer;
+    color: var(--color-theme);
+}
+
+.InstructorByCourse .buttons button{
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: .8rem 1.5rem;
+    outline: none; border: none;
+    border-radius: 45px;
+    transition: .3s ease-out;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  .InstructorByCourse .buttons button.one{
+    border: 1px solid var(--color-theme);
+    background-color: var(--white);
+   /* color: black;*/
+    color: var(--color-theme);
+}
+.InstructorByCourse .buttons button.two{
+  /* background-color: #363636; */
+    background-color: var(--color-theme);
+    color: var(--white);
+}
+
+.InstructorByCourse .buttons button:hover{
+    transform: scale(1.1);
+}
+
+
+
+/* Responsivness  */
+
+@media only screen and (max-width: 850px){
+ 
+
+   
+
+    .InstructorByCourse .s-container{
+        flex-direction: column;
+        gap: 2rem;
+        padding-bottom: 2rem;
+    }
+    .InstructorByCourse .content{
+        max-width: 80%;
+        text-align: center;
+    }
+
+    .InstructorByCourse .buttons{
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 550px){
+  .InstructorByCourse .content{
+        width: 100%;
+    }
+    .InstructorByCourse  img{
+        width: 300px;
+    }
+   
+}
