@@ -13,6 +13,7 @@ const RegisterAdmin = (props)=>{
     const [user, setUser] = useState({
       name: "",
       email: "",
+      image: "",
       keyCode:"",
       password: "",
       confirmPassword:""
@@ -37,6 +38,7 @@ const RegisterAdmin = (props)=>{
         setUser({
           name:"",
           email:"",
+          image: "",
           keyCode:"",
           password:"",
           confirmPassword:""
@@ -97,6 +99,9 @@ const RegisterAdmin = (props)=>{
             :null
           }
           <input type="text" name="name" value={user.name} onChange={(e)=> handleChange(e)}/>
+        </div>
+        <div className="field">
+          <input type="hidden" name="image" value={user.image} onChange={(e)=> handleChange(e)}/>
         </div>
         <div className="field">
           <label>Email</label>

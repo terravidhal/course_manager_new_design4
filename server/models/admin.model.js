@@ -7,6 +7,9 @@ const AdminSchema = new mongoose.Schema(
       type: String,
       required: [true, "Error: name is required"],
     },
+    image: {
+      type: String,
+    },
     email: {
       type: String,
       unique: true,

@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import './profilPage.css';
 
 const ProfilPage = (props) => {
-  const {setDisplay, url} = props
+  const {setDisplay, url, id} = props
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsId = userObjs._id || "default";
 
@@ -12,7 +12,7 @@ const ProfilPage = (props) => {
 
 
  // const { id } = useParams();
-  const id = userObjs._id ;
+ // const id = userObjs._id ;
   const [confirmReg, setConfirmReg] = useState("");
  // const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
@@ -26,6 +26,14 @@ const ProfilPage = (props) => {
     role: "",
     email: "",
   });
+
+  // upload img
+  const [image, setImage] = useState();
+
+  const formdata = new FormData();
+  formdata.append("image", image);
+//
+  
  
 
   const handleChange = (e)=>{
@@ -41,7 +49,7 @@ const ProfilPage = (props) => {
       axios
         .get("http://localhost:8000/api/"+url+"/" + id,{withCredentials: true})
         .then((res) => {
-          console.log("u++++++++++res.data.oneSingle+data",res.data.oneSingleAdmin || res.data.oneSingleInstructor || res.data.oneSingleStudent);
+         // console.log("u++++++++++res.data.oneSingle+data",res.data.oneSingleAdmin || res.data.oneSingleInstructor || res.data.oneSingleStudent);
           let oneSingle = {};
           if (res.data.oneSingleAdmin ) {
             oneSingle = res.data.oneSingleAdmin
@@ -54,6 +62,7 @@ const ProfilPage = (props) => {
           }
           setInfos({
             name: oneSingle.name ,
+            image: oneSingle.image ,
             role: oneSingle.role ,
             email: oneSingle.email ,
           });
@@ -93,15 +102,42 @@ const ProfilPage = (props) => {
     })
   };
 
+  //upload image
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    axios.patch('http://localhost:8000/api/upload-image/admin/'+ id,
+    formdata,
+    {
+      withCredentials: true,
+    })
+    .then(res =>{
+      console.log(res.data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  };
+
+
+
+
 
 
   return(
     <div className="ProfilPage">
       <div className="bloc-view">
         <div className="profil-infos">
+        { loaded === true ?
         <div className="profil-picture">
-           <img src="/assets/images/pic-1.jpg" alt="" />
+           {/* <img src="/assets/images/pic-1.jpg" alt="" /> */}
+           <img src={`http://localhost:8000/${infos.image}`} alt="" />
+           {/* <img src={require(`./upload/${infos.image}`)}
+                height={100}
+                width={100} alt="" /> */}
+           
         </div>
+        : null}
         <div className="profil-name">infos</div>
         <div className="profil-role">profile</div>
         </div>
@@ -109,6 +145,9 @@ const ProfilPage = (props) => {
           <>
             <div className="view-profile profi">
             <button>{infos.name}</button>
+            </div> 
+            <div className="view-profile profi">
+            <button>{infos.image}</button>
             </div> 
             <div className="view-profile profi">
             <button>{infos.role}</button>
@@ -148,6 +187,25 @@ const ProfilPage = (props) => {
               <button type="submit">Update</button>
             </form>  
          :null}
+      </div>
+      <div className="bloc-update">
+         <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">
+                Profile
+              </label>
+              <input
+                type="file" accept="image/*"
+                onChange={(e) => setImage(e.target.files[0])}
+                name="image"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Submit image
+            </button>
+          </form>
       </div>
     </div>
   );

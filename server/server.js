@@ -12,6 +12,9 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(cookieParser());
 
+app.use(express.static("upload"));
+
+
 require("./config/mongoose.config");
 
 const AllMyCoursesRoutes = require("./routes/course.routes");

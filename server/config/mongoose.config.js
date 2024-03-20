@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
  
-mongoose.connect('mongodb://127.0.0.1:27017/courses_db_six', { // change database
+mongoose.connect('mongodb://127.0.0.1:27017/courses_db_seven', { // change database
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

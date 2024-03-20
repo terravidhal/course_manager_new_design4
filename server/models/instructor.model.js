@@ -7,6 +7,12 @@ const InstructorSchema = new mongoose.Schema(
       type: String,
       required: [true, "Error: name is required"],
     },
+    skills: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
     email: {
       type: String,
       unique: true,

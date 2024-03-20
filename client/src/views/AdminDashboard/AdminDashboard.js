@@ -405,7 +405,7 @@ const AdminDashboard = () => {
                 <UpdateAdminPassword />
               ) : null}
               {display === "profile" ? (
-                <ProfilPage setDisplay={setDisplay} url="admins" />
+                <ProfilPage setDisplay={setDisplay} url="admins" id={userObjsId} />
               ) : null}
             </div>
           </div>

@@ -249,7 +249,7 @@ const StudentDashboard = () => {
                 <UpdateStudentPassword/>
               ) : null}
               {display === "profile" ? (
-                <ProfilPage setDisplay={setDisplay} url="students"/>
+                <ProfilPage setDisplay={setDisplay} url="students" id={userObjsId}/>
               ) : null}
             </div>
           </div>
