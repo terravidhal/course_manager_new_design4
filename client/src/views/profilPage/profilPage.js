@@ -127,36 +127,33 @@ const ProfilPage = (props) => {
   return(
     <div className="ProfilPage">
       <div className="bloc-view">
-        <div className="profil-infos">
-        { loaded === true ?
-        <div className="profil-picture">
-           {/* <img src="/assets/images/pic-1.jpg" alt="" /> */}
-           <img src={`http://localhost:8000/${infos.image}`} alt="" />
-           {/* <img src={require(`./upload/${infos.image}`)}
-                height={100}
-                width={100} alt="" /> */}
-           
-        </div>
+      { loaded === true ?
+        <>
+          <div className="profil-infos">
+           <div className="profil-picture">
+              { infos.image === "" ?
+                <img src="/assets/images/blank-profile.png" alt="" />
+                : 
+                <img src={`http://localhost:8000/${infos.image}`} alt="" /> 
+              }     
+           </div>
+           <div className="profil-name">infos</div>
+           <div className="profil-role">profile</div>
+          </div>
+          <div className="view-profile profi">
+          <button>{infos.name}</button>
+          </div> 
+          <div className="view-profile profi">
+          <button>{infos.image}</button>
+          </div> 
+          <div className="view-profile profi">
+          <button>{infos.role}</button>
+          </div> 
+          <div className="view-profile profi">
+          <button>{infos.email}</button>
+          </div> 
+        </>
         : null}
-        <div className="profil-name">infos</div>
-        <div className="profil-role">profile</div>
-        </div>
-        { loaded === true ?
-          <>
-            <div className="view-profile profi">
-            <button>{infos.name}</button>
-            </div> 
-            <div className="view-profile profi">
-            <button>{infos.image}</button>
-            </div> 
-            <div className="view-profile profi">
-            <button>{infos.role}</button>
-            </div> 
-            <div className="view-profile profi">
-            <button>{infos.email}</button>
-            </div> 
-          </>
-        :null}
       </div>
       <div className="bloc-update">
          {

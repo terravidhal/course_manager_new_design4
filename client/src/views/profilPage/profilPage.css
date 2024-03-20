@@ -26,6 +26,11 @@
 .ProfilPage .bloc-view .profil-picture {
   margin-bottom: 10px;
 }
+.ProfilPage .bloc-view .profil-picture img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
 .ProfilPage .bloc-view .view-profile {
   list-style-type: none;
 }

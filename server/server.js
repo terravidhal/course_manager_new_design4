@@ -12,7 +12,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(cookieParser());
 
-app.use(express.static("upload"));
+app.use(express.static("upload")); //Accès aux images côté serveur 
 
 
 require("./config/mongoose.config");
