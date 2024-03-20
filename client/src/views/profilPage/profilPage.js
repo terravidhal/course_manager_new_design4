@@ -78,7 +78,7 @@ const ProfilPage = (props) => {
       }, [id, render]);
   
 
-
+  // update name and email
   const updateUser = (e) =>{
     e.preventDefault();
     axios.patch('http://localhost:8000/api/me/'+url+'/'+ id,

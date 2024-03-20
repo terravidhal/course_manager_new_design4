@@ -31,6 +31,11 @@
 .profilPopup .profil-picture {
   margin-bottom: 10px;
 }
+.profilPopup .profil-picture img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
 .profilPopup .view-profile {
   list-style-type: none;
 }

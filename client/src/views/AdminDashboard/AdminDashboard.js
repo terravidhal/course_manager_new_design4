@@ -14,14 +14,19 @@ const AdminDashboard = () => {
   const [allCourses, setAllCourses] = useState([]);
   const [allStudents, setAllStudents] = useState([]);
   const [allInstructors, setAllInstructors] = useState([]);
+  const [adminInfos, setAdminInfos] = useState({
+    image: "",
+  });
   const [display, setDisplay] = useState("courses");
   const navigate = useNavigate();
-  const location = useLocation();
+  //const location = useLocation();
  
 
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsRole = userObjs.role || "default";
   const userObjsId = userObjs._id || "default";
+  const userObjsName = userObjs.name || "default";
+  
 
   console.log("userObjRole+++++++++", userObjsRole);
   console.log("userObjsId+++++++++", userObjsId);
@@ -129,6 +134,22 @@ const AdminDashboard = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+
+  //get  data one specific instructor
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/admins/"+ userObjsId,{withCredentials: true})
+      .then((res) => {
+        console.log("res.data.oneSingleAdmin+++++++",res.data.oneSingleAdmin);
+        setAdminInfos({
+          image: res.data.oneSingleAdmin.image ,
+        });
+      })
+      .catch((err) => console.log(err));
+      
+    }, [userObjsId]);
+
 
   // delete One specific course
   const deleteCourse = (courseId) => {
@@ -312,9 +333,13 @@ const AdminDashboard = () => {
               <ion-icon name="menu-outline"></ion-icon>
             </div>
             <div class="user" onClick={displayProfil}>
-              <img src="/assets/images/pic-1.jpg" alt="" />
+              { adminInfos.image === "" ?
+                <img src="/assets/images/blank-profile.png" alt="" />
+                : 
+                <img src={`http://localhost:8000/${adminInfos.image}`} alt="" /> 
+              } 
             </div>
-              <ProfilPopup />
+              <ProfilPopup userObjsImage={adminInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
           <div class="cardBox">
             <div class="card">

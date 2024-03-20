@@ -16,7 +16,7 @@ const { upload } = require('../config/upload');
 
 module.exports = (app) => {
   app.post("/api/registerAdmin", register);
-  app.patch("/api/upload-image/admin/:id",authenticate, checkPermissions('admin'), upload.single("image"), UpdateImageAdmin);
+  app.patch("/api/upload-image/admins/:id",authenticate, checkPermissions('admin'), upload.single("image"), UpdateImageAdmin);
   app.patch("/api/admins/password/:id",authenticate, checkPermissions('admin'), updateExistingAdminPassword);
   app.patch("/api/me/admins/:id",authenticate, checkPermissions('admin'), updateExistingAdmin);
   app.get('/api/admins/:id',authenticate, checkPermissions('admin'), findOneSingleAdmin);
