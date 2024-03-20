@@ -17,6 +17,7 @@ const AdminDashboard = () => {
   const [adminInfos, setAdminInfos] = useState({
     image: "",
   });
+  const [renderPictureHeader, setRenderPictureHeader]= useState(false); 
   const [display, setDisplay] = useState("courses");
   const navigate = useNavigate();
   //const location = useLocation();
@@ -136,7 +137,7 @@ const AdminDashboard = () => {
   }, []);
 
 
-  //get  data one specific instructor
+  //get  data one specific admin
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/admins/"+ userObjsId,{withCredentials: true})
@@ -148,7 +149,12 @@ const AdminDashboard = () => {
       })
       .catch((err) => console.log(err));
       
-    }, [userObjsId]);
+    }, [userObjsId, renderPictureHeader]);
+
+  // lifting state update picture profile header and popup
+  const updRender = (val) =>{
+    setRenderPictureHeader(val);
+  }
 
 
   // delete One specific course
@@ -430,7 +436,11 @@ const AdminDashboard = () => {
                 <UpdateAdminPassword />
               ) : null}
               {display === "profile" ? (
-                <ProfilPage setDisplay={setDisplay} url="admins" id={userObjsId} />
+                <ProfilPage renderPictureHeader={renderPictureHeader} 
+                updRender={updRender}
+                setDisplay={setDisplay} 
+                url="admins" 
+                id={userObjsId} />
               ) : null}
             </div>
           </div>

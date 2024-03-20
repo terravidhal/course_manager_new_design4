@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import './profilPage.css';
 
 const ProfilPage = (props) => {
-  const {setDisplay, url, id} = props
+  const {setDisplay, url, id, updRender, renderPictureHeader,} = props
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsId = userObjs._id || "default";
 
@@ -116,6 +116,7 @@ const ProfilPage = (props) => {
     .then(res =>{
       console.log(res.data);
       render === false ?  setRender(true) : setRender(false)
+      renderPictureHeader === false ?  updRender(true) : updRender(false)
     })
     .catch((err)=>{
       console.log(err);
