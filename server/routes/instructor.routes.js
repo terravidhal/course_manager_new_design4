@@ -1,5 +1,7 @@
 const {
     register,
+    createInstructor,
+    UpdateImageInstructor,
     findAllInstructors,
     findOneSingleInstructor,
     findSingleEntityInstructorOrAdmin,
@@ -7,16 +9,18 @@ const {
     updateExistingInstructor,
     updateExistingInstructorPassword,
     updateInstructorNameandEmail,
-    createInstructor,
   } = require("../controllers/instructor.controller");
   
   const { authenticate } = require('../config/jwt.config');
 
   const { checkPermissions } = require('../config/jwt.config');
 
+  const { upload } = require('../config/upload');
+
   module.exports = app => {
       app.post("/api/registerInstructor", register);  
       app.post("/api/instructors",authenticate,checkPermissions('admin'), createInstructor); 
+      app.patch("/api/upload-image/instructors/:id",authenticate, checkPermissions('instructor'), upload.single("image"), UpdateImageInstructor);
       app.get("/api/instructors",authenticate, checkPermissions('admin'), findAllInstructors);
       app.get('/api/instructors/:id',authenticate, checkPermissions('admin','instructor'), findOneSingleInstructor);
       app.get('/api/instructorOradmin/:id',authenticate, checkPermissions('admin','instructor','student'), findSingleEntityInstructorOrAdmin);

@@ -14,6 +14,8 @@ const RegisterInstructor = (props)=>{
     const [user, setUser] = useState({
       name: "",
       email: "",
+      image: "",
+      skills:"",
       password: "",
       confirmPassword:""
     })
@@ -39,6 +41,8 @@ const RegisterInstructor = (props)=>{
         setUser({
           name:"",
           email:"",
+          image: "",
+          skills:"",
           password:"",
           confirmPassword:""
         })
@@ -102,6 +106,13 @@ const RegisterInstructor = (props)=>{
             :null
           }
           <input type="text" name="name" value={user.name} onChange={(e)=> handleChange(e)}/>
+        </div>
+        <div className="field">
+          <input type="hidden" name="image" value={user.image} onChange={(e)=> handleChange(e)}/>
+        </div>
+        <div className="field">
+          <label>skills</label>
+          <input type="text" name="skills" value={user.skills} onChange={(e)=> handleChange(e)}/>
         </div>
         <div className="field">
           <label>Email</label>

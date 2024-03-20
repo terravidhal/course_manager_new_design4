@@ -68,6 +68,37 @@ module.exports = {
       });
   },
 
+  UpdateImageInstructor : async (req, res) => {
+    const { filename } = req.file;
+
+    InstructorModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        image: filename,
+      },
+      { new: true, runValidators: true }
+    )
+      .then((updatedInstructor) => {
+        if (!updatedInstructor) {
+          return res.status(404).json({ message: "instructor introuvable" });
+        }
+        res.status(200).json({
+          message: "photo de  profil instructor mis à jour avec succès",
+          instructor: updatedInstructor,
+        });
+      })
+      .catch((err) => {
+        if (err.name === "ValidationError") {
+          return res
+            .status(400)
+            .json({ message: "Validation Errors", errors: err });
+        }
+        res
+          .status(400)
+          .json({ message: "Une erreur s'est produite", errors: err });
+      });
+  },
+
   updateExistingInstructor: async (req, res) => {
     const { id, name, email, isInstructor } = req.body;
 

@@ -99,7 +99,7 @@ const UpdatePageInsructor = (props)=>{
       }
       {loaded === true ? 
       <form onSubmit={updateInstructor}>
-        <div className="field">
+        {/* <div className="field">
           <label>name</label>
           {
             errs.name?
@@ -116,7 +116,7 @@ const UpdatePageInsructor = (props)=>{
             :null
           }
           <input type="email" name="email" value={user.email} onChange={(e)=> handleChange(e)}/>
-        </div>
+        </div> */}
         <div className="field">
           <label>isInstructor</label>
           {

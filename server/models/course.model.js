@@ -11,9 +11,6 @@ const CourseSchema = new mongoose.Schema(
         "The name of a meal must have a maximum of twenty characters",
       ],
     },
-    image: {
-      type: String,
-    },
     level: {
       type: Number,
       required: [true, "A level is required"],

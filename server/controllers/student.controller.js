@@ -59,6 +59,37 @@ module.exports = {
       });
   },
 
+  UpdateImageStudent : async (req, res) => {
+    const { filename } = req.file;
+
+    StudentModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        image: filename,
+      },
+      { new: true, runValidators: true }
+    )
+      .then((updatedStudent) => {
+        if (!updatedStudent) {
+          return res.status(404).json({ message: "student introuvable" });
+        }
+        res.status(200).json({
+          message: "photo de  profil student mis à jour avec succès",
+          student: updatedStudent,
+        });
+      })
+      .catch((err) => {
+        if (err.name === "ValidationError") {
+          return res
+            .status(400)
+            .json({ message: "Validation Errors", errors: err });
+        }
+        res
+          .status(400)
+          .json({ message: "Une erreur s'est produite", errors: err });
+      });
+  },
+
   updateExistingStudent: async (req, res) => {
     const { id, name, email, fieldOfStudy, levelStudent } = req.body;
 

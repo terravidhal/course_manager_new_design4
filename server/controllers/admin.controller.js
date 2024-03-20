@@ -37,8 +37,7 @@ module.exports = {
 
 
 
-  postImage : async (req, res) => {
-  //  const { id, name, email } = req.body;
+  UpdateImageAdmin : async (req, res) => {
     const { filename } = req.file;
 
     AdminModel.findOneAndUpdate(
@@ -53,7 +52,7 @@ module.exports = {
           return res.status(404).json({ message: "admin introuvable" });
         }
         res.status(200).json({
-          message: "admin mis à jour avec succès",
+          message: "photo de  profil admin mis à jour avec succès",
           admin: updatedAdmin,
         });
       })
@@ -69,89 +68,7 @@ module.exports = {
       });
   },
 
-    postImage2 :  async (req, res) => {
-        const { name, email, age } = req.body;
-        const { filename } = req.file;
-    
-        try {
-          if (name && email && age && filename) {
-            const newUser = new userModel({
-              name,
-              email,
-              age,
-              image: filename,
-            });
-    
-            const new_user = await newUser.save();
-            if (new_user) {
-              return res.status(200).json(newUser);
-            } else {
-              return res.status(400).json({ messsage: "something wrong" });
-            }
-          } else {
-            return res.status(400).json({ messsage: "all fields are required" });
-          }
-        } catch (error) {
-          return res.status(400).json(error);
-        }
-   
-  },
-
-  uploadAdminImage: async (req, res) => {
-   // const { id, name, email } = req.body;
-    const { filename } = req.file;
-
-    AdminModel.findOneAndUpdate(
-      { _id: req.params.id },
-      {
-        image: filename
-      },
-      { new: true, runValidators: true }
-    )
-      .then((updatedAdmin) => {
-        if (!updatedAdmin) {
-          return res.status(404).json({ message: "admin introuvable" });
-        }
-        res.status(200).json({
-          message: "admin mis à jour avec succès",
-          admin: updatedAdmin,
-        });
-      })
-      .catch((err) => {
-        if (err.name === "ValidationError") {
-          return res
-            .status(400)
-            .json({ message: "Validation Errors", errors: err });
-        }
-        res
-          .status(400)
-          .json({ message: "Une erreur s'est produite", errors: err });
-      });
-  },
-
-  uploadAdminImage2: async (req, res) => {
-    // console.log(req.body); 
   
-    // Check if image file is uploaded
-    if (!req.file) {
-      return res.status(400).json({ message: "No image uploaded" });
-    }
-  
-    const imageName = req.file.filename;
-  
-    try {
-      // Create a new Admin document with the image name
-      const newAdmin = new AdminModel({ image: imageName });
-      await newAdmin.save(); // Use .save() to persist the data
-  
-      res.status(201).json({ message: "Image uploaded successfully" });
-    } catch (error) {
-      console.error(error); // Log the error for debugging
-      res.status(400).json({ message: "An error occurred during upload" });
-    }
-  },
-
-
 
   findOneSingleAdmin: (req, res) => {
     AdminModel.findOne({ _id: req.params.id })

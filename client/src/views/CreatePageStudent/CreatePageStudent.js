@@ -13,6 +13,7 @@ const CreatePageStudent = (props)=>{
     const [user, setUser] = useState({
       name: "",
       email: "",
+      image: "",
       fieldOfStudy:"Web developement",
       levelStudent: 1,
       password: "",
@@ -51,6 +52,7 @@ const CreatePageStudent = (props)=>{
         setUser({
           name:"",
           email:"",
+          image: "",
           fieldOfStudy:"",
           levelStudent:"",
           password:"",
@@ -97,6 +99,9 @@ const CreatePageStudent = (props)=>{
             :null
           }
           <input type="text" name="name" value={user.name} onChange={(e)=> handleChange(e)}/>
+        </div>
+        <div className="field">
+          <input type="hidden" name="image" value={user.image} onChange={(e)=> handleChange(e)}/>
         </div>
         <div className="field">
           <label>Email</label>

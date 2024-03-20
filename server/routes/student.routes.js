@@ -1,6 +1,7 @@
 const {
     register,
     createStudent,
+    UpdateImageStudent,
     findAllStudents,
     findOneSingleStudent,
     deleteOneSpecificStudent,
@@ -12,10 +13,13 @@ const {
   const { authenticate } = require('../config/jwt.config');
 
   const { checkPermissions } = require('../config/jwt.config');
+
+  const { upload } = require('../config/upload');
   
   module.exports = app => {
       app.post("/api/registerStudent", register);  
       app.post("/api/students",authenticate, checkPermissions('admin'), createStudent);
+      app.patch("/api/upload-image/students/:id",authenticate, checkPermissions('student'), upload.single("image"), UpdateImageStudent);
       app.get("/api/students",authenticate, checkPermissions('admin', 'instructor'), findAllStudents);
       app.get('/api/students/:id',authenticate, checkPermissions('admin','student'), findOneSingleStudent);
       app.patch("/api/students/:id",authenticate, checkPermissions('admin'), updateExistingStudent);

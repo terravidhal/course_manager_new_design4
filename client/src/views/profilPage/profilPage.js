@@ -16,6 +16,7 @@ const ProfilPage = (props) => {
   const [confirmReg, setConfirmReg] = useState("");
  // const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
+  const [render, setRender]= useState(false); 
   const [errs, setErrs] = useState({});
   const [user, setUser] = useState({
     name: "",
@@ -74,7 +75,7 @@ const ProfilPage = (props) => {
         })
         .catch((err) => console.log(err));
         
-      }, [id]);
+      }, [id, render]);
   
 
 
@@ -93,7 +94,8 @@ const ProfilPage = (props) => {
       })
       setConfirmReg("sucefully , updating", url);
       setErrs({});
-      setDisplay("courses");
+      render === false ?  setRender(true) : setRender(false)
+     // setDisplay("courses");
     })
     .catch((err)=>{
       console.log(err);
@@ -103,16 +105,17 @@ const ProfilPage = (props) => {
   };
 
   //upload image
-  const handleSubmit = async (e) => {
+  const updateImageProfile = async (e) => {
     e.preventDefault();
 
-    axios.patch('http://localhost:8000/api/upload-image/admin/'+ id,
+    axios.patch('http://localhost:8000/api/upload-image/'+url+'/'+ id,
     formdata,
     {
       withCredentials: true,
     })
     .then(res =>{
       console.log(res.data);
+      render === false ?  setRender(true) : setRender(false)
     })
     .catch((err)=>{
       console.log(err);
@@ -142,9 +145,6 @@ const ProfilPage = (props) => {
           </div>
           <div className="view-profile profi">
           <button>{infos.name}</button>
-          </div> 
-          <div className="view-profile profi">
-          <button>{infos.image}</button>
           </div> 
           <div className="view-profile profi">
           <button>{infos.role}</button>
@@ -186,13 +186,13 @@ const ProfilPage = (props) => {
          :null}
       </div>
       <div className="bloc-update">
-         <form onSubmit={handleSubmit} encType="multipart/form-data">
+         <form onSubmit={updateImageProfile} encType="multipart/form-data">
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">
                 Profile
               </label>
               <input
-                type="file" accept="image/*"
+                type="file" accept="image/*" 
                 onChange={(e) => setImage(e.target.files[0])}
                 name="image"
                 class="form-control"

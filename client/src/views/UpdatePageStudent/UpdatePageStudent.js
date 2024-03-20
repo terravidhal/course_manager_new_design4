@@ -99,7 +99,7 @@ const UpdatePageStudent = (props) => {
 
       {loaded === true ? (
         <form onSubmit={updateStudent}>
-          <div className="field">
+          {/* <div className="field">
             <label>name</label>
             {errs.name ? (
               <span className="error-text">{errs.name.message}</span>
@@ -122,7 +122,7 @@ const UpdatePageStudent = (props) => {
               value={user.email}
               onChange={(e) => handleChange(e)}
             />
-          </div>
+          </div> */}
           <div className="field">
             <label>field Of Study</label>
             {errs.fieldOfStudy ? (
