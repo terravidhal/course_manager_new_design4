@@ -106,7 +106,7 @@ const InstructorByCourse = () => {
                      <span>{InstructByCourse.name}<br/></span>
                 </h1>
                 <h5 className="title2">
-                     Frontend Developer
+                     {InstructByCourse.skills ? InstructByCourse.skills : 'developer'}
                 </h5>
                 
                 <div className="buttons">
@@ -119,7 +119,11 @@ const InstructorByCourse = () => {
                 </div>
             </div>
             <div className="image">
-            <img src="/assets/images/blank-profile.png" alt="" />
+              { InstructByCourse.image === "" ?
+                <img src="/assets/images/blank-profile.png" alt="" />
+                : 
+                <img src={`http://localhost:8000/${InstructByCourse.image}`} alt="" /> 
+              } 
             </div>
         </div>
           </>
