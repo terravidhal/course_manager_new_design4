@@ -123,6 +123,15 @@ const ProfilPage = (props) => {
     })
   };
 
+  // handle input files
+  const handleInputFiles = () =>{
+    const input = document.querySelector('#profile_input');
+    input.click();
+    if (image) {
+      console.log('input.value', image);
+    }
+  }
+
 
 
 
@@ -148,7 +157,7 @@ const ProfilPage = (props) => {
                       <input
                         type="file" accept="image/*" 
                         onChange={(e) => setImage(e.target.files[0])}
-                        className="none"
+                        className="nones"
                         name="image"
                         id="profile_input"
                       />
@@ -207,26 +216,6 @@ const ProfilPage = (props) => {
             </form>  
          :null}
       </div>
-      {/* <div className="bloc-update two absolute">
-         <form onSubmit={updateImageProfile} encType="multipart/form-data">
-            <div class="">
-              <i onClick={()=>{document.querySelector('#profile_input').click()}}
-                class="fa-solid fa-pen-to-square"></i>
-              <input
-                type="file" accept="image/*" 
-                onChange={(e) => setImage(e.target.files[0])}
-                className="none"
-                name="image"
-                id="profile_input"
-              />
-            </div>
-            <i onClick={()=>{document.querySelector('#profile_btn').click()}}
-             class="fa-regular fa-circle-check"></i>
-            <button className="none" type="submit" id="profile_btn">
-              Submit image
-            </button>
-          </form>
-      </div> */}
     </div>
   );
 };
