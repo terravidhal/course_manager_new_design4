@@ -4,11 +4,14 @@
 }
 .DetailsPageStudent .page-top h1 {
   color: var(--color-theme);
+  visibility: hidden;
 }
 .DetailsPageStudent .page-content {
   display: flex;
   gap: 20px;
   align-items: center;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px !important;
 }
 .DetailsPageStudent .details-img {
   flex: 1;
@@ -52,6 +55,109 @@
   font-weight: bold;
 }
 
+/**/
+.DetailsPageStudent .s-container {
+  min-height: 80vh;
+  width: 90%;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.DetailsPageStudent img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.DetailsPageStudent .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 40%;
+}
+
+.DetailsPageStudent .subtitle {
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #767676;
+}
+
+.DetailsPageStudent .title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+  color: var(--color-theme);
+}
+.DetailsPageStudent .title2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  font-weight: bold;
+  line-height: 3rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #767676;
+}
+
+.DetailsPageStudent .title span {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.DetailsPageStudent .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.DetailsPageStudent .icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.DetailsPageStudent .icons i {
+  cursor: pointer;
+  color: var(--color-theme);
+}
+
+.DetailsPageStudent .buttons button {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  outline: none;
+  border: none;
+  border-radius: 45px;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.DetailsPageStudent .buttons button.one {
+  border: 1px solid var(--color-theme);
+  background-color: var(--white);
+  /* color: black;*/
+  color: var(--color-theme);
+}
+.DetailsPageStudent .buttons button.two {
+  /* background-color: #363636; */
+  background-color: var(--color-theme);
+  color: var(--white);
+}
+
+.DetailsPageStudent .buttons button:hover {
+  transform: scale(1.1);
+}
+
+/* Responsivness  */
+
 @media (max-width: 991px) {
   .DetailsPageStudent .page-top {
     flex-direction: column;
@@ -64,5 +170,31 @@
   .DetailsPageStudent .details-img img {
     width: 200px;
     border-radius: 5px;
+  }
+}
+
+/**/
+@media only screen and (max-width: 850px) {
+  .DetailsPageStudent .s-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+  .DetailsPageStudent .content {
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .DetailsPageStudent .buttons {
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .DetailsPageStudent .content {
+    width: 100%;
+  }
+  .DetailsPageStudent img {
+    width: 300px;
   }
 }

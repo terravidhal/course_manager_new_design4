@@ -5,11 +5,22 @@ import axios from 'axios';
 
 
 const DetailsPageInsructor = () => {
+  const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
+  const userObjsRole = userObjs.role || 'default';
+  const userObjsId = userObjs._id || 'default';
+  
+  console.log("userObjRole+++++++++", userObjsRole);
+  console.log("userObjsId+++++++++", userObjsId);
+
 
   const [OneInstructor, setOneInstructor] = useState({})
   const {id} = useParams(); 
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
+  /** */
+  const [allCoursesSpec, setAllCoursesSpec] = useState([]);
+  const [allReviews, setAllReviews] = useState([]);
+
 
   
   useEffect(() => {
@@ -23,6 +34,40 @@ const DetailsPageInsructor = () => {
         .catch( err => console.log(err) );
   }, [id]); 
 
+  /** */
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/courses/instructor2/" + id,{withCredentials: true})
+        .then( res => {
+          console.log("u*****5*****",res.data.coursesByInstructor);
+          setAllCoursesSpec(res.data.coursesByInstructor);
+        })
+        .catch( err => console.log(err) );
+  }, [id]); 
+
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/reviews" ,{withCredentials: true})
+        .then( res => {
+          console.log("u**********",res.data.allReviews);
+          setAllReviews(res.data.allReviews);
+        })
+        .catch( err => console.log(err) );
+  }, []); 
+   
+
+  const filterReviewsByCourses = (reviews, courses) => {
+    // Convert course IDs to an array
+    const courseIds = courses.map(course => course._id);
+    // Filter reviews based on course IDs
+    const filteredReviews = reviews.filter(review => courseIds.includes(review.courseId));
+    return filteredReviews;
+  };
+
+  const filteredReviews = filterReviewsByCourses(allReviews, allCoursesSpec);
+  //console.log('filteredReviews', filteredReviews);
+
+
+
 
   return(
     <div className="DetailsPageInsructor">
@@ -33,15 +78,42 @@ const DetailsPageInsructor = () => {
           </Link>
       </div>  
       <div className="page-content">
-      <div className="details-img">
-          {/* <img src="/assets/images/instruct.jfif" alt="" /> */}
-          <img src="/assets/images/image_2.jpg.webp" alt="" />
+          { loaded === true ? 
+          <>
+               <div className="s-container">
+            <div className="content">
+                <span className="subtitle">
+                    Hello, I'm
+                </span>
+                <h1 className="title">
+                     <span>{OneInstructor.name}<br/></span>
+                </h1>
+                <h5 className="title2">
+                     {OneInstructor.skills ? OneInstructor.skills : 'developer'}
+                </h5>
+                
+                <div className="buttons">
+                    <button className="one">{allCoursesSpec.length} courses</button>
+                    <button className="two">{filteredReviews.length} comments</button>
+                </div>
+                <div className="icons">
+                    {/* <i class="fa-brands fa-linkedin"></i> */}
+                    {/* <i class="fa-brands fa-github"></i> */}
+                    <i class="fa-brands fa-html5"></i>
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <i class="fa-brands fa-js"></i>
+                </div>
+            </div>
+            <div className="image">
+              { OneInstructor.image === "" ?
+                <img src="/assets/images/blank-profile.png" alt="" />
+                : 
+                <img src={`http://localhost:8000/${OneInstructor.image}`} alt="" /> 
+              } 
+            </div>
         </div>
-        <div className="fields">
-            <p><span className='infos'>name:</span>{OneInstructor.name}</p>
-            <p><span className='infos'>email:</span>{OneInstructor.email}</p>
-            <p><span className='infos'>isInstructor:</span>{OneInstructor.isInstructor}</p>
-        </div>
+          </>
+          : null }
       </div>
     </div>
   );

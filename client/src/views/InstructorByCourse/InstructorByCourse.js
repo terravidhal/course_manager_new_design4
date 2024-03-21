@@ -56,14 +56,11 @@ const InstructorByCourse = () => {
   }, []); 
    
 
-
   const filterReviewsByCourses = (reviews, courses) => {
     // Convert course IDs to an array
     const courseIds = courses.map(course => course._id);
-  
     // Filter reviews based on course IDs
     const filteredReviews = reviews.filter(review => courseIds.includes(review.courseId));
-  
     return filteredReviews;
   };
 
@@ -95,7 +92,6 @@ const InstructorByCourse = () => {
       </div>  
       <div className="page-content">
           { loaded === true ? 
-          
           <>
                <div className="s-container">
             <div className="content">
@@ -114,8 +110,11 @@ const InstructorByCourse = () => {
                     <button className="two">{filteredReviews.length} comments</button>
                 </div>
                 <div className="icons">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <i class="fa-brands fa-github"></i>
+                    {/* <i class="fa-brands fa-linkedin"></i> */}
+                    {/* <i class="fa-brands fa-github"></i> */}
+                    <i class="fa-brands fa-html5"></i>
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <i class="fa-brands fa-js"></i>
                 </div>
             </div>
             <div className="image">
