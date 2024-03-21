@@ -72,6 +72,9 @@ const CourseTable = (props) => {
                   <Link className="btt"  to={"/courses/edit/" + elt._id}>
                     <ion-icon name="create-outline"></ion-icon>
                   </Link> &nbsp;
+                  <Link className="btt"  to={"/courses/addStudents/" + elt._id}>
+                     <ion-icon name="person-add-outline"></ion-icon>
+                  </Link> &nbsp;
                   <Link className="btt orange"  to="">
                     <ion-icon name="trash-outline" onClick={() => deleteCourse(elt._id)}></ion-icon>
                   </Link> 

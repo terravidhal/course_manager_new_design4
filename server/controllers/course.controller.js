@@ -187,6 +187,27 @@ module.exports.updateExistingCourse = (req, res) => {
     });
 };
 
+
+module.exports.updateExistingCourse2 = (req, res) => {
+
+  const { students } = req.body;
+
+  Course.findOneAndUpdate(
+    { _id: req.params.id }, 
+    {
+      students: students,
+    }, 
+    {new: true, runValidators: true,}
+    )
+    .then((updatedCourse) => {
+      res.json({ updatedCourse });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+
 module.exports.deleteAnExistingCourse = (req, res) => {
   Course.deleteOne({ _id: req.params.id })
     .then((result) => {
