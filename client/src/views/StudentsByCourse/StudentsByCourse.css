@@ -46,6 +46,7 @@
   padding-bottom: 40px;
   width: 70%;
   overflow-y: auto;
+  height: 600px;
 }
 .StudentsByCourse span.infos {
   font-weight: bold;
