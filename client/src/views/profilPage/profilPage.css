@@ -76,6 +76,15 @@
   cursor: pointer;
   color: var(--color-theme);
 }
+.ProfilPage .bloc-update.two i.valid_picture{
+  color: gray;
+}
+.ProfilPage .bloc-update.two span{
+  color: var(--color-theme);
+}
+.ProfilPage .bloc-update.two span.text_picture{
+  color: gray;
+}
 
 .ProfilPage  form{
 

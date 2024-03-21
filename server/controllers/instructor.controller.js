@@ -3,9 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const InstructorModel = require("../models/instructor.model");
 const AdminModel = require("../models/admin.model");
-const {
-  sendNewInstructorNotification,
-} = require("../notifications/notifications");
+
+const { sendNewInstructorNotifications } = require("../config/notifications.config");
 
 
 
@@ -36,7 +35,7 @@ module.exports = {
         instructor: instructorInfo,
       });
 
-      await sendNewInstructorNotification(instructorInfo); // Call the notification function
+      await sendNewInstructorNotifications(instructorInfo); // Call the notification function
     } catch (err) {
       if (err.name === "ValidationError") {
         return res

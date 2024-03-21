@@ -10,7 +10,7 @@ const { authenticate } = require('../config/jwt.config');
 
 const { checkPermissions } = require('../config/jwt.config');
 
-const { upload } = require('../config/upload');
+const { upload } = require('../config/multer.config');
 
 
 

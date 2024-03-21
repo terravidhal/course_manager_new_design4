@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendNewInstructorNotification(instructorInfo) {
+async function sendNewInstructorNotifications(instructorInfo) {
   try {
     const info = await transporter.sendMail({
       from: { name: 'vidhal', address: process.env.EMAIL_ADMIN },
@@ -30,7 +30,7 @@ async function sendNewInstructorNotification(instructorInfo) {
 
 
 module.exports = {
-  sendNewInstructorNotification
+  sendNewInstructorNotifications
 }; 
 
 

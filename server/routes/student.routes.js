@@ -14,7 +14,7 @@ const {
 
   const { checkPermissions } = require('../config/jwt.config');
 
-  const { upload } = require('../config/upload');
+  const { upload } = require('../config/multer.config');
   
   module.exports = app => {
       app.post("/api/registerStudent", register);  

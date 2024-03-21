@@ -125,14 +125,16 @@ const ProfilPage = (props) => {
 
   // handle input files
   const handleInputFiles = () =>{
-    const input = document.querySelector('#profile_input');
-    input.click();
+   // const input = document.querySelector('#profile_input');
+   // input.click();
     if (image) {
-      console.log('input.value', image);
+      console.log('input.value', image.name);
+      document.querySelector('i.fa-regular.fa-circle-check').classList.remove('valid_picture');
+      document.querySelector('#text').classList.remove('text_picture');
     }
   }
 
-
+  handleInputFiles()
 
 
 
@@ -153,17 +155,20 @@ const ProfilPage = (props) => {
                  <form onSubmit={updateImageProfile} encType="multipart/form-data">
                     <div class="">
                       <i onClick={()=>{document.querySelector('#profile_input').click()}}
-                        class="fa-solid fa-pen-to-square"></i>
+                        className="fa-solid fa-pen-to-square" id="edit_picture"></i>
                       <input
                         type="file" accept="image/*" 
                         onChange={(e) => setImage(e.target.files[0])}
-                        className="nones"
+                        className="none"
                         name="image"
                         id="profile_input"
                       />
                     </div>
-                    <i onClick={()=>{document.querySelector('#profile_btn').click()}}
-                     class="fa-regular fa-circle-check"></i>
+                    <i onClick={()=>{document.querySelector('#profile_btn').click();
+                                     document.querySelector('i.fa-regular.fa-circle-check').classList.add('valid_picture');
+                                     }}
+                     className="fa-regular fa-circle-check valid_picture" id="valid_picture"></i>
+                     <span id="text" className="text_picture">{image ? "click" : ""}</span>
                     <button className="none" type="submit" id="profile_btn">
                       Submit image
                     </button>
