@@ -59,7 +59,7 @@ module.exports = {
         }
     },
 
-    findAllReviewByManyCourses: async (req, res) => {
+  /*  findAllReviewByManyCourses: async (req, res) => {
       const { courseIds } = req.params; 
     
       try {
@@ -68,7 +68,7 @@ module.exports = {
     
         if (!reviews.length) { 
           return res.status(400).json({ message: "reviews not found" });
-        }
+        }  */
     
         // Transform du résultat en tableau de reviews
      /*   const reviewsData = reviews.map((review) => {
@@ -79,7 +79,8 @@ module.exports = {
             rating: review.rating,
             reviewText: review.reviewText,
           };
-        });  */
+        });  */ 
+        /*
         res.status(201).json({
           reviews: reviews,
         });
@@ -87,5 +88,5 @@ module.exports = {
         console.error(err);
         res.status(400).json({ message: "An error occurred" });
       }
-    },
+    },  */
 };

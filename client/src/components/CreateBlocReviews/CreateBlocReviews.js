@@ -5,9 +5,7 @@ import './CreateBlocReviews.css';
 
 
 const CreateBlocReviews = (props)=>{
-  //  const [confirmReg, setConfirmReg] = useState("");
     const [errs, setErrs] = useState({});
-   // const navigate = useNavigate();
 
     const {idCourse, userObjsId, handleReviewCreated,loadedArrReview} = props; 
   
@@ -17,10 +15,6 @@ const CreateBlocReviews = (props)=>{
       rating: 1,
       reviewText: "",
     });
-
-  
-
-   
   
     const handleChange = (e)=>{
       setUser({
@@ -42,11 +36,8 @@ const CreateBlocReviews = (props)=>{
           ...user, 
           reviewText: "",
         })
-       // setConfirmReg("Thank you for registering, you can now log in");
         setErrs({});
         loadedArrReview === false ?  handleReviewCreated(true) : handleReviewCreated(false)
-       // handleReviewCreated(true)
-       // navigate("/admin-dashboard");
       })
       .catch((err)=>{
         console.log(err);
@@ -55,7 +46,6 @@ const CreateBlocReviews = (props)=>{
       })
   };
 
- 
   
   return(
     <div className="CreateBlocReviews">

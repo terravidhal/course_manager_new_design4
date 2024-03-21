@@ -8,7 +8,7 @@ const ShowBlocReviews = (props) => {
 
   const {arrReviews, deleteReview, userObjsId, userObjsRole} = props;
 
-  const handleChange = (val)=>{
+  const handleChangeDate = (val)=>{
      const date = new Date(val);
      const year = date.getFullYear();
      const month = date.getMonth() + 1; // Les mois sont indexés de 0
@@ -68,7 +68,7 @@ const ShowBlocReviews = (props) => {
                                       }
                                   </div>
                                 </div>
-                                  <span>{handleChange(OneReview.createdAt)}</span>
+                                  <span>{handleChangeDate(OneReview.createdAt)}</span>
                                </div>
                            </div>
                            <div class="comment-box">{OneReview.reviewText}</div>
