@@ -134,13 +134,34 @@ const ProfilPage = (props) => {
       { loaded === true ?
         <>
           <div className="profil-infos">
-           <div className="profil-picture">
+           <div className="profil-picture relative">
               { infos.image === "" ?
                 <img src="/assets/images/blank-profile.png" alt="" />
                 : 
                 <img src={`http://localhost:8000/${infos.image}`} alt="" /> 
-              }     
+              } 
+              <div className="bloc-update two absolute">
+                 <form onSubmit={updateImageProfile} encType="multipart/form-data">
+                    <div class="">
+                      <i onClick={()=>{document.querySelector('#profile_input').click()}}
+                        class="fa-solid fa-pen-to-square"></i>
+                      <input
+                        type="file" accept="image/*" 
+                        onChange={(e) => setImage(e.target.files[0])}
+                        className="none"
+                        name="image"
+                        id="profile_input"
+                      />
+                    </div>
+                    <i onClick={()=>{document.querySelector('#profile_btn').click()}}
+                     class="fa-regular fa-circle-check"></i>
+                    <button className="none" type="submit" id="profile_btn">
+                      Submit image
+                    </button>
+                  </form>
+               </div>    
            </div>
+           <div className="profil-name hidden">infos</div>
            <div className="profil-name">infos</div>
            <div className="profil-role">profile</div>
           </div>
@@ -186,25 +207,26 @@ const ProfilPage = (props) => {
             </form>  
          :null}
       </div>
-      <div className="bloc-update">
+      {/* <div className="bloc-update two absolute">
          <form onSubmit={updateImageProfile} encType="multipart/form-data">
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
-                Profile
-              </label>
+            <div class="">
+              <i onClick={()=>{document.querySelector('#profile_input').click()}}
+                class="fa-solid fa-pen-to-square"></i>
               <input
                 type="file" accept="image/*" 
                 onChange={(e) => setImage(e.target.files[0])}
+                className="none"
                 name="image"
-                class="form-control"
-                id="exampleInputPassword1"
+                id="profile_input"
               />
             </div>
-            <button type="submit" class="btn btn-primary">
+            <i onClick={()=>{document.querySelector('#profile_btn').click()}}
+             class="fa-regular fa-circle-check"></i>
+            <button className="none" type="submit" id="profile_btn">
               Submit image
             </button>
           </form>
-      </div>
+      </div> */}
     </div>
   );
 };

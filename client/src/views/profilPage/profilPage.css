@@ -1,6 +1,23 @@
 .ProfilPage {
    display: flex;
-   gap: 20px;
+   gap: 30px;
+}
+.ProfilPage .none{
+   display: none;
+}
+.ProfilPage .hidden{
+   visibility: hidden;
+}
+.ProfilPage .opacity{
+   opacity: 0;
+}
+.ProfilPage .relative{
+   position: relative;
+}
+.ProfilPage .absolute{
+   position: absolute;
+   left: 170px;
+  top: 210px;
 }
 .ProfilPage .bloc-view{
     width: 300px;
@@ -9,11 +26,13 @@
   padding: 1.5rem;
   text-align: center;
   transition: .2s linear;
+  flex: 1;
   /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2); */
 }
 .ProfilPage .bloc-view .profil-name {
   margin-bottom: 10px;
   font-size: 1.2rem;
+  padding-top: 8px;
 }
 .ProfilPage .bloc-view .profil-name::first-letter {
   text-transform: capitalize;
@@ -27,8 +46,8 @@
   margin-bottom: 10px;
 }
 .ProfilPage .bloc-view .profil-picture img{
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 .ProfilPage .bloc-view .view-profile {
@@ -47,6 +66,15 @@
 
 .ProfilPage .bloc-update{
   flex: 1;
+}
+.ProfilPage .bloc-update.two form{
+  display: flex;
+  gap: 10px;
+}
+.ProfilPage .bloc-update.two i{
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--color-theme);
 }
 
 .ProfilPage  form{
@@ -77,6 +105,7 @@
   border-radius: 5px;
   margin-top: 10px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
