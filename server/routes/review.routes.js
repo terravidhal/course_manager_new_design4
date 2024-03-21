@@ -12,9 +12,9 @@ const {
 
   module.exports = app => {
       app.post('/api/reviews',authenticate, checkPermissions('student'), createNewReview);
-      app.get('/api/reviews',authenticate, checkPermissions('admin','student','insructor'), findAllReviews);
-      app.get('/api/reviews/course/:courseId',authenticate, checkPermissions('admin','student','insructor'), findAllReviewBySpecificCourse);
-      app.get('/api/reviews/courseArray/:courseIds',authenticate, checkPermissions('admin','student','insructor'), findAllReviewByManyCourses);
+      app.get('/api/reviews',authenticate, checkPermissions('admin','student','instructor'), findAllReviews);
+      app.get('/api/reviews/course/:courseId',authenticate, checkPermissions('admin','student','instructor'), findAllReviewBySpecificCourse);
+      app.get('/api/reviews/courseArray/:courseIds',authenticate, checkPermissions('admin','student','instructor'), findAllReviewByManyCourses);
       app.delete('/api/reviews/:id',authenticate,checkPermissions('admin','instructor','student'),  deleteAnExistingReview);
   }
   

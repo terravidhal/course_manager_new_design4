@@ -12,11 +12,16 @@ import ProfilPage from "../profilPage/profilPage";
 const StudentDashboard = () => {
   const [allCourses, setAllCourses] = useState([]);
   const [display, setDisplay] = useState("courses");
+  const [studentInfos, setStudentInfos] = useState({
+    image: "",
+  });
+  const [renderPictureHeader, setRenderPictureHeader]= useState(false); 
   const navigate = useNavigate();
 
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsRole = userObjs.role || "default";
   const userObjsId = userObjs._id || "default";
+  const userObjsName = userObjs.name || "default";
 
   console.log("userObjRole+++++++++", userObjsRole);
   console.log("userObjsId+++++++++", userObjsId);
@@ -99,6 +104,28 @@ const StudentDashboard = () => {
       return course;
     });
   };
+
+
+   //get  data one specific student
+   useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/students/"+ userObjsId,{withCredentials: true})
+      .then((res) => {
+        console.log("res.data.oneSingleStudent+++++++",res.data.oneSingleStudent);
+        setStudentInfos({
+          image: res.data.oneSingleStudent.image ,
+        });
+      })
+      .catch((err) => console.log(err));
+      
+    }, [userObjsId, renderPictureHeader]);
+
+  // lifting state update picture profile header and popup
+  const updRender = (val) =>{
+    setRenderPictureHeader(val);
+  }
+
+
 
   const logout = (event) => {
     event.preventDefault();
@@ -206,9 +233,13 @@ const StudentDashboard = () => {
               <ion-icon name="menu-outline"></ion-icon>
             </div>
             <div class="user" onClick={displayProfil}>
-                <img src="/assets/images/pic-1.jpg" alt="" />
+            { studentInfos.image === "" ?
+                <img src="/assets/images/blank-profile.png" alt="" />
+                : 
+                <img src={`http://localhost:8000/${studentInfos.image}`} alt="" /> 
+              } 
             </div>
-            <ProfilPopup />
+              <ProfilPopup userObjsImage={studentInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
           <div class="cardBox">
             <div class="card">
@@ -249,7 +280,11 @@ const StudentDashboard = () => {
                 <UpdateStudentPassword/>
               ) : null}
               {display === "profile" ? (
-                <ProfilPage setDisplay={setDisplay} url="students" id={userObjsId}/>
+                <ProfilPage renderPictureHeader={renderPictureHeader} 
+                updRender={updRender}
+                setDisplay={setDisplay} 
+                url="students" 
+                id={userObjsId}/>
               ) : null}
             </div>
           </div>

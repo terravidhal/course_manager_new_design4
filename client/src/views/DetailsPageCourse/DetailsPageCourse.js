@@ -71,9 +71,9 @@ const DetailsPageCourse = () => {
     return index >= 0;
   }
 
-  const t = "je donne css a toi";
-const contientCSS = containsWord(t, "css");
-console.log(contientCSS); 
+ // const t = "je donne css a toi";
+///const contientCSS = containsWord(t, "css");
+//console.log(contientCSS); 
    
 
    
