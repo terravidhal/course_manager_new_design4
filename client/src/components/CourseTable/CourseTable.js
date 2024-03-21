@@ -63,8 +63,7 @@ const CourseTable = (props) => {
                     <ion-icon name="eye-outline"></ion-icon>
                      </Link>&nbsp;
                   </ul> 
-                 
-                  </td>
+                </td>
                 <td className="actions text-center options">
                   <Link className="btt violet"  to={"/courses/" + elt._id}>
                     <ion-icon name="document-text-outline"></ion-icon>

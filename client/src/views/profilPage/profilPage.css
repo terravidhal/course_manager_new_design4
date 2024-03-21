@@ -119,10 +119,8 @@
 
 @media (max-width: 768px) {
   .AdminDashboard .details .cardHeader {
-    .AdminDashboard .details .cardHeader {
       display: flex;
       padding: 0 5px;
-    }
   }
   .ProfilPage {
     display: flex;
@@ -136,4 +134,10 @@
   .ProfilPage .bloc-update {
     padding: 10px 25px;
   }
+  .ProfilPage .absolute {
+    position: absolute;
+    left: 65px;
+    top: 210px;
+  }
 }
+

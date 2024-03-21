@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import './AddStudentsCourse.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import CourseForm from '../../components/CourseForm/CourseForm';
 
 
 
@@ -109,7 +108,7 @@ const AddStudentsCourse = (props) => {
   return (
     <div className="AddStudentsCourse">
       <div className="page-top">
-        <h1>Add students specific course</h1>
+        <h1>Add / Remove </h1>
         {
           userObjsRole === 'admin' ?
             <Link to="/admin-dashboard">
@@ -120,8 +119,6 @@ const AddStudentsCourse = (props) => {
             </Link>
         }
       </div>
-      <h4>Add students specific course</h4>
-      
       <div className="page-content">
       {loaded === true && students.length > 0 ? 
           <>
@@ -154,7 +151,7 @@ const AddStudentsCourse = (props) => {
               </div>
           </>
        : (
-        <p>Loading students...</p> // Or any loading indicator
+        <p>Loading students...</p> //  loading indicator
       )}
        </div>
     </div>
