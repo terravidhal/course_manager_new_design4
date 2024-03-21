@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './ShowBlocReviews.css';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-//import axios from 'axios';
+
 
 
 
@@ -18,44 +17,22 @@ const ShowBlocReviews = (props) => {
      return formattedDate;
   }
 
-  const getRandomNumberBetween1And9 = () => {
-    // Générer un nombre aléatoire entre 0 et 0.999999...
-    const randomFloat = Math.random();
-    // Multiplier par 9 pour obtenir un nombre entre 0 et 6
-    const randomNumber = randomFloat * 6;
-    // Arrondir au nombre entier le plus proche
-    const roundedNumber = Math.floor(randomNumber) + 1;
-    // Renvoyer le nombre aléatoire entre 1 et 9
-    console.log(roundedNumber);
-    return roundedNumber;
-  }
-
-  const randomNumber = getRandomNumberBetween1And9();
-  const imageURL = `<img src="/assets/images/pic-${randomNumber}.jpg" alt="" />`;
 
 
- 
   return(
     <div className="ShowBlocReviews">
         <div className="page-contents">
              { arrReviews.map((OneReview,index) => {
             return(
               <>
-                 {/*<div className="fields"  key={index}>
-                    <div className="details-img">
-                       <img src="/assets/images/OIG1.jfif" alt="" /> 
-                    </div>
-                   <p><span className='infos'>name student:</span>{OneReview.studentId.name}</p>
-                   <p><span className='infos'>Level student:</span>{OneReview.studentId.fieldOfStudy}</p>
-                   <p><span className='infos'>comment::</span>{OneReview.reviewText}</p>
-                   <p><span className='infos'>date::</span>{handleChange(OneReview.createdAt)}</p>
-                   <p><span className='infos'>rating:</span> {OneReview.rating}</p>
-                   <button onClick={() => deleteReview(OneReview._id)}>Delete comment</button> 
-                </div>*/}
                     <div class="box-container"  key={index}>
                        <div class="box">
                            <div class="user">
-                               <img src={"/assets/images/pic-"+getRandomNumberBetween1And9()+".jpg"} alt="" />
+                                {OneReview.studentId.image === "" ?
+                                  <img src="/assets/images/blank-profile.png" alt="" />
+                                  : 
+                                  <img src={`http://localhost:8000/${OneReview.studentId.image}`} alt="" /> 
+                                } 
                                <div>
                                 <div className="name-stars">
                                   <h3>{OneReview.studentId.name}</h3>

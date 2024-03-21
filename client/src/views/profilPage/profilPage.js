@@ -45,7 +45,7 @@ const ProfilPage = (props) => {
   }
 
 
-     //get  data one specific instructor
+     //get  data one specific user
      useEffect(() => {
       axios
         .get("http://localhost:8000/api/"+url+"/" + id,{withCredentials: true})

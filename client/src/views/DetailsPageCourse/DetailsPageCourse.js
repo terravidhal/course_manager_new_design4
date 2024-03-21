@@ -22,6 +22,7 @@ const DetailsPageCourse = () => {
   const [loadedArrReview, setLoadedArrReview] = useState(false); 
 
   
+  //get one specific course
   useEffect(() => {
     axios.get("http://localhost:8000/api/courses/" + id,{withCredentials: true})
         .then( res => {
@@ -33,6 +34,7 @@ const DetailsPageCourse = () => {
   }, [id]); 
 
 
+  // get all reviews for one specific courses
   useEffect(() => {
     axios.get("http://localhost:8000/api/reviews/course/" + id,{withCredentials: true})
         .then( res => {
@@ -42,6 +44,8 @@ const DetailsPageCourse = () => {
         })
         .catch( err => console.log(err) );
   }, [loadedArrReview]); 
+
+  
 
    // delete One specific review
    const deleteReview = (reviewId,ev) => {
@@ -160,7 +164,11 @@ const DetailsPageCourse = () => {
                  </div>
                  <div class="tutor">
                      <div className="bloc-tutor">
-                      <img src="/assets/images/pic-1.jpg" alt="" />
+                       { OneCourse.oneSingleUser.image === "" ?
+                          <img src="/assets/images/blank-profile.png" alt="" />
+                          : 
+                          <img src={`http://localhost:8000/${OneCourse.oneSingleUser.image}`} alt="" /> 
+                       } 
                      </div>
                     <div>
                        <h3>{OneCourse.oneSingleUser.name}</h3>
