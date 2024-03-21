@@ -1,5 +1,6 @@
 :root {
-  --color-theme: #1eb2a6;
+  --color-theme: #1d9187;
+  --color-themess: #1eb2a6;
   --blue2: #1c71c6;
   --green: #52898b;
   --blues: #2a2185;
@@ -237,7 +238,8 @@ body {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); */
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
   align-items: center;
 }
 
@@ -280,7 +282,8 @@ body {
   min-height: 500px;
   background: var(--white);
   padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); */
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   grid-template-rows: 1fr 16fr;
   max-height: 500px;
