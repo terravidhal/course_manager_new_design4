@@ -139,6 +139,7 @@
   transition: 0.3s ease-out;
   cursor: pointer;
   margin-bottom: 20px;
+  width: 200px;
 }
 .DetailsPageStudent .buttons button.one {
   border: 1px solid var(--color-theme);

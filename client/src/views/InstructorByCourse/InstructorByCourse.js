@@ -20,6 +20,7 @@ const InstructorByCourse = () => {
   const {id} = useParams(); 
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
+  /** */
   const [allCoursesSpec, setAllCoursesSpec] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
   
