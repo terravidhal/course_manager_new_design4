@@ -4,19 +4,21 @@
 }
 .StudentsByCourse .page-top h1 {
   color: var(--color-theme);
+  visibility: hidden;
 }
 .StudentsByCourse .page-content {
   display: flex;
   gap: 20px;
-  align-items: center;
-  flex-wrap: wrap;
+  /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2); */
+  margin-bottom: 40px !important;
+  flex-direction: column;
 }
 .StudentsByCourse .details-img {
   flex: 1;
   border-radius: 5px;
 }
 .StudentsByCourse .details-img img {
-  width: 200px;
+  width: 400px;
   border-radius: 5px;
 }
 .StudentsByCourse .fields {
@@ -43,6 +45,7 @@
   margin: 0px auto;
   padding-bottom: 40px;
   width: 70%;
+  overflow-y: auto;
 }
 .StudentsByCourse span.infos {
   font-weight: bold;
@@ -52,6 +55,111 @@
   color: var(--oranges);
   font-weight: bold;
 }
+
+/**/
+.StudentsByCourse .s-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+  border-radius: 5px;
+  width: 80%;
+  margin: auto;
+}
+
+.StudentsByCourse img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.StudentsByCourse .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 40%;
+}
+
+.StudentsByCourse .subtitle {
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #767676;
+}
+
+.StudentsByCourse .title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+  color: var(--color-theme);
+}
+.StudentsByCourse .title2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  font-weight: bold;
+  line-height: 3rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #767676;
+}
+
+.StudentsByCourse .title span {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.StudentsByCourse .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.StudentsByCourse .icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.StudentsByCourse .icons i {
+  cursor: pointer;
+  color: var(--color-theme);
+}
+
+.StudentsByCourse .buttons button {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  outline: none;
+  border: none;
+  border-radius: 45px;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 200px;
+}
+.StudentsByCourse .buttons button.one {
+  border: 1px solid var(--color-theme);
+  background-color: var(--white);
+  /* color: black;*/
+  color: var(--color-theme);
+}
+.StudentsByCourse .buttons button.two {
+  /* background-color: #363636; */
+  background-color: var(--color-theme);
+  color: var(--white);
+}
+
+.StudentsByCourse .buttons button:hover {
+  transform: scale(1.1);
+}
+
+/* Responsivness  */
 
 @media (max-width: 991px) {
   .StudentsByCourse .page-top {
@@ -65,5 +173,31 @@
   .StudentsByCourse .details-img img {
     width: 200px;
     border-radius: 5px;
+  }
+}
+
+/**/
+@media only screen and (max-width: 850px) {
+  .StudentsByCourse .s-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+  .StudentsByCourse .content {
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .StudentsByCourse .buttons {
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .StudentsByCourse .content {
+    width: 100%;
+  }
+  .StudentsByCourse img {
+    width: 300px;
   }
 }

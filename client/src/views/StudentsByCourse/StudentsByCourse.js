@@ -54,28 +54,40 @@ const StudentsByCourse = () => {
                { StudByCourse.map((elt,index) => {
                   return(
                     <>
-                      <div className="details-img">
-                        <img src="/assets/images/student2.jfif" alt="" />
-                      </div>
-                      <div className="fields" key={index}>
-                         <p><span className='infos'>name:</span>&nbsp;{elt.name}</p>
-                         <p><span className='infos'>email:</span>&nbsp;{elt.email}</p>
-                         <p><span className='infos'>fieldOfStudy:</span>&nbsp;{elt.fieldOfStudy}</p>
-                         <p><span className='infos'>levelStudent:</span>&nbsp;{elt.levelStudent}</p>
-                      </div>
+                     <div className="s-container" key={index}>
+                        <div className="content">
+                           <span className="subtitle">
+                               Hello, I'm
+                           </span>
+                           <h1 className="title">
+                                <span>{elt.name}<br/></span>
+                           </h1>
+                           <h5 className="title2">
+                                 {elt.skills ? elt.skills : 'student'}
+                           </h5>
+                           <div className="buttons">
+                              <button className="one">level {elt.levelStudent}</button>
+                              <button className="two">{elt.fieldOfStudy}</button>
+                           </div>
+                           <div className="icons">
+                                {/* <i class="fa-brands fa-linkedin"></i> */}
+                                {/* <i class="fa-brands fa-github"></i> */}
+                                <i class="fa-brands fa-html5"></i>
+                                <i class="fa-brands fa-css3-alt"></i>
+                                <i class="fa-brands fa-js"></i>
+                           </div>
+                        </div>
+                        <div className="image">
+                           { elt.image === "" ?
+                             <img src="/assets/images/blank-profile.png" alt="" />
+                             : 
+                             <img src={`http://localhost:8000/${elt.image}`} alt="" /> 
+                           } 
+                        </div>
+                     </div>
                     </>
                   );
                 }) }
-               { StudByCourse.length === 0 ? 
-                       <>
-                         <div className="details-img">
-                           <img src="/assets/images/student2.jfif" alt="" />
-                         </div>
-                         <div className="fields">
-                           <p><span className='infos'>Students:</span>&nbsp;{"0"}</p> 
-                         </div>
-                       </>
-               : null }
             </>
           : null} 
       </div>

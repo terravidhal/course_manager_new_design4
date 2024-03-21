@@ -125,7 +125,7 @@ const InstructorByCourse = () => {
                 <img src={`http://localhost:8000/${InstructByCourse.image}`} alt="" /> 
               } 
             </div>
-        </div>
+                </div>
           </>
           : null }
       </div>

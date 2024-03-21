@@ -233,6 +233,7 @@ module.exports.findAllStudentsBySpecificCourse = async (req, res) => {
         _id: student._id,
         name: student.name,
         email: student.email,
+        image: student.image,
         fieldOfStudy: student.fieldOfStudy,
         levelStudent: student.levelStudent,
       };

@@ -36,7 +36,6 @@ const DetailsPageStudent = () => {
 
 
 
-
  
   return(
     <div className="DetailsPageStudent">
