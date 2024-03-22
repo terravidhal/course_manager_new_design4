@@ -1,4 +1,5 @@
-import React from "react";
+import { Avatar, Rate, Space, Table, Typography } from "antd";
+import React, { useState, useEffect } from "react";
 import "./CourseTable.css";
 import { Link } from "react-router-dom";
 
@@ -15,14 +16,30 @@ const CourseTable = (props) => {
   console.log("userObjIsInstructor+++++++++", userObjIsInstructor);
   console.log("userObjsId+++++++++", userObjsId);
 
-  const { allCourses, deleteCourse } = props;
+  const { allCourses, deleteCourse, loading } = props;
 
+/* const getCustomers = () => {
+  return fetch("https://dummyjson.com/users").then((res) => res.json());
+};
+
+
+  const [loading, setLoading] = useState(false);
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    getCustomers().then((res) => {
+      console.log('res', res);
+      setDataSource(res.users);
+      setLoading(false);
+    });
+  }, []);  */
 
  
 
   return (
     <div className="CourseTable">
-        <table>
+        {/* <table>
          <thead>
           <tr>
             <th className="text-left">Name of Course</th>
@@ -82,7 +99,88 @@ const CourseTable = (props) => {
             );
           })} 
         </tbody>
-      </table>  
+      </table>   */}
+      <Table
+        loading={loading}
+        columns={[
+          {
+            title: "Name of Course",
+            dataIndex: "name",
+          },
+          {
+            title: "Level",
+            dataIndex: "level",
+          },
+          {
+            title: "Field",
+            dataIndex: "field",
+          },
+          {
+            title: "Instructor",
+            dataIndex: "instructor",
+            render: (instructor) => {
+              return (
+                 userObjsId === instructor ? "Me" :
+                     <Link className="btt blue"  to={"/instructorByCourse/" + instructor}>
+                       <ion-icon name="eye-outline"></ion-icon>
+                     </Link>
+              );
+            },
+          },
+          {
+            title: "Status",
+            dataIndex: "status",
+            render: (status) => {
+              return (
+                <button
+                      className={`${
+                        status === "pending"
+                          ? "status inProgress"
+                          : "status pending"
+                      }`}
+                    > {status}</button>
+              );
+            },
+          },
+          {
+            title: "Students",
+            dataIndex: "_id",
+            render: (_id) => {
+              return (
+                <Link className=""  to={"/studentsByCourse/" + _id}>
+                <ion-icon name="eye-outline"></ion-icon>
+                 </Link>
+              );
+            },
+          },
+          {
+            title: "Options",
+            dataIndex: "_id",
+            render: (_id) => {
+              return (
+                <>
+                 <Link className="btt violet"  to={"/courses/" + _id}>
+                    <ion-icon name="document-text-outline"></ion-icon>
+                  </Link> 
+                  <Link className="btt"  to={"/courses/edit/" + _id}>
+                    <ion-icon name="create-outline"></ion-icon>
+                  </Link>
+                  <Link className="btt"  to={"/courses/addStudents/" + _id}>
+                     <ion-icon name="person-add-outline"></ion-icon>
+                  </Link> 
+                  <Link className="btt orange"  to="">
+                    <ion-icon name="trash-outline" onClick={() => deleteCourse(_id)}></ion-icon>
+                  </Link> 
+                </>
+              );
+            },
+          },
+        ]}
+        dataSource={allCourses}
+        pagination={{
+          pageSize: 3,
+        }}
+      ></Table>
     </div>
   );
 };

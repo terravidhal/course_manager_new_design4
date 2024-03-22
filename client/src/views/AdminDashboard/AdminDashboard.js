@@ -32,6 +32,10 @@ const AdminDashboard = () => {
   console.log("userObjRole+++++++++", userObjsRole);
   console.log("userObjsId+++++++++", userObjsId);
 
+  /**  */
+  const [loading, setLoading] = useState(false);
+  /** */
+
 
   useEffect(() => {
     if (userObjsRole !== 'admin') {
@@ -44,6 +48,7 @@ const AdminDashboard = () => {
 
   // check and update courses status
   useEffect(() => {
+    setLoading(true);
     const GetAllCourses = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/courses", {
@@ -53,8 +58,10 @@ const AdminDashboard = () => {
 
         // Call the new function to update statuses
         const updatedCourses = updateCourseStatuses(courses);
-
+        
+       
         setAllCourses(updatedCourses);
+        setLoading(false);
       } catch (err) {
         console.error(err);
         //navigate("/page404NotFound");
@@ -416,6 +423,7 @@ const AdminDashboard = () => {
               </div>
               {display === "courses" ? (
                 <CourseTable
+                  loading={loading} 
                   allCourses={allCourses}
                   deleteCourse={deleteCourse}
                 />
