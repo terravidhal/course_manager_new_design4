@@ -6,6 +6,7 @@ import "./Login.css";
 
 
 
+
 const Login = (props)=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -67,6 +68,7 @@ const Login = (props)=>{
   //  console.log(input);
     input.type === "password" ? input.type = "text" : input.type = "password";
   }
+
 
 
   
