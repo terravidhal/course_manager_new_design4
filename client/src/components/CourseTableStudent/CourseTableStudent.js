@@ -1,7 +1,13 @@
-import React from "react";
+/** */
+import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
+import React, { useState, useEffect, useRef } from "react";
+/** */
 import "./CourseTableStudent.css";
 import { Link } from "react-router-dom";
 
+/** */
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
 
 
 const CourseTableStudent = (props) => {
@@ -15,13 +21,132 @@ const CourseTableStudent = (props) => {
   console.log("userObjIsInstructor+++++++++", userObjIsInstructor);
   console.log("userObjsId+++++++++", userObjsId);
 
-  const { allCourses} = props;
+  const { allCourses, loading} = props;
+
+
+  //=======================================
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type=""
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+              backgroundColor: '#1d9187',
+              color: 'white'
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            style={{
+              color: '#1d9187',
+            }}
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            style={{
+              color: '#1d9187',
+            }}
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+  //=======================================
+
  
 
   return (
     <div className="CourseTableStudent">
       <div className="CourseTableStudent">
-      <table>
+      {/* <table>
          <thead>
           <tr>
             <th className="text-left">Name of Course</th>
@@ -64,7 +189,77 @@ const CourseTableStudent = (props) => {
             );
           })} 
         </tbody>
-      </table>
+      </table> */}
+
+<Table
+        loading={loading}
+        columns={[
+          {
+            title: "Name of Course",
+            dataIndex: "name",
+            key: 'name',
+            ...getColumnSearchProps('name'),
+          },
+          {
+            title: "Level",
+            dataIndex: "level",
+            key: 'level',
+            ...getColumnSearchProps('level'),
+          },
+          {
+            title: "Field",
+            dataIndex: "field",
+            key: 'field',
+            ...getColumnSearchProps('field'),
+          },
+          {
+            title: "Instructor",
+            dataIndex: "instructor",
+            render: (instructor) => {
+              return (
+                 userObjsId === instructor ? "Me" :
+                     <Link  className="btt blue"  to={"/instructorByCourse/" + instructor}>
+                       <ion-icon name="eye-outline"></ion-icon>
+                     </Link>
+              );
+            },
+          },
+          {
+            title: "Status",
+            dataIndex: "status",
+            render: (status) => {
+              return (
+                <>
+                    <Tag color={`${
+                        status === "pending"
+                          ? "geekblue"
+                          : "volcano"
+                      }`}>
+                       {status}
+                   </Tag>
+                </>
+              );
+            },
+          },
+          {
+            title: "Options",
+            dataIndex: "_id",
+            render: (_id) => {
+              return (
+                <>
+                 <Link className="btt violet"  to={"/courses/" + _id}>
+                    <ion-icon name="document-text-outline"></ion-icon>
+                  </Link> 
+                </>
+              );
+            },
+          },
+        ]}
+        dataSource={allCourses}
+        pagination={{
+          pageSize: 3,
+        }}
+      ></Table>
     </div>
     </div>
   );

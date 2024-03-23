@@ -26,6 +26,11 @@ const StudentDashboard = () => {
   console.log("userObjRole+++++++++", userObjsRole);
   console.log("userObjsId+++++++++", userObjsId);
 
+  
+  /**  */
+  const [loading, setLoading] = useState(false);
+  /** */
+
   useEffect(() => {
     if (userObjsRole !== 'student' ) {
            navigate('/page404NotFound'); 
@@ -34,6 +39,7 @@ const StudentDashboard = () => {
 
   // check and update courses status
   useEffect(() => {
+    setLoading(true);
     const GetAllCoursesByStudent = async () => {
       try {
         const response = await axios.get(
@@ -46,6 +52,7 @@ const StudentDashboard = () => {
         const updatedCourses = updateCourseStatuses(courses);
 
         setAllCourses(updatedCourses);
+        setLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -274,7 +281,7 @@ const StudentDashboard = () => {
                 )  : null}
               </div>
               {display === "courses" ? (
-                <CourseTableStudent allCourses={allCourses} />
+                <CourseTableStudent loading={loading} allCourses={allCourses} />
               ) : null}
               {display === "settings" ? (
                 <UpdateStudentPassword/>

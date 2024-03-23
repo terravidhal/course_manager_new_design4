@@ -4,11 +4,90 @@
 .text-center {
   text-align: center !important;
 }
+
+/*===================================================*/
+thead tr th.ant-table-cell{
+  font-size: 1.1rem;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-tag {
+  font-size: 0.8rem;
+  padding-bottom: 2px;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-tag.ant-tag-geekblue {
+  color: var(--color-theme);
+  background: #d9f3f0;
+  border-color: #1d9187;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-input-outlined:focus {
+  border-color: var(--color-theme);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-input-outlined {
+  border-color: var(--color-theme);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-input-outlined:hover {
+  border-color: var(--color-theme);
+  background-color: #ffffff;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-theme);
+  border-color: var(--color-theme);
+  background: #ffffff;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-pagination .ant-pagination-item-active {
+  font-weight: 600;
+  background-color: #ffffff;
+  border-color: var(--color-theme);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-pagination .ant-pagination-item-active:hover {
+  border-color: var(--color-theme);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-pagination .ant-pagination-item-active a {
+  color: var(--color-theme);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-pagination .ant-pagination-item-active a:hover {
+  color: var(--color-theme);
+}
+.ant-table-filter-column .anticon svg {
+  display: inline-block;
+  color: var(--color-theme);
+  font-size: 1.2rem;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-table-wrapper .ant-table-container table > thead > tr:first-child > :last-child {
+  text-align: end;
+}
+.InstructorTable :where(.css-dev-only-do-not-override-djtmh8).ant-table-wrapper .ant-table-column-title {
+  text-align: center;
+}
+/*===================================================*/
+
+
 .InstructorTable td.options a,
 .CourseTable td.instruct a {
   font-size: 1.5rem;
   color: var(--color-theme);
 }
+
+/*===================================================*/
+.InstructorTable  td.ant-table-cell a,
+.InstructorTable td.ant-table-cell a {
+  font-size: 1.5rem;
+  color: var(--color-theme);
+}
+/*===================================================*/
+
+
 .InstructorTable td.options a button {
   border: none;
+}
+
+
+/*responsive*/
+@media (max-width: 768px) {
+  .StudentTable thead tr th.ant-table-cell {
+    font-size: 0.9rem;
+  }
+
+.StudentTable td.ant-table-cell a, .StudentTable td.ant-table-cell a {
+  font-size: 1rem;
+}
 }

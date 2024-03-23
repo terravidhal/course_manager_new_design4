@@ -270,6 +270,23 @@
   background: #efefef;
   transition: all 0.5s;
 }
+
+/*===================================================*/
+.StudentDashboard .details .recentOrders table tr td {
+  padding: 10px;
+  text-align: center;
+}
+/*===================================================*/
+.StudentDashboard .details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+/*===================================================*/
+
+/* .StudentDashboard .details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+} */
+/*===================================================*/
+
 .StudentDashboard .details .recentOrders table tr td {
   padding: 10px;
 }
