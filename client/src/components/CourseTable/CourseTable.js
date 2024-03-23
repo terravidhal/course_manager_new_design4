@@ -1,8 +1,13 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
-import React, { useState, useEffect } from "react";
+/** */
+import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
+import React, { useState, useEffect, useRef } from "react";
+/** */
 import "./CourseTable.css";
 import { Link } from "react-router-dom";
 
+/** */
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
 
 
  
@@ -18,22 +23,124 @@ const CourseTable = (props) => {
 
   const { allCourses, deleteCourse, loading } = props;
 
-/* const getCustomers = () => {
-  return fetch("https://dummyjson.com/users").then((res) => res.json());
-};
 
 
-  const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    getCustomers().then((res) => {
-      console.log('res', res);
-      setDataSource(res.users);
-      setLoading(false);
-    });
-  }, []);  */
+  //=======================================
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type=""
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+              backgroundColor: '#1d9187',
+              color: 'white'
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            style={{
+              color: '#1d9187',
+            }}
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            style={{
+              color: '#1d9187',
+            }}
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+  //=======================================
 
  
 
@@ -106,14 +213,20 @@ const CourseTable = (props) => {
           {
             title: "Name of Course",
             dataIndex: "name",
+            key: 'name',
+            ...getColumnSearchProps('name'),
           },
           {
             title: "Level",
             dataIndex: "level",
+            key: 'level',
+            ...getColumnSearchProps('level'),
           },
           {
             title: "Field",
             dataIndex: "field",
+            key: 'field',
+            ...getColumnSearchProps('field'),
           },
           {
             title: "Instructor",
@@ -121,7 +234,7 @@ const CourseTable = (props) => {
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
-                     <Link className="btt blue"  to={"/instructorByCourse/" + instructor}>
+                     <Link  className="btt blue"  to={"/instructorByCourse/" + instructor}>
                        <ion-icon name="eye-outline"></ion-icon>
                      </Link>
               );
@@ -132,13 +245,15 @@ const CourseTable = (props) => {
             dataIndex: "status",
             render: (status) => {
               return (
-                <button
-                      className={`${
+                <>
+                    <Tag color={`${
                         status === "pending"
-                          ? "status inProgress"
-                          : "status pending"
-                      }`}
-                    > {status}</button>
+                          ? "geekblue"
+                          : "volcano"
+                      }`}>
+                       {status}
+                   </Tag>
+                </>
               );
             },
           },

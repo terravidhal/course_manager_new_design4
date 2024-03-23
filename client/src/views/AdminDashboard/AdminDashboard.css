@@ -96,9 +96,6 @@ body {
 .AdminDashboard .navigation ul li:nth-child(1) {
   margin-bottom: 40px;
   pointer-events: none;
-  /* font-style: italic;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
-  font-weight: 100 !important; */
 }
 
 .AdminDashboard .navigation ul li a {
@@ -327,15 +324,21 @@ body {
   background: #efefef;
   transition: all 0.5s;
 }
+/*===================================================*/
 .AdminDashboard .details .recentOrders table tr td {
   padding: 10px;
+  text-align: center;
 }
+/*===================================================*/
 .AdminDashboard .details .recentOrders table tr td:last-child {
   text-align: end;
 }
-.AdminDashboard .details .recentOrders table tr td:nth-child(2) {
+/*===================================================*/
+
+/* .AdminDashboard .details .recentOrders table tr td:nth-child(2) {
   text-align: end;
-}
+} */
+/*===================================================*/
 .AdminDashboard .details .recentOrders table tr td:nth-child(3) {
   text-align: center;
 }

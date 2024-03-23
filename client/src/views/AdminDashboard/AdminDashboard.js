@@ -34,6 +34,7 @@ const AdminDashboard = () => {
 
   /**  */
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   /** */
 
 
@@ -123,10 +124,12 @@ const AdminDashboard = () => {
 
   // get all students
   useEffect(() => {
+    setLoading2(true);
     axios
       .get("http://localhost:8000/api/students", { withCredentials: true })
       .then((res) => {
         setAllStudents(res.data);
+        setLoading2(false);
         console.log("r+++++++", res.data);
       })
       .catch((err) => console.log(err));
@@ -430,6 +433,7 @@ const AdminDashboard = () => {
               ) : null}
               {display === "students" ? (
                 <StudentTable
+                loading2={loading2} 
                   allStudents={allStudents}
                   deleteStudent={deleteStudent}
                 />
