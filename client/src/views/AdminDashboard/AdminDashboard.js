@@ -429,7 +429,7 @@ const AdminDashboard = () => {
                 )  : null}
               </div>
               <Chart allCourses={allCourses} allStudents={allStudents}  allInstructors={allInstructors} />
-              {display === "courses" ? (
+              {display === "coursess" ? (
                 <CourseTable
                   loading={loading} 
                   allCourses={allCourses}

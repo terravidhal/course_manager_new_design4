@@ -6,6 +6,7 @@ import {
   XAxis,
   CartesianGrid,
   Tooltip,
+  Legend,
   ResponsiveContainer,
 } from "recharts";
 
@@ -14,20 +15,22 @@ import {
 
 function processStudentData2(data) {
   const monthCounts = {};
+  const nameData = {1:'Courses', 2:'Instructors', 3:'Students'}
 
-  for (const student of data) {
+  for (const elt of data) {
     // Iterate through all three createdAt fields
     for (let i = 1; i <= 3; i++) {
       const createdAtField = `createdAt${i}`;
-      if (student[createdAtField] !== "0") {
-        const signupDate = new Date(student[createdAtField]);
-        const month = signupDate.getMonth(); // Get the month (0-indexed)
+      if (elt[createdAtField] !== "0") {
+        const RegisterDate = new Date(elt[createdAtField]);
+        const month = RegisterDate.getMonth(); // Get the month (0-indexed)
 
         if (!monthCounts.hasOwnProperty(month)) {
-          monthCounts[month] = { Total1: 0, Total2: 0, Total3: 0 };
+          monthCounts[month] = { CoursesTotal1: 0, InstructorsTotal2: 0, StudentsTotal3: 0 };
         }
 
-        monthCounts[month][`Total${i}`] += 1;
+        monthCounts[month][`${nameData[i]}Total${i}`] += 1;
+        //console.log('monthCounts55', monthCounts);
       }
     }
   }
@@ -36,7 +39,7 @@ function processStudentData2(data) {
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   for (let month = 0; month < 12; month++) {
-    const countData = monthCounts[month] || { Total1: 0, Total2: 0, Total3: 0 };
+    const countData = monthCounts[month] || { CoursesTotal1: 0, InstructorsTotal2: 0, StudentsTotal3: 0 };
     chartData.push({ name: monthNames[month], ...countData });
   }
 
@@ -50,18 +53,10 @@ function processStudentData(data) {
   for (const student of data) {
     const signupDate = new Date(student.createdAt);
     const month = signupDate.getMonth(); // Get the month (0-indexed)
-    if (!monthCounts.hasOwnProperty(month)) { // !monthCounts.hasOwnProperty(month) vérifie si  la clé month n'existe pas dans le monthCountsobjet. 
+    if (!monthCounts.hasOwnProperty(month)) { 
       monthCounts[month] = 0;
     }
-    monthCounts[month]+=1;
-   // monthCounts[month] = (monthCounts[month] || 0) + 1; // Increment count for the month
-                                                        //donc  ceci c7 pr determiner le nombre
-    // total de courses qui ont le même moi , cela equivaut donc au nbre d courses total creer dns ce mois
-    // on check l'objet 'monthCounts' si la clé month n'existe pas , on l'a créer et on l'attribut la valeur '0'
-    // ensuite , on l'incremente de '1' de cette facon, chaque clé se verra 'augmenté de 1' si on l'a trouve
-    // on a obtiens bien donc le nombre de fois total qu'elle existe (ou nbre de fois qu'on l'a creer dns le site) 
-    // ici on aura comme resultat {2:6} pour le mois de mars(2 car on est avc l'index ds tableaux) et une course 'lambda' qui a ete creer 6 fois 
-    // car si aucune courses n'est creer dns les autres mois leur clés n seront pas enregistrées                                                    
+    monthCounts[month]+=1;                                              
   }
   console.log(monthCounts);
 
@@ -69,9 +64,7 @@ function processStudentData(data) {
   const chartData = [];
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // Assuming you have month names
   for (let month = 0; month < 12; month++) { // Iterate through all months
-    const count = monthCounts[month] || 0; // ici on s'assure que si on a un truc comme ceci :monthCounts = {2:6}
-                                           // on l transforme a un truc comme ceci : monthCounts = {0:0, 1:0, 2:6, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0}
-                                           // chaque mois dois avoir une valeur pr eviter les erreurs
+    const count = monthCounts[month] || 0;
                                            
     chartData.push({ name: monthNames[month], Total: count });
   }
@@ -81,7 +74,7 @@ function processStudentData(data) {
 //const chartData = processStudentData(allStudentData);
 
 
-
+/*
 const data1 = [
   { _id: "65fab57f969947beea0143a5", createdAt: "2024-03-20T10:07:59.934Z" },
   { _id: "65fab57f969947beea0153a5", createdAt: "2024-03-20T10:17:59.934Z" },
@@ -96,10 +89,10 @@ const data2 = [
 const data3 = [
   { _id: "65fab57f969947beea0143a5", createdAt: "2024-03-20T10:07:59.934Z" },
   { _id: "65fab57f969947beea0144a5", createdAt: "2024-03-20T10:12:59.934Z" },
-];
+]; */
 
 
-
+// creation du tableau datachart qui regroupe ls trois tableaux : allcourses, allinstructors, allstudents
 function mergeDataByIndex(data1, data2, data3) {
  // Trouvons la longueur maximale des trois tableaux
 const maxLength = Math.max(data1.length, data2.length, data3.length);
@@ -116,12 +109,11 @@ for (let i = 0; i < maxLength; i++) {
   datachart.push(obj);
 }
 
-
-
   return datachart;
 }
 
 /*
+modele donnee de base : 
 const result = [
   { name: "January", Total: 1200 },
   { name: "February", Total: 2100 },
@@ -144,18 +136,10 @@ const result = [
 
 const Chart = ({ aspect, title, allCourses, allStudents, allInstructors }) => {
  
-  //console.log('++allCourses', allCourses);
-  const data1 = processStudentData(allCourses);
-//  console.log('++chartData', data1);
-  const data2 = processStudentData(allStudents);
- // console.log('++chartData', data2);
-
-  const datachart = mergeDataByIndex(allCourses, allStudents, allInstructors);
-
-   console.log('datachart', datachart)
-
+  const datachart = mergeDataByIndex(allCourses, allInstructors, allStudents);
+  // console.log('datachart', datachart)
    const data25 = processStudentData2(datachart);
-   console.log('++data25', data25);
+ //  console.log('++data25', data25);
   
 
   return (
@@ -178,31 +162,32 @@ const Chart = ({ aspect, title, allCourses, allStudents, allInstructors }) => {
               <stop offset="95%" stopColor="#1d0dd4" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="total3" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#d4380d" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#d4380d" stopOpacity={0} />
+              <stop offset="5%" stopColor="#f79623" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#f79623" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" stroke="gray" />
           <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
           <Tooltip />
+          <Legend verticalAlign="top" height={36}/>
           <Area
             type="monotone"
-            dataKey="Total1"
+            dataKey="CoursesTotal1"
             stroke="#1d9187"
             fillOpacity={1}
             fill="url(#total1)"
           />
           <Area
             type="monotone"
-            dataKey="Total2"
+            dataKey="InstructorsTotal2"
             stroke="#1d0dd4"
             fillOpacity={1}
             fill="url(#total2)"
           />
           <Area
             type="monotone"
-            dataKey="Total3"
-            stroke="#d4380d"
+            dataKey="StudentsTotal3"
+            stroke="#f79623"
             fillOpacity={1}
             fill="url(#total3)"
           />
