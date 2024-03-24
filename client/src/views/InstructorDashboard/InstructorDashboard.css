@@ -270,6 +270,23 @@
   background: #efefef;
   transition: all 0.5s;
 }
+
+/*===================================================*/
+.AdminDashboard .details .recentOrders table tr td {
+  padding: 10px;
+  text-align: center;
+}
+/*===================================================*/
+.AdminDashboard .details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+/*===================================================*/
+
+/* .AdminDashboard .details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+} */
+/*===================================================*/
+
 .InstructorDashboard .details .recentOrders table tr td {
   padding: 10px;
 }

@@ -170,6 +170,17 @@ const InstructorTable = (props) => {
         loading={loading3}
         columns={[
           {
+            title: "Photo",
+            dataIndex: "image",
+            render: (image) => {
+                return ( image === "" ?
+                   <Avatar src="/assets/images/blank-profile.png"  />
+                : 
+                 <Avatar src={`http://localhost:8000/${image}`} /> );
+               
+            },
+          },
+          {
             title: "Name of Instructor",
             dataIndex: "name",
             key: 'name',

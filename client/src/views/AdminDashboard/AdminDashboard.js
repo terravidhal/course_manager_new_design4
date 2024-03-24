@@ -8,6 +8,7 @@ import InstructorTable from "../../components/InstructorTable/InstructorTable";
 import UpdateAdminPassword from "../UpdateAdminPassword/UpdateAdminPassword";
 import ProfilPopup from "../../components/profilPopup/profilPopup";
 import ProfilPage from "../profilPage/profilPage";
+import Chart from "../../components/Chart/Chart";
 
 
 const AdminDashboard = () => {
@@ -427,6 +428,7 @@ const AdminDashboard = () => {
                   </>
                 )  : null}
               </div>
+              <Chart allCourses={allCourses} allStudents={allStudents}  allInstructors={allInstructors} />
               {display === "courses" ? (
                 <CourseTable
                   loading={loading} 

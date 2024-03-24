@@ -31,6 +31,11 @@ const InstructorDashboard = () => {
   console.log("userObjs.isInstructor+++++++++", userObjs.isInstructor);
 
 
+  /**  */
+  const [loading, setLoading] = useState(false);
+  /** */
+
+
   useEffect(() => {
     if (userObjsRole !== 'instructor' || userObjsIsInstructor === 'false') {
            navigate('/page404NotFound'); 
@@ -39,6 +44,7 @@ const InstructorDashboard = () => {
 
   // check and update courses status
   useEffect(() => {
+    setLoading(true);
     const GetAllCoursesByInstructor = async () => {
       try {
         const response = await axios.get(
@@ -51,6 +57,7 @@ const InstructorDashboard = () => {
         const updatedCourses = updateCourseStatuses(courses);
 
         setAllCourses(updatedCourses);
+        setLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -294,6 +301,7 @@ const InstructorDashboard = () => {
               </div>
               {display === "courses" ? (
                 <CourseTableInstructor
+                  loading={loading}
                   allCourses={allCourses}
                   deleteCourse={deleteCourse}
                 />
