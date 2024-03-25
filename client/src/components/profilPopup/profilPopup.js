@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useNavigate, useLocation, Route, Routes, NavLink, Outlet, } from "react-router-dom";
 import './profilPopup.css';
 
 const ProfilPopup = (props) => {
@@ -19,7 +20,9 @@ const ProfilPopup = (props) => {
         <div className="profil-role">{userObjsRole}</div>
       </div>
       <li className="view-profile profi">
-        <button>view profile</button>
+        <Link to="/admin-dashboard/profile">
+            <button>view profile</button>
+        </Link>
       </li>
     </div>
   );

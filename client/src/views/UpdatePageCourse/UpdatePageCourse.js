@@ -81,10 +81,10 @@ const UpdatePageCourse = (props) => {
         <h1>Update courses</h1>
         {
           userObjsRole === 'admin' ?
-            <Link to="/admin-dashboard">
+            <Link to="/admin-dashboard/courses">
               <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
              </Link> :
-             <Link to="/instructor-dashboard">
+             <Link to="/instructor-dashboard/courses">
              <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
             </Link>
         }

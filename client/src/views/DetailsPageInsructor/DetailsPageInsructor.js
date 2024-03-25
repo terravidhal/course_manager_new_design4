@@ -73,7 +73,7 @@ const DetailsPageInsructor = () => {
     <div className="DetailsPageInsructor">
       <div className="page-top">
         <h1>Details Instructors</h1>
-         <Link to="/admin-dashboard">
+         <Link to="/admin-dashboard/courses">
          <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
           </Link>
       </div>  

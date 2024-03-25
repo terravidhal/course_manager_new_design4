@@ -140,7 +140,12 @@ const ProfilPage = (props) => {
 
 
   return(
-    <div className="ProfilPage">
+    <div class="recentOrders">
+        <div class="cardHeader">
+          <h2 className="pl-x">Profile</h2>
+          <h2 class="blue-color" to="/instructors/new">Update Profile</h2>
+        </div>
+        <div className="ProfilPage">
       <div className="bloc-view">
       { loaded === true ?
         <>
@@ -221,6 +226,7 @@ const ProfilPage = (props) => {
             </form>  
          :null}
       </div>
+        </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AdminDashboard.css";
 import axios from "axios";
-import { Link, useNavigate, useLocation, Route, Routes, NavLink, } from "react-router-dom";
+import { Link, useNavigate, useLocation, Route, Routes, NavLink, Outlet, } from "react-router-dom";
 import CourseTable from "../../components/CourseTable/CourseTable";
 import StudentTable from "../../components/StudentTable/StudentTable";
 import InstructorTable from "../../components/InstructorTable/InstructorTable";
@@ -9,6 +9,13 @@ import UpdateAdminPassword from "../UpdateAdminPassword/UpdateAdminPassword";
 import ProfilPopup from "../../components/profilPopup/profilPopup";
 import ProfilPage from "../profilPage/profilPage";
 import CountUp from 'react-countup';
+import UpdatePageCourse from "../UpdatePageCourse/UpdatePageCourse";
+import DetailsPageCourse from "../DetailsPageCourse/DetailsPageCourse";
+import DetailsPageStudent from "../DetailsPageStudent/DetailsPageStudent";
+import UpdatePageInsructor from "../UpdatePageInsructor/UpdatePageInsructor";
+import DetailsPageInsructor from "../DetailsPageInsructor/DetailsPageInsructor";
+import UpdatePageStudent from "../UpdatePageStudent/UpdatePageStudent";
+
 
 
 const AdminDashboard = () => {
@@ -56,6 +63,25 @@ const AdminDashboard = () => {
       setDisplay(localStorage.getItem('lastDisplayedView'));
       console.log('lastDisplayedView+++++++++++++++++', localStorage.getItem('lastDisplayedView'));
     }
+    
+    // active link 'li' auto
+    document.querySelectorAll(".AdminDashboard li").forEach((item) => {
+     if (localStorage.getItem('lastDisplayedView')) {
+         if (item.classList.contains("ins") && localStorage.getItem('lastDisplayedView') === "instructors") {
+           item.classList.add("terra");
+         } else if (item.classList.contains("stud") && localStorage.getItem('lastDisplayedView') === "students") {
+           item.classList.add("terra");
+         } else if (item.classList.contains("crs") && localStorage.getItem('lastDisplayedView') === "courses") {
+            item.classList.add("terra");
+         } else if (item.classList.contains("sett") && localStorage.getItem('lastDisplayedView') === "settings") {
+            item.classList.add("terra");
+         }  else if (item.classList.contains("profi") && localStorage.getItem('lastDisplayedView') === "profile") {
+           item.classList.add("terra");
+         }else {
+           console.log("end");
+         }
+      }   
+    });
   }, []);
 
 
@@ -321,7 +347,7 @@ const AdminDashboard = () => {
               </a>
             </li>
             <li className="crs">
-              <Link to="">
+              <Link to="/admin-dashboard/courses">
                 <span class="icon">
                   <ion-icon name="home-outline"></ion-icon>
                 </span>
@@ -329,7 +355,7 @@ const AdminDashboard = () => {
               </Link>
             </li>
             <li className="ins">
-              <Link to="">
+              <Link to="/admin-dashboard/instructors">
                 <span class="icon">
                   <ion-icon name="people-outline"></ion-icon>
                 </span>
@@ -337,7 +363,7 @@ const AdminDashboard = () => {
               </Link>
             </li>
             <li className="stud">
-              <Link to="">
+              <Link to="/admin-dashboard/students">
                 <span class="icon">
                   <ion-icon name="people-circle-outline"></ion-icon>
                 </span>
@@ -345,7 +371,7 @@ const AdminDashboard = () => {
               </Link>
             </li>
             <li className="sett">
-              <Link to="">
+              <Link to="/admin-dashboard/settings">
                 <span class="icon">
                   <ion-icon name="settings-outline"></ion-icon>
                 </span>
@@ -411,7 +437,10 @@ const AdminDashboard = () => {
             </div>
           </div>
           <div class="details">
-            <div class="recentOrders">
+              
+            <Outlet />
+              
+            {/* <div class="recentOrders">
               <div class="cardHeader">
                 {display === "courses" ? (
                   <>
@@ -447,7 +476,7 @@ const AdminDashboard = () => {
                   </>
                 )  : null}
               </div>
-              {display === "courses" ? (
+              {display === "coursess" ? (
                 <CourseTable
                   loading={loading} 
                   allCourses={allCourses}
@@ -478,7 +507,8 @@ const AdminDashboard = () => {
                 url="admins" 
                 id={userObjsId} />
               ) : null}
-            </div>
+            </div> */}
+           
           </div>
         </div>
       </div>

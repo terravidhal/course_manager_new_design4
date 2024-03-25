@@ -91,7 +91,7 @@ const UpdatePageInsructor = (props)=>{
     <div className="UpdatePageInsructor">
        <div className="page-top">
         <h2>update instuctor</h2>
-        <Link to="/admin-dashboard">
+        <Link to="/admin-dashboard/courses">
         <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
         </Link>
       </div>

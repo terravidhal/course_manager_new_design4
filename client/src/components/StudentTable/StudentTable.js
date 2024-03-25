@@ -135,7 +135,14 @@ const StudentTable = (props) => {
 
 
   return (
-    <div className="StudentTable">
+    <div class="recentOrders">
+        <div class="cardHeader">
+           <h2>Recent Students</h2>
+           <Link class="blue-color" to="/students/new">
+                 +Add
+           </Link>
+        </div>
+        <div className="StudentTable">
       {/* <table  >
          <thead>
           <tr>
@@ -208,10 +215,10 @@ const StudentTable = (props) => {
             render: (_id) => {
               return (
                 <>
-                 <Link className="btt violet"  to={"/students/" + _id}>
+                 <Link className="btt violet"  to={"/admin-dashboard/students/" + _id}>
                      <ion-icon name="document-text-outline"></ion-icon>
                   </Link> &nbsp;
-                  <Link className="btt"  to={"/students/edit/" + _id}>
+                  <Link className="btt"  to={"/admin-dashboard/students/edit/" + _id}>
                      <ion-icon name="create-outline"></ion-icon>
                   </Link> &nbsp;
                   <Link className="btt orange"  to="">
@@ -227,6 +234,7 @@ const StudentTable = (props) => {
           pageSize: 2,
         }}
       ></Table>
+        </div>
     </div>
   );
 };

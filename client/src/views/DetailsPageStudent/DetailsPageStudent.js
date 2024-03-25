@@ -41,7 +41,7 @@ const DetailsPageStudent = () => {
     <div className="DetailsPageStudent">
       <div className="page-top">
         <h1>Speedy Students</h1>
-         <Link to="/admin-dashboard">
+         <Link to="/admin-dashboard/courses">
            back to Home
           </Link>
       </div>  

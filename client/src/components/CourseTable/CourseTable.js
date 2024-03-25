@@ -3,11 +3,12 @@ import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "ant
 import React, { useState, useEffect, useRef } from "react";
 /** */
 import "./CourseTable.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation, Route, Routes, NavLink, } from "react-router-dom";
 
 /** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+
 
 
  
@@ -145,7 +146,14 @@ const CourseTable = (props) => {
  
 
   return (
-    <div className="CourseTable">
+    <div class="recentOrders">
+      <div class="cardHeader">
+       <h2>Recent Courses</h2>
+       <Link className="blue-color" to="/courses/new">
+         +Add
+       </Link>
+      </div>
+      <div className="CourseTable">
         {/* <table>
          <thead>
           <tr>
@@ -234,7 +242,7 @@ const CourseTable = (props) => {
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
-                     <Link  className="btt blue"  to={"/instructorByCourse/" + instructor}>
+                     <Link  className="btt blue"  to={"/admin-dashboard/instructorByCourse/" + instructor}>
                        <ion-icon name="eye-outline"></ion-icon>
                      </Link>
               );
@@ -262,7 +270,7 @@ const CourseTable = (props) => {
             dataIndex: "_id",
             render: (_id) => {
               return (
-                <Link className=""  to={"/studentsByCourse/" + _id}>
+                <Link className=""  to={"/admin-dashboard/studentsByCourse/" + _id}>
                 <ion-icon name="eye-outline"></ion-icon>
                  </Link>
               );
@@ -274,10 +282,10 @@ const CourseTable = (props) => {
             render: (_id) => {
               return (
                 <>
-                 <Link className="btt violet"  to={"/courses/" + _id}>
+                 <Link className="btt violet"  to={"/admin-dashboard/courses/" + _id}>
                     <ion-icon name="document-text-outline"></ion-icon>
                   </Link> 
-                  <Link className="btt"  to={"/courses/edit/" + _id}>
+                  <Link className="btt"  to={"/admin-dashboard/courses/edit/" + _id}>
                     <ion-icon name="create-outline"></ion-icon>
                   </Link>
                   <Link className="btt"  to={"/courses/addStudents/" + _id}>
@@ -296,7 +304,8 @@ const CourseTable = (props) => {
           pageSize: 3,
         }}
       ></Table>
-    </div>
+      </div>
+  </div>
   );
 };
 

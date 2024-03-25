@@ -136,7 +136,14 @@ const InstructorTable = (props) => {
 
 
   return (
-    <div className="InstructorTable">
+    <div class="recentOrders">
+        <div class="cardHeader">
+            <h2>Recent Instructors</h2>
+            <Link class="blue-color" to="/instructors/new">
+                 +Add
+            </Link>
+        </div>
+        <div className="InstructorTable">
       {/* <table  >
          <thead>
           <tr>
@@ -198,10 +205,10 @@ const InstructorTable = (props) => {
             render: (_id) => {
               return (
                 <>
-                 <Link className="btt violet"  to={"/instructors/" + _id}>
+                 <Link className="btt violet"  to={"/admin-dashboard/instructors/" + _id}>
                       <ion-icon name="document-text-outline"></ion-icon>
                   </Link> &nbsp;
-                  <Link className="btt orange"  to={"/instructors/edit/" + _id}>
+                  <Link className="btt orange"  to={"/admin-dashboard/instructors/edit/" + _id}>
                        <ion-icon name="create-outline"></ion-icon>
                   </Link> &nbsp;
                   <Link className="btt orange"  to="">
@@ -217,6 +224,7 @@ const InstructorTable = (props) => {
           pageSize: 3,
         }}
       ></Table>
+        </div>
     </div>
   );
 };
