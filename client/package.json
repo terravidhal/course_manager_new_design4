@@ -10,6 +10,7 @@
     "antd": "^5.15.3",
     "axios": "^1.6.4",
     "jquery": "^3.4.1",
+    "react-countup": "^6.5.3",
     "react-highlight-words": "^0.20.0",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",

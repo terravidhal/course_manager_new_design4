@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./AdminDashboard.css";
-import CourseTable from "../../components/CourseTable/CourseTable";
 import axios from "axios";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, Route, Routes, NavLink, } from "react-router-dom";
+import CourseTable from "../../components/CourseTable/CourseTable";
 import StudentTable from "../../components/StudentTable/StudentTable";
 import InstructorTable from "../../components/InstructorTable/InstructorTable";
 import UpdateAdminPassword from "../UpdateAdminPassword/UpdateAdminPassword";
 import ProfilPopup from "../../components/profilPopup/profilPopup";
 import ProfilPage from "../profilPage/profilPage";
-import Chart from "../../components/Chart/Chart";
+import CountUp from 'react-countup';
 
 
 const AdminDashboard = () => {
@@ -40,6 +40,8 @@ const AdminDashboard = () => {
   /** */
 
 
+
+
   useEffect(() => {
     if (userObjsRole !== 'admin') {
      // const previousUrl = location.pathname;
@@ -47,6 +49,15 @@ const AdminDashboard = () => {
       navigate('/page404NotFound'); 
     }
   }, []);
+
+
+  useEffect(() => {
+    if (localStorage.getItem('lastDisplayedView')) {
+      setDisplay(localStorage.getItem('lastDisplayedView'));
+      console.log('lastDisplayedView+++++++++++++++++', localStorage.getItem('lastDisplayedView'));
+    }
+  }, []);
+
 
 
   // check and update courses status
@@ -259,21 +270,26 @@ const AdminDashboard = () => {
     list.forEach((item) => {
       item.classList.remove("terra");
     });
-    this.classList.add("terra");
+    this.classList.add("terra"); // 'this' fait reference à l'elt qui sera cliqué
     navigation.classList.remove("active");
     main.classList.remove("active");
     popupProfil.classList.remove('show');
 
     if (this.classList.contains("ins")) {
       setDisplay("instructors");
+      localStorage.setItem('lastDisplayedView', "instructors");
     } else if (this.classList.contains("stud")) {
       setDisplay("students");
+      localStorage.setItem('lastDisplayedView', "students");
     } else if (this.classList.contains("crs")) {
       setDisplay("courses");
+       localStorage.setItem('lastDisplayedView', "courses");
     } else if (this.classList.contains("sett")) {
       setDisplay("settings");
+       localStorage.setItem('lastDisplayedView', "settings");
     }  else if (this.classList.contains("profi")) {
       setDisplay("profile");
+       localStorage.setItem('lastDisplayedView', "profile");
     }else {
       console.log("end");
     }
@@ -287,6 +303,8 @@ const AdminDashboard = () => {
     popup.classList.toggle('show');
   }
 
+ 
+
   return (
     <div className="AdminDashboard">
       <div class="container">
@@ -299,7 +317,6 @@ const AdminDashboard = () => {
                 </span>
                 <span class="title orange-color">
                   welcome{" " + userObjs.name}
-                  {/* Admin Dashboard */}
                 </span>
               </a>
             </li>
@@ -364,7 +381,9 @@ const AdminDashboard = () => {
           <div class="cardBox">
             <div class="card">
               <div>
-                <div class="numbers">{allCourses.length}</div>
+                <div class="numbers">
+                  <CountUp start={100}  end={allCourses.length} />
+                </div>
                 <div class="cardName">Courses</div>
               </div>
               <div class="iconBx">
@@ -373,7 +392,7 @@ const AdminDashboard = () => {
             </div>
             <div class="card">
               <div>
-                <div class="numbers">{allInstructors.length}</div>
+                <div class="numbers"><CountUp start={100} end={allInstructors.length}/></div>
                 <div class="cardName">Instructors</div>
               </div>
               <div class="iconBx">
@@ -382,7 +401,7 @@ const AdminDashboard = () => {
             </div>
             <div class="card">
               <div>
-                <div class="numbers">{allStudents.length}</div>
+                <div class="numbers"><CountUp start={100} end={allStudents.length}/></div>
                 <div class="cardName">Students</div>
               </div>
 
@@ -428,8 +447,7 @@ const AdminDashboard = () => {
                   </>
                 )  : null}
               </div>
-              <Chart allCourses={allCourses} allStudents={allStudents}  allInstructors={allInstructors} />
-              {display === "coursess" ? (
+              {display === "courses" ? (
                 <CourseTable
                   loading={loading} 
                   allCourses={allCourses}
@@ -464,6 +482,7 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
+            
     </div>
   );
 };

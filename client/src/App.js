@@ -9,6 +9,7 @@ import {
   useNavigate,
   useParams,
   Navigate,
+  Router,
 } from "react-router-dom";
 import AdminDashboard from "./views/AdminDashboard/AdminDashboard";
 import CreatePageCourse from "./views/CreatePageCourse/CreatePageCourse";
@@ -32,6 +33,8 @@ import UpdatePageCourse from "./views/UpdatePageCourse/UpdatePageCourse";
 import HomeHome from "./views/HomeHome/HomeHome";
 import Page404NotFound from "./views/page404NotFound/page404NotFound";
 import AddStudentsCourse from "./views/AddStudentsCourse/AddStudentsCourse";
+import CourseTable from "./components/CourseTable/CourseTable";
+
 
 
 
