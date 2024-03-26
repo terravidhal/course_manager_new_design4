@@ -139,7 +139,7 @@ const Chart = ({ aspect, title, allCourses, allStudents, allInstructors }) => {
   const datachart = mergeDataByIndex(allCourses, allInstructors, allStudents);
   // console.log('datachart', datachart)
    const data25 = processStudentData2(datachart);
- //  console.log('++data25', data25);
+  // console.log('++data25', data25);
   
 
   return (
