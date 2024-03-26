@@ -12,11 +12,11 @@
   position: relative;
   background: var(--white);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18); 
   align-items: center;
 }
 
@@ -48,13 +48,27 @@
 }
 
 
+.DashboardAdminDashboard  .stats {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+.DashboardAdminDashboard  .featured {
+ flex: 2.15;
+ border-radius: 5px;
+}
+.DashboardAdminDashboard  .chart {
+  flex: 5;
+  border-radius: 5px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
 .DashboardAdminDashboard  .recentOrders {
   position: relative;
   display: grid;
   min-height: 500px;
   background: var(--white);
   padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
   border-radius: 20px;
   grid-template-rows: 1fr 16fr;
   max-height: 500px;
@@ -63,6 +77,84 @@
 
 .DashboardAdminDashboard .pl-x {
   padding-left: 67px;
+}
+
+.DashboardAdminDashboard  .featured {
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47); 
+  padding: 10px;
+}
+
+.DashboardAdminDashboard  .featured .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: gray;
+}
+
+.DashboardAdminDashboard  .featured .top .title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.DashboardAdminDashboard  .featured .bottom {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.DashboardAdminDashboard  .featured .bottom .featuredChart {
+  width: 100px;
+  height: 100px;
+}
+
+.DashboardAdminDashboard  .featured .bottom .title {
+  font-weight: 500;
+  color: gray;
+}
+
+.DashboardAdminDashboard  .featured .bottom .amount {
+  font-size: 30px;
+}
+
+.DashboardAdminDashboard  .featured .bottom .desc {
+  font-weight: 300;
+  font-size: 12px;
+  color: gray;
+  text-align: center;
+}
+
+.DashboardAdminDashboard  .featured .bottom .summary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.DashboardAdminDashboard  .featured .bottom .summary .item {
+  text-align: center;
+}
+
+.DashboardAdminDashboard  .featured .bottom .summary .item .itemTitle {
+  font-size: 14px;
+  color: gray;
+}
+
+.DashboardAdminDashboard  .featured .bottom .summary .item .itemResult {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.DashboardAdminDashboard  .featured .bottom .summary .item .itemResult.positive {
+  color: green;
+}
+
+.DashboardAdminDashboard  .featured .bottom .summary .item .itemResult.negative {
+  color: red;
 }
 
 @media (max-width: 991px) {

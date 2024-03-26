@@ -3,7 +3,11 @@ import "./DashboardAdminDashboard.css";
 import axios from "axios";
 import { Link, useNavigate, useLocation, Route, Routes, NavLink, Outlet, } from "react-router-dom";
 import CountUp from 'react-countup';
+import Chart from "../Chart/Chart";
 
+
+
+import { Progress } from "antd";
 
 
 const DashboardAdminDashboard = (props) => {
@@ -166,6 +170,63 @@ const DashboardAdminDashboard = (props) => {
                 <ion-icon name="people-outline"></ion-icon>
               </div>
             </div>
+      </div>
+      {/* <div class="recentOrders">
+         <div class="cardHeader">
+             <h2>Recent Courses</h2>
+             <Link className="blue-color" to="/admin-dashboard/courses/new">
+               +Add
+             </Link> 
+          </div>
+      </div> */}
+      <div className="stats">
+               <div className="featured">
+                 <div className="top">
+                   <h1 className="title">Total Revenue</h1>
+                   <i class="fa-solid fa-ellipsis-vertical"></i>
+                 </div>
+                 <div className="bottom">
+                   <div className="featuredChart">
+                     <Progress type="circle" percent={75} />
+                   </div>
+                   <p className="title">Total sales made today</p>
+                   <p className="amount">$420</p>
+                   <p className="desc">
+                     Previous transactions processing. Last payments may not be included.
+                   </p>
+                   <div className="summary">
+                     <div className="item">
+                       <div className="itemTitle">Target</div>
+                       <div className="itemResult negative">
+                       <i class="fa-solid fa-chevron-down"></i>
+                         <div className="resultAmount">$12.4k</div>
+                       </div>
+                     </div>
+                     <div className="item">
+                       <div className="itemTitle">Last Week</div>
+                       <div className="itemResult positive">
+                         <i class="fa-solid fa-chevron-down"></i>
+                         <div className="resultAmount">$12.4k</div>
+                       </div>
+                     </div>
+                     <div className="item">
+                       <div className="itemTitle">Last Month</div>
+                       <div className="itemResult positive">
+                         <i class="fa-solid fa-chevron-down"></i>
+                         <div className="resultAmount">$12.4k</div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div className="chart">
+                  <Chart 
+                  allCourses={allCourses}
+                  allStudents={allStudents}
+                  allInstructors={allInstructors}
+                  title="Last 12 Months (registrations)" 
+                  aspect={1.8 / 1} />
+               </div>
       </div>
     </div>
   );
