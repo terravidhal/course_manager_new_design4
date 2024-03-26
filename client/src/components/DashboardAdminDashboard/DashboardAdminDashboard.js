@@ -281,14 +281,22 @@ const DashboardAdminDashboard = (props) => {
       <div class="recentOrderss">
       <div class="cardHeader">
        <h2>Recent Courses</h2>
-       {/* <Link className="blue-color" to="/admin-dashboard/courses/new">
-         +Add
-       </Link> */}
       </div>
       <div className="CourseTable">
       <Table
         loading={loading}
         columns={[
+          {
+            title: "Photo",
+            dataIndex: "image",
+            render: (image) => {
+                return ( image === "" ?
+                   <Avatar src="/assets/images/blank-profile.png"  />
+                : 
+                 <Avatar src="/assets/images/OIG1.jfif" /> );
+               
+            },
+          },
           {
             title: "Name of Course",
             dataIndex: "name",
@@ -304,7 +312,6 @@ const DashboardAdminDashboard = (props) => {
           {
             title: "Instructor",
             dataIndex: "instructor",
-           // key: 'instructor',
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
@@ -317,7 +324,6 @@ const DashboardAdminDashboard = (props) => {
           {
             title: "Status",
             dataIndex: "status",
-           // key: 'status',
             render: (status) => {
               return (
                 <>
@@ -335,7 +341,6 @@ const DashboardAdminDashboard = (props) => {
           {
             title: "Students",
             dataIndex: "_id",
-           // key: 'Students'+ Math.floor(Math.random() * 100) + 1,
             render: (_id) => {
               return (
                 <Link className=""  to={"/admin-dashboard/studentsByCourse/" + _id}>
