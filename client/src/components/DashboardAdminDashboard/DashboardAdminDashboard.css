@@ -2,7 +2,7 @@
 .DashboardAdminDashboard .cardBox {
   position: relative;
   width: 100%;
-  padding: 20px;
+  padding: 10px 19px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
@@ -11,7 +11,7 @@
 .DashboardAdminDashboard .cardBox .card {
   position: relative;
   background: var(--white);
-  padding: 30px;
+  padding: 10px 30px;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -74,17 +74,17 @@
 .DashboardAdminDashboard .orange :where(.css-dev-only-do-not-override-djtmh8).ant-progress .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {
   stroke: #f79623;
 } */
-.DashboardAdminDashboard  .recentOrders {
+.DashboardAdminDashboard  .recentOrderss {
   position: relative;
   display: grid;
-  min-height: 500px;
   background: var(--white);
   padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
-  border-radius: 20px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  border-radius: 5px !important;
   grid-template-rows: 1fr 16fr;
-  max-height: 500px;
-  overflow-y: auto;
+  max-height: 360px;
+  overflow-y: hidden;
+  margin: 0 20px;
 }
 
 .DashboardAdminDashboard .pl-x {
@@ -184,7 +184,7 @@
 }
 
 @media (max-width: 768px) {
-  .DashboardAdminDashboard .recentOrders {
+  .DashboardAdminDashboard .recentOrderss {
     overflow-x: auto;
   }
 }

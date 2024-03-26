@@ -8,7 +8,8 @@ import { Flex, Progress } from "antd";
 import { getCoursesPercentage, getInstructorsPercentage, getStudentPercentage, mergeDataByIndex, processStudentData2, sumPositivePercentages } from "../../statistics/statistics";
 import { CircularProgressbar, buildStyles  } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
-
+import CourseTable from "../CourseTable/CourseTable";
+import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 
 
 
@@ -16,24 +17,44 @@ import 'react-circular-progressbar/dist/styles.css';
 
 const DashboardAdminDashboard = (props) => {
 
-  const [allCourses, setAllCourses] = useState([]);
-  const [allStudents, setAllStudents] = useState([]);
-  const [allInstructors, setAllInstructors] = useState([]);
-  const navigate = useNavigate(); 
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsRole = userObjs.role || "default";
   const userObjsId = userObjs._id || "default";
   const userObjsName = userObjs.name || "default";
-  
+  const navigate = useNavigate(); 
+  const [allCourses, setAllCourses] = useState([]);
+  const [allStudents, setAllStudents] = useState([]);
+  const [allInstructors, setAllInstructors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const datachart25 = mergeDataByIndex(allCourses, allInstructors, allStudents);
-  // console.log('datachart', datachart)
-   const data25 = processStudentData2(datachart25);
-  // console.log('++data25555', data25);
-   
+  const data25 = processStudentData2(datachart25);
 
-  //console.log("userObjRole+++++++++", userObjsRole);
- // console.log("userObjsId+++++++++", userObjsId);
+  const percentagesStudents = getStudentPercentage(data25);
+  console.log(Object.entries(percentagesStudents)[2]);
+  // Calculer la somme des pourcentages
+   const sumStud = sumPositivePercentages(percentagesStudents);
+   console.log(`Somme des pourcentages: ${sumStud}%`);
+  const percentagesCourses = getCoursesPercentage(data25);
+  // Calculer la somme des pourcentages
+   const sumCourses = sumPositivePercentages(percentagesCourses);
+   console.log(`Somme des pourcentages: ${sumCourses}%`);
+  const percentagesInstructors = getInstructorsPercentage(data25);
+  // Calculer la somme des pourcentages
+   const sumInstructors = sumPositivePercentages(percentagesInstructors);
+   console.log(`Somme des pourcentages: ${sumInstructors}%`);
+  
+
+  let percentCoursesCurrentMonth = percentagesCourses[Object.entries(percentagesCourses)[new Date().getMonth()][0]];
+  let totalCoursesCurrentMonth = (percentCoursesCurrentMonth * allCourses.length) / 100;
+
+  let percentInstructorsCurrentMonth = percentagesInstructors[Object.entries(percentagesInstructors)[new Date().getMonth()][0]];
+  let totalInstructorsCurrentMonth = (percentInstructorsCurrentMonth * allInstructors.length) / 100;
+
+  let percentStudentsCurrentMonth = percentagesStudents[Object.entries(percentagesStudents)[new Date().getMonth()][0]];
+  let totalStudentsCurrentMonth = (percentStudentsCurrentMonth * allStudents.length) / 100; 
+
+
 
 
 
@@ -45,6 +66,7 @@ const DashboardAdminDashboard = (props) => {
 
    // check and update courses status
    useEffect(() => {
+    setLoading(true);
     const GetAllCourses = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/courses", {
@@ -55,6 +77,7 @@ const DashboardAdminDashboard = (props) => {
         // Call the new function to update statuses
         const updatedCourses = updateCourseStatuses(courses);
         setAllCourses(updatedCourses);
+        setLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -132,43 +155,6 @@ const DashboardAdminDashboard = (props) => {
   }, []);
 
 
-  
-  // percentagesStudents
-  const percentagesStudents = getStudentPercentage(data25);
-  console.log(Object.entries(percentagesStudents)[2]);
-  // Calculer la somme des pourcentages
-   const sumStud = sumPositivePercentages(percentagesStudents);
-   console.log(`Somme des pourcentages: ${sumStud}%`);
-  // percentagesCourses
-  const percentagesCourses = getCoursesPercentage(data25);
- // console.log(percentagesCourses);
-  // Calculer la somme des pourcentages
-   const sumCourses = sumPositivePercentages(percentagesCourses);
-   console.log(`Somme des pourcentages: ${sumCourses}%`);
-  // percentagesInstructors
-  const percentagesInstructors = getInstructorsPercentage(data25);
-  //console.log(percentagesInstructors);
-  // Calculer la somme des pourcentages
-   const sumInstructors = sumPositivePercentages(percentagesInstructors);
-   console.log(`Somme des pourcentages: ${sumInstructors}%`);
-  
-
-  let percentCoursesCurrentMonth = percentagesCourses[Object.entries(percentagesCourses)[new Date().getMonth()][0]];
-  let totalCoursesCurrentMonth = (percentCoursesCurrentMonth * allCourses.length) / 100;
-
-  let percentInstructorsCurrentMonth = percentagesInstructors[Object.entries(percentagesInstructors)[new Date().getMonth()][0]];
-  let totalInstructorsCurrentMonth = (percentInstructorsCurrentMonth * allInstructors.length) / 100;
-
-  let percentStudentsCurrentMonth = percentagesStudents[Object.entries(percentagesStudents)[new Date().getMonth()][0]];
-  let totalStudentsCurrentMonth = (percentStudentsCurrentMonth * allStudents.length) / 100;
-
-
-
-
- 
-
- 
-
   return (
     <div className="DashboardAdminDashboard">
       <div class="cardBox">
@@ -203,14 +189,6 @@ const DashboardAdminDashboard = (props) => {
               </div>
             </div>
       </div>
-      {/* <div class="recentOrders">
-         <div class="cardHeader">
-             <h2>Recent Courses</h2>
-             <Link className="blue-color" to="/admin-dashboard/courses/new">
-               +Add
-             </Link> 
-          </div>
-      </div> */}
       <div className="stats">
                <div className="featured">
                  <div className="top">
@@ -253,15 +231,6 @@ const DashboardAdminDashboard = (props) => {
                           })}
                          />
                      </div>
-                    {/* <div className="green">
-                     <Progress type="circle" size={77} percent={70} />
-                    </div> */}
-                    {/* <div className="blue">
-                     <Progress type="circle" size={77} percent={sumCourses} />
-                    </div>
-                    <div className="orange">
-                     <Progress type="circle" size={77} percent={sumInstructors} />
-                    </div> */}
                    </Flex>
                    </div>
                    <p className="title">current month</p>
@@ -273,7 +242,6 @@ const DashboardAdminDashboard = (props) => {
                      <div className="item">
                        <div className="itemTitle">Courses</div>
                        <div className="itemResult green">
-                          {/* <i class="fa-solid fa-chevron-down"></i> */}
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
                          ({totalCoursesCurrentMonth}/{allCourses.length})*{100} = {(totalCoursesCurrentMonth /allCourses.length)*100}% 
@@ -283,7 +251,6 @@ const DashboardAdminDashboard = (props) => {
                      <div className="item">
                        <div className="itemTitle">Instructors</div>
                        <div className="itemResult blue">
-                         {/* <i class="fa-solid fa-chevron-down"></i> */}
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
                           ({totalInstructorsCurrentMonth}/{allInstructors.length})*{100} = {(totalInstructorsCurrentMonth /allInstructors.length)*100}% 
@@ -293,7 +260,6 @@ const DashboardAdminDashboard = (props) => {
                      <div className="item">
                        <div className="itemTitle">Students</div>
                        <div className="itemResult orange">
-                         {/* <i class="fa-solid fa-chevron-down"></i> */}
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
                          ({totalStudentsCurrentMonth}/{allStudents.length})*{100} = {(totalStudentsCurrentMonth /allStudents.length)*100}% 
@@ -312,6 +278,80 @@ const DashboardAdminDashboard = (props) => {
                   aspect={1.54 / 1} />
                </div>
       </div>
+      <div class="recentOrderss">
+      <div class="cardHeader">
+       <h2>Recent Courses</h2>
+       {/* <Link className="blue-color" to="/admin-dashboard/courses/new">
+         +Add
+       </Link> */}
+      </div>
+      <div className="CourseTable">
+      <Table
+        loading={loading}
+        columns={[
+          {
+            title: "Name of Course",
+            dataIndex: "name",
+          },
+          {
+            title: "Level",
+            dataIndex: "level",
+          },
+          {
+            title: "Field",
+            dataIndex: "field",
+          },
+          {
+            title: "Instructor",
+            dataIndex: "instructor",
+           // key: 'instructor',
+            render: (instructor) => {
+              return (
+                 userObjsId === instructor ? "Me" :
+                     <Link  className="btt blue"  to={"/admin-dashboard/instructorByCourse/" + instructor}>
+                       <ion-icon name="eye-outline"></ion-icon>
+                     </Link>
+              );
+            },
+          },
+          {
+            title: "Status",
+            dataIndex: "status",
+           // key: 'status',
+            render: (status) => {
+              return (
+                <>
+                    <Tag color={`${
+                        status === "pending"
+                          ? "geekblue"
+                          : "volcano"
+                      }`}>
+                       {status}
+                   </Tag>
+                </>
+              );
+            },
+          },
+          {
+            title: "Students",
+            dataIndex: "_id",
+           // key: 'Students'+ Math.floor(Math.random() * 100) + 1,
+            render: (_id) => {
+              return (
+                <Link className=""  to={"/admin-dashboard/studentsByCourse/" + _id}>
+                <ion-icon name="eye-outline"></ion-icon>
+                 </Link>
+              );
+            },
+          },
+        ]}
+        dataSource={allCourses.slice(0,2)}
+        pagination={{
+          pageSize: 3,
+        }}
+      ></Table>
+      </div>
+  </div>
     </div>
   );
 };
