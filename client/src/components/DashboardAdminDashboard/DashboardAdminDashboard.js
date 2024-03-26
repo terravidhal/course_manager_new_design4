@@ -6,7 +6,7 @@ import CountUp from 'react-countup';
 import Chart from "../Chart/Chart";
 import { Flex, Progress } from "antd";
 import { getCoursesPercentage, getInstructorsPercentage, getStudentPercentage, mergeDataByIndex, processStudentData2, sumPositivePercentages } from "../../statistics/statistics";
-import { CircularProgressbar, buildStyles  } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 import CourseTable from "../CourseTable/CourseTable";
 import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
@@ -53,6 +53,7 @@ const DashboardAdminDashboard = (props) => {
 
   let percentStudentsCurrentMonth = percentagesStudents[Object.entries(percentagesStudents)[new Date().getMonth()][0]];
   let totalStudentsCurrentMonth = (percentStudentsCurrentMonth * allStudents.length) / 100; 
+
 
 
 

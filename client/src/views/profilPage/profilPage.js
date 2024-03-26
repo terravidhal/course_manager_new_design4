@@ -24,6 +24,7 @@ const ProfilPage = (props) => {
   });
   const [infos, setInfos] = useState({
     name: "",
+    image:"",
     role: "",
     email: "",
   });
@@ -194,7 +195,7 @@ const ProfilPage = (props) => {
           <button>{infos.email}</button>
           </div> 
         </>
-        : null}
+        : 'chargement.......'}
       </div>
       <div className="bloc-update">
          {

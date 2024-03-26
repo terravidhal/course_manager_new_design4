@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./InstructorDashboard.css";
-import CourseTableInstructor from "../../components/CourseTableInstructor/CourseTableInstructor";
-import UpdatePageInstructorPassword from "../UpdatePageInstructorPassword/UpdatePageInstructorPassword";
 import ProfilPopup from "../../components/profilPopup/profilPopup";
-import ProfilPage from "../profilPage/profilPage";
 
 
 
 
-const InstructorDashboard = () => {
-  const [allCourses, setAllCourses] = useState([]);
-  const [display, setDisplay] = useState("courses");
+
+const InstructorDashboard = (props) => {
+  
+  const { renderPictureHeader } = props;
+  const navigate = useNavigate();
   const [instructorInfos, setInstructorInfos] = useState({
     image: "",
   });
-  const [renderPictureHeader, setRenderPictureHeader]= useState(false); 
-  const navigate = useNavigate();
 
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsRole = userObjs.role || "default";
@@ -26,14 +23,7 @@ const InstructorDashboard = () => {
   const userObjsName = userObjs.name || "default";
 
   console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-  console.log("userObjsName+++++++++", userObjsName);
-  console.log("userObjs.isInstructor+++++++++", userObjs.isInstructor);
 
-
-  /**  */
-  const [loading, setLoading] = useState(false);
-  /** */
 
 
   useEffect(() => {
@@ -42,80 +32,52 @@ const InstructorDashboard = () => {
     }
   }, []);
 
-  // check and update courses status
+
   useEffect(() => {
-    setLoading(true);
-    const GetAllCoursesByInstructor = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/courses/instructor/" + userObjsId,
-          { withCredentials: true }
-        );
-        const courses = response.data.coursesByInstructor;
-
-        // Call the new function to update statuses
-        const updatedCourses = updateCourseStatuses(courses);
-
-        setAllCourses(updatedCourses);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    GetAllCoursesByInstructor();
+    // active link auto
+    const activeLinkAuto = () =>{
+      document.querySelectorAll(".InstructorDashboard li").forEach((item) => {
+      
+           if (item.classList.contains("crs") ) {
+             item.classList.add("terra");
+           } 
+      });
+    } 
+    activeLinkAuto();
+    // handle click menu
+    const handleClickGlobale = () =>{
+        // Menu Toggle
+        let toggle = document.querySelector(".toggle") || {};
+        let navigation = document.querySelector(".navigation");
+        let main = document.querySelector(".main");
+        //popup profil
+        const popupProfil = document.querySelector(".InstructorDashboard .profilPopup");
+        toggle.onclick = function () {
+          navigation.classList.toggle("active");
+          main.classList.toggle("active");
+        };
+        // add hovered class to selected list item
+        let list = document.querySelectorAll(".InstructorDashboard li");
+        function activeLink() {
+          list.forEach((item) => {
+            item.classList.remove("terra");
+          });
+          this.classList.add("terra"); // 'this' fait reference à l'elt qui sera cliqué
+          navigation.classList.remove("active");
+          main.classList.remove("active");
+          popupProfil.classList.remove('show');
+        }
+        list.forEach((item) => item.addEventListener("click", activeLink));
+    } 
+    handleClickGlobale();
   }, []);
 
-  //update courses
-  const updateCourseStatuses = (courses) => {
-    return courses.map((course) => {
-      const currentDate = new Date().getDate(); // Get current day of the week
-      const courseDate = new Date(course.dayOfWeek).getDate(); // Get day of the week from course
+  
+  const displayProfil = () => {
+    const popup = document.querySelector(".InstructorDashboard .profilPopup");
+    popup.classList.toggle('show');
+  }
 
-      const date = new Date();
-      const hours = date.getHours(); // 11
-      const minutes = date.getMinutes(); // 1
-      const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-        .toString()
-        .padStart(2, "0")}`;
-      const currentTime = new Date(
-        0,
-        0,
-        0,
-        parseInt(formattedTime.split(":")[0]),
-        parseInt(formattedTime.split(":")[1])
-      );
-
-      const startTIME = new Date(
-        0,
-        0,
-        0,
-        parseInt(course.startTime.split(":")[0]),
-        parseInt(course.startTime.split(":")[1])
-      );
-      const endTIME = new Date(
-        0,
-        0,
-        0,
-        parseInt(course.endTime.split(":")[0]),
-        parseInt(course.endTime.split(":")[1])
-      );
-
-      // console.log('currentDate > courseDate // currentTime > endTIME',currentDate > courseDate,currentTime > endTIME);
-      // console.log('currentTime , endTIME',currentTime , endTIME);
-
-      // Update status if current date is past the course's day and current time is past the course's end time
-      if (currentDate > courseDate) {
-        course.status = "resolved";
-      } else if (currentDate === courseDate && currentTime > endTIME) {
-        course.status = "resolved";
-      } else {
-        console.log("pending");
-      }
-
-      return course;
-    });
-  };
 
   //get  data one specific instructor
   useEffect(() => {
@@ -129,26 +91,7 @@ const InstructorDashboard = () => {
       })
       .catch((err) => console.log(err));
       
-    }, [userObjsId, renderPictureHeader]);
-
-  // lifting state update picture profile header and popup
-  const updRender = (val) =>{
-    setRenderPictureHeader(val);
-  }
-
-
-  // delete One specific course
-  const deleteCourse = (courseId) => {
-    axios
-      .delete("http://localhost:8000/api/courses/" + courseId, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data.result);
-        setAllCourses(allCourses.filter((course) => course._id !== courseId)); 
-      })
-      .catch((err) => console.log(err));
-  };
+   }, [userObjsId, renderPictureHeader]);
 
   const logout = (event) => {
     event.preventDefault();
@@ -164,48 +107,7 @@ const InstructorDashboard = () => {
       });
   };
 
-  // Menu Toggle
-  let toggle = document.querySelector(".toggle") || {};
-  let navigation = document.querySelector(".navigation");
-  let main = document.querySelector(".main");
-   //popup profil
-   const popupProfil = document.querySelector(".InstructorDashboard .profilPopup");
-
-  toggle.onclick = function () {
-    navigation.classList.toggle("active");
-    main.classList.toggle("active");
-  };
-
-  // add hovered class to selected list item
-  let list = document.querySelectorAll(".InstructorDashboard li");
-
-  function activeLink() {
-    list.forEach((item) => {
-      item.classList.remove("terra");
-    });
-    this.classList.add("terra");
-    navigation.classList.remove("active");
-    main.classList.remove("active");
-    popupProfil.classList.remove('show');
-
-    if (this.classList.contains("crs")) {
-      setDisplay("courses");
-    } else if (this.classList.contains("sett")) {
-      setDisplay("settings");
-    } else if (this.classList.contains("profi")) {
-      setDisplay("profile");
-    } else {
-      console.log("end");
-    }
-  }
-
-  list.forEach((item) => item.addEventListener("click", activeLink));
-
-  const displayProfil = () => {
-    const popup = document.querySelector(".InstructorDashboard .profilPopup");
-   // console.log(popup);
-    popup.classList.toggle('show');
-  }
+ 
 
   return (
     <div className="InstructorDashboard">
@@ -223,7 +125,7 @@ const InstructorDashboard = () => {
               </a>
             </li>
             <li className="crs">
-              <Link to="">
+              <Link to="/instructor-dashboard/courses">
                 <span class="icon">
                   <ion-icon name="home-outline"></ion-icon>
                 </span>
@@ -264,7 +166,7 @@ const InstructorDashboard = () => {
             </div>
               <ProfilPopup userObjsImage={instructorInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
-          <div class="cardBox">
+          {/* <div class="cardBox">
             <div class="card">
               <div>
                 <div class="numbers">{allCourses.length}</div>
@@ -275,9 +177,9 @@ const InstructorDashboard = () => {
                  <ion-icon name="school-outline"></ion-icon>
               </div>
             </div>
-          </div>
+          </div> */}
           <div class="details">
-            <div class="recentOrders">
+            {/* <div class="recentOrders">
               <div class="cardHeader">
               {display === "courses" ? (
                   <>
@@ -316,7 +218,8 @@ const InstructorDashboard = () => {
                 url="instructors" 
                 id={userObjsId}/>
               ) : null}
-            </div>
+            </div> */}
+            <Outlet/>
           </div>
         </div>
       </div>

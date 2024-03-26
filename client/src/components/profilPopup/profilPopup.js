@@ -19,11 +19,11 @@ const ProfilPopup = (props) => {
         <div className="profil-name">{userObjsName}</div>
         <div className="profil-role">{userObjsRole}</div>
       </div>
-      <li className="view-profile profi">
         <Link to="/admin-dashboard/profile">
-            <button>view profile</button>
+           <li className="view-profile profi">
+                 <button>view profile</button>
+           </li>
         </Link>
-      </li>
     </div>
   );
 };

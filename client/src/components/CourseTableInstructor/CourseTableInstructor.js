@@ -1,34 +1,116 @@
-/** */
-import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import React, { useState, useEffect, useRef } from "react";
-/** */
+import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import "./CourseTableInstructor.css";
 import { Link } from "react-router-dom";
-
-/** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-
+import axios from "axios";
 
 
 const CourseTableInstructor = (props) => {
  
-
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjsRole = userObjs.role || 'default';
   const userObjIsInstructor = userObjs.isInstructor || '';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjIsInstructor+++++++++", userObjIsInstructor);
-  console.log("userObjsId+++++++++", userObjsId);
-
-  const { allCourses, deleteCourse, loading } = props;
-
-  //=======================================
+  // variables dataTables
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+  
+  const [loading, setLoading] = useState(false);
+  const [allCourses, setAllCourses] = useState([]);
+
+
+  // check and update courses status
+  useEffect(() => {
+    setLoading(true);
+    const GetAllCoursesByInstructor = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/courses/instructor/" + userObjsId,
+          { withCredentials: true }
+        );
+        const courses = response.data.coursesByInstructor;
+
+        // Call the new function to update statuses
+        const updatedCourses = updateCourseStatuses(courses);
+
+        setAllCourses(updatedCourses);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    GetAllCoursesByInstructor();
+  }, []);
+
+  //update courses
+  const updateCourseStatuses = (courses) => {
+    return courses.map((course) => {
+      const currentDate = new Date().getDate(); // Get current day of the week
+      const courseDate = new Date(course.dayOfWeek).getDate(); // Get day of the week from course
+
+      const date = new Date();
+      const hours = date.getHours(); // 11
+      const minutes = date.getMinutes(); // 1
+      const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}`;
+      const currentTime = new Date(
+        0,
+        0,
+        0,
+        parseInt(formattedTime.split(":")[0]),
+        parseInt(formattedTime.split(":")[1])
+      );
+
+      const startTIME = new Date(
+        0,
+        0,
+        0,
+        parseInt(course.startTime.split(":")[0]),
+        parseInt(course.startTime.split(":")[1])
+      );
+      const endTIME = new Date(
+        0,
+        0,
+        0,
+        parseInt(course.endTime.split(":")[0]),
+        parseInt(course.endTime.split(":")[1])
+      );
+
+      // Update status if current date is past the course's day and current time is past the course's end time
+      if (currentDate > courseDate) {
+        course.status = "resolved";
+      } else if (currentDate === courseDate && currentTime > endTIME) {
+        course.status = "resolved";
+      } else {
+        console.log("pending");
+      }
+
+      return course;
+    });
+  };
+
+  // delete One specific course
+  const deleteCourse = (courseId) => {
+    axios
+      .delete("http://localhost:8000/api/courses/" + courseId, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data.result);
+        setAllCourses(allCourses.filter((course) => course._id !== courseId)); 
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+
+
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -140,74 +222,18 @@ const CourseTableInstructor = (props) => {
         text
       ),
   });
-  //=======================================
- 
+  
 
   return (
-    <div className="CourseTableInstructor">
-       {/* <table>
-         <thead>
-          <tr>
-            <th className="text-left">Name of Course</th>
-            <th>Level</th>
-            <th>field</th>
-            <th className="text-left">Instructor</th>
-            <th className="text-center">Status</th>
-            <th className="text-center">Students</th>
-            <th>Options</th>
-          </tr>
-        </thead> 
-        <tbody>
-        {  allCourses.map((elt, index) => {
-            return (
-              <tr className="" key={index}>
-                <td  className="actions">{elt.name}</td>
-                <td  className="actions text-center">{elt.level}</td>
-                <td  className="actions">{elt.field}</td>
-                <td  className="actions instruct">
-                  { userObjsId === elt.instructor ? "Me" :
-                     <Link className="btt blue"  to={"/instructorByCourse/" + elt.instructor}>
-                       <ion-icon name="eye-outline"></ion-icon>
-                     </Link>
-                  }
-                  </td>
-                <td  className="actions text-center">
-                  <button
-                      className={`${
-                        elt.status === "pending"
-                          ? "status inProgress"
-                          : "status pending"
-                      }`}
-                    > {elt.status}</button>
-                </td>
-                <td  className="actions instruct">
-                 <ul>
-                    <Link className=""  to={"/studentsByCourse/" + elt._id}>
-                    <ion-icon name="eye-outline"></ion-icon>
-                     </Link>&nbsp;
-                  </ul> 
-                </td>
-                <td className="actions text-center options">
-                  <Link className="btt violet"  to={"/courses/" + elt._id}>
-                    <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt"  to={"/courses/edit/" + elt._id}>
-                    <ion-icon name="create-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt"  to={"/courses/addStudents/" + elt._id}>
-                     <ion-icon name="person-add-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to="">
-                    <ion-icon name="trash-outline" onClick={() => deleteCourse(elt._id)}></ion-icon>
-                  </Link> 
-                </td>
-              </tr>
-            );
-          })} 
-        </tbody>
-      </table> */}
-
-<Table
+    <div class="recentOrders">
+      <div class="cardHeader">
+       <h2>Recent Courses</h2>
+       <Link className="blue-color" to="/instructor-dashboard/courses/new">
+         +Add
+       </Link>
+      </div>
+       <div className="CourseTableInstructor">
+      <Table
         loading={loading}
         columns={[
           {
@@ -296,6 +322,7 @@ const CourseTableInstructor = (props) => {
           pageSize: 3,
         }}
       ></Table>
+       </div>
     </div>
   );
 };

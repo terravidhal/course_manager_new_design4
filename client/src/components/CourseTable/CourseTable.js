@@ -1,11 +1,7 @@
-/** */
-import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import React, { useState, useEffect, useRef } from "react";
-/** */
+import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import "./CourseTable.css";
 import { Link, useNavigate, useLocation, Route, Routes, NavLink, } from "react-router-dom";
-
-/** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from "axios";
