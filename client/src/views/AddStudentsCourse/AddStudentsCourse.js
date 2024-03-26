@@ -109,15 +109,9 @@ const AddStudentsCourse = (props) => {
     <div className="AddStudentsCourse">
       <div className="page-top">
         <h1>Add / Remove </h1>
-        {
-          userObjsRole === 'admin' ?
-            <Link to="/admin-dashboard">
-              <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-             </Link> :
-             <Link to="/instructor-dashboard">
-             <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-            </Link>
-        }
+        <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
+        </Link>
       </div>
       <div className="page-content">
       {loaded === true && students.length > 0 ? 

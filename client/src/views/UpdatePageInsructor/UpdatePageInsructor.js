@@ -74,7 +74,7 @@ const UpdatePageInsructor = (props)=>{
         })
         setConfirmReg("sucefully , updating instructor");
         setErrs({});
-        navigate("/admin-dashboard");
+        navigate("/admin-dashboard/instructors");
       })
       .catch((err)=>{
         console.log(err);
@@ -91,8 +91,8 @@ const UpdatePageInsructor = (props)=>{
     <div className="UpdatePageInsructor">
        <div className="page-top">
         <h2>update instuctor</h2>
-        <Link to="/admin-dashboard/courses">
-        <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+        <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
         </Link>
       </div>
       {

@@ -20,6 +20,7 @@ const DetailsPageCourse = () => {
   const {id} = useParams(); 
   const [loaded, setLoaded] = useState(false); 
   const [loadedArrReview, setLoadedArrReview] = useState(false); 
+  const navigate = useNavigate();
 
   
   //get one specific course
@@ -89,21 +90,9 @@ const DetailsPageCourse = () => {
          <>
       <div className="page-top">
         <h1>Details Courses</h1>
-        {
-            userObjsRole === 'admin' ? (
-                <Link to="/admin-dashboard/courses">
-                    <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-                </Link>
-            ) : userObjsRole === 'student' ? (
-                <Link to="/student-dashboard/courses">
-                    <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-                </Link>
-            ) : (
-                <Link to="/instructor-dashboard/courses">
-                    <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-                </Link>
-            )
-        }
+        <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+        </Link>
       </div>   
       <div className="page-content">
             <div class="img-container">

@@ -8,7 +8,7 @@ import { Link, useNavigate, useLocation, Route, Routes, NavLink, } from "react-r
 /** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-
+import axios from "axios";
 
 
  
@@ -22,7 +22,101 @@ const CourseTable = (props) => {
   console.log("userObjIsInstructor+++++++++", userObjIsInstructor);
   console.log("userObjsId+++++++++", userObjsId);
 
-  const { allCourses, deleteCourse, loading } = props;
+  //const { allCourses, deleteCourse, loading } = props;
+
+
+  const [allCourses, setAllCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+
+   // check and update courses status
+   useEffect(() => {
+    setLoading(true);
+    const GetAllCourses = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/courses", {
+          withCredentials: true,
+        });
+        const courses = response.data.allDaCourses;
+        console.log("courses------------", courses);
+        // Call the new function to update statuses
+        const updatedCourses = updateCourseStatuses(courses);
+        setAllCourses(updatedCourses);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    GetAllCourses();
+  }, []);
+
+
+  //update courses
+  const updateCourseStatuses = (courses) => {
+    return courses.map((course) => {
+      const currentDate = new Date().getDate(); // Get current day of the week
+      const courseDate = new Date(course.dayOfWeek).getDate(); // Get day of the week from course
+      const date = new Date();
+      const hours = date.getHours(); // 11
+      const minutes = date.getMinutes(); // 1
+      const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}`;
+      const currentTime = new Date(
+        0,
+        0,
+        0,
+        parseInt(formattedTime.split(":")[0]),
+        parseInt(formattedTime.split(":")[1])
+      );
+
+      const startTIME = new Date(
+        0,
+        0,
+        0,
+        parseInt(course.startTime.split(":")[0]),
+        parseInt(course.startTime.split(":")[1])
+      );
+      const endTIME = new Date(
+        0,
+        0,
+        0,
+        parseInt(course.endTime.split(":")[0]),
+        parseInt(course.endTime.split(":")[1])
+      );
+      // Update status if current date is past the course's day and current time is past the course's end time
+      if (currentDate > courseDate) {
+        course.status = "resolved";
+      } else if (currentDate === courseDate && currentTime > endTIME) {
+        course.status = "resolved";
+      } else {
+        console.log("pending");
+      }
+      return course;
+    });
+  };
+    
+
+   // delete One specific course
+   const deleteCourse = (courseId) => {
+    axios
+      .delete("http://localhost:8000/api/courses/" + courseId, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data.result);
+        setAllCourses(allCourses.filter((course) => course._id !== courseId));
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+
+
+
+
+
 
 
 
@@ -149,7 +243,7 @@ const CourseTable = (props) => {
     <div class="recentOrders">
       <div class="cardHeader">
        <h2>Recent Courses</h2>
-       <Link className="blue-color" to="/courses/new">
+       <Link className="blue-color" to="/admin-dashboard/courses/new">
          +Add
        </Link>
       </div>
@@ -239,6 +333,7 @@ const CourseTable = (props) => {
           {
             title: "Instructor",
             dataIndex: "instructor",
+           // key: 'instructor',
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
@@ -251,6 +346,7 @@ const CourseTable = (props) => {
           {
             title: "Status",
             dataIndex: "status",
+           // key: 'status',
             render: (status) => {
               return (
                 <>
@@ -268,6 +364,7 @@ const CourseTable = (props) => {
           {
             title: "Students",
             dataIndex: "_id",
+           // key: 'Students'+ Math.floor(Math.random() * 100) + 1,
             render: (_id) => {
               return (
                 <Link className=""  to={"/admin-dashboard/studentsByCourse/" + _id}>
@@ -279,6 +376,7 @@ const CourseTable = (props) => {
           {
             title: "Options",
             dataIndex: "_id",
+           // key: 'Options'+ Math.floor(Math.random() * 100) + 1,
             render: (_id) => {
               return (
                 <>
@@ -288,7 +386,7 @@ const CourseTable = (props) => {
                   <Link className="btt"  to={"/admin-dashboard/courses/edit/" + _id}>
                     <ion-icon name="create-outline"></ion-icon>
                   </Link>
-                  <Link className="btt"  to={"/courses/addStudents/" + _id}>
+                  <Link className="btt"  to={"/admin-dashboard/courses/addStudents/" + _id}>
                      <ion-icon name="person-add-outline"></ion-icon>
                   </Link> 
                   <Link className="btt orange"  to="">

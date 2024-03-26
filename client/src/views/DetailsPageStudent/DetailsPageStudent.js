@@ -41,9 +41,9 @@ const DetailsPageStudent = () => {
     <div className="DetailsPageStudent">
       <div className="page-top">
         <h1>Speedy Students</h1>
-         <Link to="/admin-dashboard/courses">
-           back to Home
-          </Link>
+        <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
+        </Link>
       </div>  
       <div className="page-content">
             { loaded === true ? 

@@ -9,6 +9,7 @@ import CourseForm from '../../components/CourseForm/CourseForm';
 
 const UpdatePageCourse = (props) => {
 
+ 
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
@@ -57,11 +58,12 @@ const UpdatePageCourse = (props) => {
       )
       .then((res) => {
        // console.log(res.data.course);
+        
         setErrors({});
         if (userObjsRole === 'admin') {
-          navigate("/admin-dashboard");
+          navigate("/admin-dashboard/courses");
         } else {
-          navigate("/instructor-dashboard");
+          navigate("/instructor-dashboard/courses");
         }
       })
       .catch(err=>{
@@ -79,15 +81,9 @@ const UpdatePageCourse = (props) => {
     <div className="UpdatePageCourse">
       <div className="page-top">
         <h1>Update courses</h1>
-        {
-          userObjsRole === 'admin' ?
-            <Link to="/admin-dashboard/courses">
-              <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-             </Link> :
-             <Link to="/instructor-dashboard/courses">
-             <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-            </Link>
-        }
+        <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+        </Link>
       </div>
       <h4>Update your course</h4>
       

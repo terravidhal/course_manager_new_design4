@@ -53,15 +53,9 @@ const CreatePageCourse = () => {
     <div className="CreatePageCourse">
       <div className="page-top">
         <h1>create courses</h1>
-        {userObjsRole === "admin" ? (
-          <Link to="/admin-dashboard">
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+          <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
           </Link>
-        ) : (
-          <Link to="/instructor-dashboard">
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
-          </Link>
-        )}
       </div>
       <h4>Add the courses!</h4>
       <div className="page-content">

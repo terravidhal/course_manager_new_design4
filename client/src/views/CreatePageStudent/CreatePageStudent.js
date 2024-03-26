@@ -60,7 +60,7 @@ const CreatePageStudent = (props)=>{
         })
         setConfirmReg("Thank you for registering, you can now log in");
         setErrs({});
-        navigate("/admin-dashboard");
+        navigate("/admin-dashboard/students");
       })
       .catch((err)=>{
        // console.log(err);
@@ -81,8 +81,8 @@ const CreatePageStudent = (props)=>{
     <div className="CreatePageStudent">
       <div className="page-top">
         <h2>create Student</h2>
-        <Link to="/admin-dashboard">
-        <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+        <Link to="" onClick={()=>navigate(-1)}>
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
         </Link>
       </div>
       {

@@ -10,11 +10,42 @@ import { Link } from "react-router-dom";
 /** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-
+import axios from "axios";
 
 
 const InstructorTable = (props) => {
-  const { allInstructors, deleteInstructor, loading3 } = props;
+  //const { allInstructors, deleteInstructor, loading3 } = props;
+  const [allInstructors, setAllInstructors] = useState([]);
+  const [loading3, setLoading3] = useState(false);
+
+   // get all instructors
+   useEffect(() => {
+    setLoading3(true);
+    axios
+      .get("http://localhost:8000/api/instructors", { withCredentials: true })
+      .then((res) => {
+        setAllInstructors(res.data || []);
+        setLoading3(false);
+        console.log("r+++++++", res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  // delete One specific instructor
+  const deleteInstructor = (instructorId) => {
+    axios
+      .delete("http://localhost:8000/api/instructors/" + instructorId, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data.result);
+        setAllInstructors(
+          allInstructors.filter((instructor) => instructor._id !== instructorId)
+        );
+      })
+      .catch((err) => console.log(err));
+  };
+
 
 
   //=======================================
@@ -139,39 +170,12 @@ const InstructorTable = (props) => {
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Recent Instructors</h2>
-            <Link class="blue-color" to="/instructors/new">
+            <Link class="blue-color" to="/admin-dashboard/instructors/new">
                  +Add
             </Link>
         </div>
         <div className="InstructorTable">
-      {/* <table  >
-         <thead>
-          <tr>
-            <th className="text-left">Name of Instructor</th>
-            <th>Options</th>
-          </tr>
-        </thead> 
-        <tbody>
-        {allInstructors.map((elt, index) => {
-            return (
-              <tr className="" key={index}>
-                <td  className="actions">{elt.name}</td>
-                <td className="actions options text-center">
-                  <Link className="btt violet"  to={"/instructors/" + elt._id}>
-                      <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to={"/instructors/edit/" + elt._id}>
-                       <ion-icon name="create-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to="">
-                    <ion-icon name="trash-outline" onClick={() => deleteInstructor(elt._id)}></ion-icon>
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table> */}
+    
 
 <Table
         loading={loading3}
