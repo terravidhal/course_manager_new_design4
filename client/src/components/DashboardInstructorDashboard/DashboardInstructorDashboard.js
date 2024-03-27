@@ -129,11 +129,23 @@ const DashboardInstructorDashboard = (props) => {
          </div>
       </div>
       <div className="stats">
+            <div className="stud-customers">
+              <div className="stud-customers-items">
+                  <div className="stud-img">
+                    <img src="" alt="" />
+                  </div>
+                  <div className="stud-infos">
+                    <div className="stud-name">terra</div>
+                    <div className="stud-field">front-end developer</div>
+                  <div className="stud-level">level 1</div>
+                </div>
+              </div>
+           </div>
            <div className="chart">
               <ChartInstructor 
                allCourses={allCourses}
                title="Last 12 Months (courses created)" 
-               aspect={1.54 / 1} />
+               aspect={1.8 / 1} />
            </div>
       </div>
       <div className="recent">
@@ -205,7 +217,7 @@ const DashboardInstructorDashboard = (props) => {
       ></Table>
          </div>
         </div>
-        <div class="recentCustomers">
+        {/* <div class="recentCustomers">
            <div class="cardHeader">
                <h2>Recent Customers</h2>
            </div>
@@ -221,8 +233,7 @@ const DashboardInstructorDashboard = (props) => {
                           </div>
               </div>
            </div>   
-        </div>
-
+        </div> */}
       </div>
    </div>
   );

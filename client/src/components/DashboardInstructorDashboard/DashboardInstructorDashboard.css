@@ -52,13 +52,13 @@
     gap: 40px;
     padding: 20px;
   }
-  .DashboardInstructorDashboard  .featured {
+  .DashboardInstructorDashboard  .stud-customers {
    flex: 2.15;
    border-radius: 5px;
   }
-  .DashboardInstructorDashboard  .featured .featuredChart{
+  /* .DashboardInstructorDashboard  .featured .featuredChart{
    text-align: center;
-  }
+  } */
   .DashboardInstructorDashboard  .chart {
     flex: 5;
     border-radius: 5px;
@@ -81,12 +81,12 @@
     padding-left: 67px;
   }
   
-  .DashboardInstructorDashboard  .featured {
+  .DashboardInstructorDashboard  .stud-customers {
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47); 
     padding: 10px;
   }
   
-  .DashboardInstructorDashboard  .featured .top {
+  /* .DashboardInstructorDashboard  .featured .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -161,7 +161,7 @@
   
   .DashboardInstructorDashboard  .featured .bottom .summary .item .itemResult.orange {
     color:  #f79623;
-  }
+  } */
 
   .DashboardInstructorDashboard  :where(.css-dev-only-do-not-override-djtmh8).ant-table-wrapper .ant-table-container table > thead > tr:first-child > :last-child {
     text-align: left;
