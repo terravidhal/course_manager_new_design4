@@ -43,6 +43,7 @@ import CourseTableInstructor from "./components/CourseTableInstructor/CourseTabl
 import UpdatePageInstructorPassword from "./views/UpdatePageInstructorPassword/UpdatePageInstructorPassword";
 import ProfilPageAdmin from "./views/profilPageAdmin/profilPageAdmin";
 import ProfilPageInstructor from "./views/profilPageInstructor/profilPageInstructor";
+import DashboardInstructorDashboard from "./components/DashboardInstructorDashboard/DashboardInstructorDashboard";
 
 
 
@@ -97,6 +98,7 @@ const App = () => {
            </Route> 
            <Route path="/wait-verification" element={<WaitVerification />} />
            <Route path="/instructor-dashboard" element={<InstructorDashboard renderPictureHeader={renderPictureHeader} />} >
+               <Route  index element={ <DashboardInstructorDashboard />}/> 
                <Route path="/instructor-dashboard/courses" element={<CourseTableInstructor />} />
                <Route path="/instructor-dashboard/courses/new" element={<CreatePageCourse />} />
                <Route  path="/instructor-dashboard/courses/edit/:id" element={<UpdatePageCourse />}/>

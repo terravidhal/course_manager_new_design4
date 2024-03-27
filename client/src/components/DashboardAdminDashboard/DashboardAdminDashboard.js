@@ -8,7 +8,6 @@ import { Flex, Progress } from "antd";
 import { getCoursesPercentage, getInstructorsPercentage, getStudentPercentage, mergeDataByIndex, processStudentData2, sumPositivePercentages } from "../../statistics/statistics";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
-import CourseTable from "../CourseTable/CourseTable";
 import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 
 
@@ -56,14 +55,6 @@ const DashboardAdminDashboard = (props) => {
 
 
 
-
-
-
-  useEffect(() => {
-    if (userObjsRole !== 'admin') {
-      navigate('/page404NotFound'); 
-    }
-  }, []);
 
    // check and update courses status
    useEffect(() => {
@@ -311,18 +302,6 @@ const DashboardAdminDashboard = (props) => {
             dataIndex: "field",
           },
           {
-            title: "Instructor",
-            dataIndex: "instructor",
-            render: (instructor) => {
-              return (
-                 userObjsId === instructor ? "Me" :
-                     <Link  className="btt blue"  to={"/admin-dashboard/instructorByCourse/" + instructor}>
-                       <ion-icon name="eye-outline"></ion-icon>
-                     </Link>
-              );
-            },
-          },
-          {
             title: "Status",
             dataIndex: "status",
             render: (status) => {
@@ -336,17 +315,6 @@ const DashboardAdminDashboard = (props) => {
                        {status}
                    </Tag>
                 </>
-              );
-            },
-          },
-          {
-            title: "Students",
-            dataIndex: "_id",
-            render: (_id) => {
-              return (
-                <Link className=""  to={"/admin-dashboard/studentsByCourse/" + _id}>
-                <ion-icon name="eye-outline"></ion-icon>
-                 </Link>
               );
             },
           },

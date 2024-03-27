@@ -1,0 +1,187 @@
+.DashboardInstructorDashboard .cardBox {
+    position: relative;
+    width: 100%;
+    padding: 10px 19px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+  }
+  
+  .DashboardInstructorDashboard .cardBox .card {
+    position: relative;
+    background: var(--white);
+    padding: 10px 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18); 
+    align-items: center;
+  }
+  
+  .DashboardInstructorDashboard .cardBox .card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--color-theme);
+  }
+  
+  .DashboardInstructorDashboard .cardBox .card .cardName {
+    color: var(--black2);
+    font-size: 1.1rem;
+    margin-top: 5px;
+  }
+  
+  .DashboardInstructorDashboard .cardBox .card .iconBx {
+    font-size: 3.5rem;
+    color: var(--black2);
+  }
+  
+  .DashboardInstructorDashboard .cardBox .card:hover {
+    background: var(--color-theme);
+  }
+  .DashboardInstructorDashboard .cardBox .card:hover .numbers,
+  .DashboardInstructorDashboard .cardBox .card:hover .cardName,
+  .DashboardInstructorDashboard .cardBox .card:hover .iconBx {
+    color: var(--white);
+  }
+  
+  
+  .DashboardInstructorDashboard  .stats {
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+  }
+  .DashboardInstructorDashboard  .featured {
+   flex: 2.15;
+   border-radius: 5px;
+  }
+  .DashboardInstructorDashboard  .featured .featuredChart{
+   text-align: center;
+  }
+  .DashboardInstructorDashboard  .chart {
+    flex: 5;
+    border-radius: 5px;
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  }
+  .DashboardInstructorDashboard  .recentOrderss {
+    position: relative;
+    display: grid;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    border-radius: 5px !important;
+    grid-template-rows: 1fr 16fr;
+    max-height: 360px;
+    overflow-y: hidden;
+    margin: 0 20px;
+  }
+  
+  .DashboardInstructorDashboard .pl-x {
+    padding-left: 67px;
+  }
+  
+  .DashboardInstructorDashboard  .featured {
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47); 
+    padding: 10px;
+  }
+  
+  .DashboardInstructorDashboard  .featured .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: gray;
+  }
+  
+  .DashboardInstructorDashboard  .featured .top .title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 0;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 334px;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .title {
+    font-weight: 500;
+    color: gray;
+    margin: 5px 0;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .amount {
+    font-size: 30px;
+    margin: 0;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .desc {
+    font-weight: 300;
+    font-size: 12px;
+    color: gray;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary .item {
+    text-align: center;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary .item .itemTitle {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary .item .itemResult {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary .item .itemResult.green {
+    color: #3e98c7;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary .item .itemResult.blue {
+    color: #1d0dd4;
+  }
+  
+  .DashboardInstructorDashboard  .featured .bottom .summary .item .itemResult.orange {
+    color:  #f79623;
+  }
+
+  .DashboardInstructorDashboard  :where(.css-dev-only-do-not-override-djtmh8).ant-table-wrapper .ant-table-container table > thead > tr:first-child > :last-child {
+    text-align: left;
+  }
+  
+  @media (max-width: 991px) {
+    .DashboardInstructorDashboard .cardBox {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .DashboardInstructorDashboard .recentOrderss {
+      overflow-x: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .DashboardInstructorDashboard .cardBox {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  

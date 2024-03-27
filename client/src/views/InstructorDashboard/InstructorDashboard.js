@@ -38,7 +38,7 @@ const InstructorDashboard = (props) => {
     const activeLinkAuto = () =>{
       document.querySelectorAll(".InstructorDashboard li").forEach((item) => {
       
-           if (item.classList.contains("crs") ) {
+           if (item.classList.contains("adm") ) {
              item.classList.add("terra");
            } 
       });
@@ -123,6 +123,14 @@ const InstructorDashboard = (props) => {
                   welcome{" " + userObjs.name}
                 </span>
               </a>
+            </li>
+            <li className="adm">
+              <Link to="">
+                <span class="icon">
+                  <ion-icon name="home-outline"></ion-icon>
+                </span>
+                <span class="title">Dashboard</span>
+              </Link>
             </li>
             <li className="crs">
               <Link to="/instructor-dashboard/courses">

@@ -1,0 +1,12 @@
+.ChartInstructor {
+    padding: 10px;
+    color: gray;
+  }
+  
+  .ChartInstructor .title {
+    margin-bottom: 20px;
+  }
+  
+  .ChartInstructor .ChartInstructorGrid {
+    stroke: rgb(228, 225, 225);
+  }
