@@ -177,12 +177,13 @@
   position: relative;
   background: var(--white);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); */
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4); */
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
   align-items: center;
 }
 
@@ -227,10 +228,11 @@
   padding: 20px;
   /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); */
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
+  border-radius: 5px;
   grid-template-rows: 1fr 16fr;
   max-height: 500px;
   overflow-y: auto;
+  margin: 0 20px;
 }
 
 .StudentDashboard .details .cardHeader {
@@ -291,10 +293,10 @@
   padding: 10px;
 }
 .StudentDashboard .details .recentOrders table tr td:last-child {
-  text-align: end;
+  text-align: center;
 }
 .StudentDashboard .details .recentOrders table tr td:nth-child(2) {
-  text-align: end;
+  text-align: center;
 }
 .StudentDashboard .details .recentOrders table tr td:nth-child(3) {
   text-align: center;
