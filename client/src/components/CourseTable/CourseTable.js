@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation, Route, Routes, NavLink, } from "react-r
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from "axios";
+import { updateCourseStatuses } from "../../utiles/utiles";
 
 
  
@@ -13,13 +14,8 @@ const CourseTable = (props) => {
   const userObjRole = userObjs.role || 'default';
   const userObjIsInstructor = userObjs.isInstructor || '';
   const userObjsId = userObjs._id || 'default';
-  
-  console.log("userObjRole+++++++++", userObjRole);
-  console.log("userObjIsInstructor+++++++++", userObjIsInstructor);
-  console.log("userObjsId+++++++++", userObjsId);
 
-  //const { allCourses, deleteCourse, loading } = props;
-
+//console.log("userObjsId+++++++++", userObjsId);
 
   const [allCourses, setAllCourses] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -48,51 +44,6 @@ const CourseTable = (props) => {
   }, []);
 
 
-  //update courses
-  const updateCourseStatuses = (courses) => {
-    return courses.map((course) => {
-      const currentDate = new Date().getDate(); // Get current day of the week
-      const courseDate = new Date(course.dayOfWeek).getDate(); // Get day of the week from course
-      const date = new Date();
-      const hours = date.getHours(); // 11
-      const minutes = date.getMinutes(); // 1
-      const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-        .toString()
-        .padStart(2, "0")}`;
-      const currentTime = new Date(
-        0,
-        0,
-        0,
-        parseInt(formattedTime.split(":")[0]),
-        parseInt(formattedTime.split(":")[1])
-      );
-
-      const startTIME = new Date(
-        0,
-        0,
-        0,
-        parseInt(course.startTime.split(":")[0]),
-        parseInt(course.startTime.split(":")[1])
-      );
-      const endTIME = new Date(
-        0,
-        0,
-        0,
-        parseInt(course.endTime.split(":")[0]),
-        parseInt(course.endTime.split(":")[1])
-      );
-      // Update status if current date is past the course's day and current time is past the course's end time
-      if (currentDate > courseDate) {
-        course.status = "resolved";
-      } else if (currentDate === courseDate && currentTime > endTIME) {
-        course.status = "resolved";
-      } else {
-        console.log("pending");
-      }
-      return course;
-    });
-  };
-    
 
    // delete One specific course
    const deleteCourse = (courseId) => {
