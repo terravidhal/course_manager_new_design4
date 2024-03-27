@@ -44,6 +44,9 @@ import UpdatePageInstructorPassword from "./views/UpdatePageInstructorPassword/U
 import ProfilPageAdmin from "./views/profilPageAdmin/profilPageAdmin";
 import ProfilPageInstructor from "./views/profilPageInstructor/profilPageInstructor";
 import DashboardInstructorDashboard from "./components/DashboardInstructorDashboard/DashboardInstructorDashboard";
+import CourseTableStudent from "./components/CourseTableStudent/CourseTableStudent";
+import UpdateStudentPassword from "./views/UpdateStudentPassword/UpdateStudentPassword";
+import ProfilPageStudent from "./views/profilPageStudent/profilPageStudent";
 
 
 
@@ -89,8 +92,6 @@ const App = () => {
                       <ProfilPageAdmin 
                        renderPictureHeader={renderPictureHeader} 
                        updRender={updRender}
-                      // url="admins" 
-                      // id={userObjsId}
                        />}/>  
                <Route path="/admin-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} /> 
                <Route path="/admin-dashboard/instructorByCourse/:id" element={<InstructorByCourse />} />  
@@ -99,8 +100,8 @@ const App = () => {
            <Route path="/wait-verification" element={<WaitVerification />} />
            <Route path="/instructor-dashboard" element={<InstructorDashboard renderPictureHeader={renderPictureHeader} />} >
                <Route  index element={ <DashboardInstructorDashboard />}/> 
-               <Route path="/instructor-dashboard/courses" element={<CourseTableInstructor />} />
-               <Route path="/instructor-dashboard/courses/new" element={<CreatePageCourse />} />
+               <Route  path="/instructor-dashboard/courses" element={<CourseTableInstructor />} />
+               <Route  path="/instructor-dashboard/courses/new" element={<CreatePageCourse />} />
                <Route  path="/instructor-dashboard/courses/edit/:id" element={<UpdatePageCourse />}/>
                <Route  path="/instructor-dashboard/courses/:id" element={<DetailsPageCourse />}/>
                <Route  path="/instructor-dashboard/settings" element={<UpdatePageInstructorPassword />}/>
@@ -108,13 +109,22 @@ const App = () => {
                       <ProfilPageInstructor 
                        renderPictureHeader={renderPictureHeader} 
                        updRender={updRender}
-                      // url="instructors" 
-                      // id={userObjsId} 
                        />}/>  
-               <Route path="/instructor-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} />         
+               <Route path="/instructor-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} /> 
+               {/* <Route path="/instructor-dashboard/instructorByCourse/:id" element={<InstructorByCourse />} />          */}
                <Route path="/instructor-dashboard/courses/addStudents/:id" element={<AddStudentsCourse />}/>        
            </Route>
-           <Route path="/student-dashboard" element={<StudentDashboard />} />
+           <Route path="/student-dashboard" element={<StudentDashboard renderPictureHeader={renderPictureHeader} />} >
+              <Route index element={<CourseTableStudent />} />
+              <Route path="/student-dashboard/instructorByCourse/:id" element={<InstructorByCourse />} />
+              <Route  path="/student-dashboard/courses/:id" element={<DetailsPageCourse />}/>
+              <Route  path="/student-dashboard/settings" element={<UpdateStudentPassword />}/>
+              <Route  path="/student-dashboard/profile" element={ 
+                      <ProfilPageStudent 
+                       renderPictureHeader={renderPictureHeader} 
+                       updRender={updRender}
+                       />}/>  
+           </Route>
            {/* <Route path="/studentsByCourse/:id" element={<StudentsByCourse />} /> */}
            {/* <Route path="/instructorByCourse/:id" element={<InstructorByCourse />} /> */}
            {/* <Route path="/courses/new" element={<CreatePageCourse />} /> */}

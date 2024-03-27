@@ -166,6 +166,7 @@
   .InstructorByCourse .page-content {
     display: flex;
     flex-direction: column;
+    width: 327px;
   }
   .InstructorByCourse .details-img img {
     width: 200px;

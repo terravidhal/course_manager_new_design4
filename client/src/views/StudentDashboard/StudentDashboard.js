@@ -1,35 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./StudentDashboard.css";
-import CourseTableStudent from "../../components/CourseTableStudent/CourseTableStudent";
-import UpdateStudentPassword from "../UpdateStudentPassword/UpdateStudentPassword";
 import ProfilPopup from "../../components/profilPopup/profilPopup";
-import ProfilPage from "../profilPage/profilPage";
 
 
 
-const StudentDashboard = () => {
-  const [allCourses, setAllCourses] = useState([]);
-  const [display, setDisplay] = useState("courses");
-  const [studentInfos, setStudentInfos] = useState({
+
+const StudentDashboard = (props) => {
+  const { renderPictureHeader } = props;
+  const navigate = useNavigate();
+   const [studentInfos, setStudentInfos] = useState({
     image: "",
   });
-  const [renderPictureHeader, setRenderPictureHeader]= useState(false); 
-  const navigate = useNavigate();
 
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const userObjsRole = userObjs.role || "default";
   const userObjsId = userObjs._id || "default";
   const userObjsName = userObjs.name || "default";
 
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-
-  
-  /**  */
-  const [loading, setLoading] = useState(false);
-  /** */
+  console.log("userObjsRole+++++++++", userObjsRole);
 
   useEffect(() => {
     if (userObjsRole !== 'student' ) {
@@ -37,81 +27,50 @@ const StudentDashboard = () => {
     }
   }, []);
 
-  // check and update courses status
   useEffect(() => {
-    setLoading(true);
-    const GetAllCoursesByStudent = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/courses/student/" + userObjsId,
-          { withCredentials: true }
-        );
-        const courses = response.data.coursesByStudent;
-
-        // Call the new function to update statuses
-        const updatedCourses = updateCourseStatuses(courses);
-
-        setAllCourses(updatedCourses);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    GetAllCoursesByStudent();
+    // active link auto
+    const activeLinkAuto = () =>{
+      document.querySelectorAll(".StudentDashboard li").forEach((item) => {
+      
+           if (item.classList.contains("crs") ) {
+             item.classList.add("terra");
+           } 
+      });
+    } 
+    activeLinkAuto();
+    // handle click menu
+    const handleClickGlobale = () =>{
+        // Menu Toggle
+        let toggle = document.querySelector(".toggle") || {};
+        let navigation = document.querySelector(".navigation");
+        let main = document.querySelector(".main");
+        //popup profil
+        const popupProfil = document.querySelector(".StudentDashboard .profilPopup");
+        toggle.onclick = function () {
+          navigation.classList.toggle("active");
+          main.classList.toggle("active");
+        };
+        // add hovered class to selected list item
+        let list = document.querySelectorAll(".StudentDashboard li");
+        function activeLink() {
+          list.forEach((item) => {
+            item.classList.remove("terra");
+          });
+          this.classList.add("terra"); // 'this' fait reference à l'elt qui sera cliqué
+          navigation.classList.remove("active");
+          main.classList.remove("active");
+          popupProfil.classList.remove('show');
+        }
+        list.forEach((item) => item.addEventListener("click", activeLink));
+    } 
+    handleClickGlobale();
   }, []);
 
-  //update courses
-  const updateCourseStatuses = (courses) => {
-    return courses.map((course) => {
-      const currentDate = new Date().getDate(); // Get current day of the week
-      const courseDate = new Date(course.dayOfWeek).getDate(); // Get day of the week from course
 
-      const date = new Date();
-      const hours = date.getHours(); // 11
-      const minutes = date.getMinutes(); // 1
-      const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-        .toString()
-        .padStart(2, "0")}`;
-      const currentTime = new Date(
-        0,
-        0,
-        0,
-        parseInt(formattedTime.split(":")[0]),
-        parseInt(formattedTime.split(":")[1])
-      );
-
-      const startTIME = new Date(
-        0,
-        0,
-        0,
-        parseInt(course.startTime.split(":")[0]),
-        parseInt(course.startTime.split(":")[1])
-      );
-      const endTIME = new Date(
-        0,
-        0,
-        0,
-        parseInt(course.endTime.split(":")[0]),
-        parseInt(course.endTime.split(":")[1])
-      );
-
-      // console.log('currentDate > courseDate // currentTime > endTIME',currentDate > courseDate,currentTime > endTIME);
-      // console.log('currentTime , endTIME',currentTime , endTIME);
-
-      // Update status if current date is past the course's day and current time is past the course's end time
-      if (currentDate > courseDate) {
-        course.status = "resolved";
-      } else if (currentDate === courseDate && currentTime > endTIME) {
-        course.status = "resolved";
-      } else {
-        console.log("pending");
-      }
-
-      return course;
-    });
-  };
-
+  const displayProfil = () => {
+    const popup = document.querySelector(".StudentDashboard .profilPopup");
+    popup.classList.toggle('show');
+  }
 
    //get  data one specific student
    useEffect(() => {
@@ -127,13 +86,6 @@ const StudentDashboard = () => {
       
     }, [userObjsId, renderPictureHeader]);
 
-  // lifting state update picture profile header and popup
-  const updRender = (val) =>{
-    setRenderPictureHeader(val);
-  }
-
-
-
   const logout = (event) => {
     event.preventDefault();
     axios
@@ -148,48 +100,7 @@ const StudentDashboard = () => {
       });
   };
 
-  // Menu Toggle
-  let toggle = document.querySelector(".toggle") || {};
-  let navigation = document.querySelector(".navigation");
-  let main = document.querySelector(".main");
-  //popup profil
-  const popupProfil = document.querySelector(".StudentDashboard .profilPopup");
-
-  toggle.onclick = function () {
-    navigation.classList.toggle("active");
-    main.classList.toggle("active");
-  };
-
-  // add hovered class to selected list item
-  let list = document.querySelectorAll(".StudentDashboard li");
-
-  function activeLink() {
-    list.forEach((item) => {
-      item.classList.remove("terra");
-    });
-    this.classList.add("terra");
-    navigation.classList.remove("active");
-    main.classList.remove("active");
-    popupProfil.classList.remove('show');
-
-    if (this.classList.contains("crs")) {
-      setDisplay("courses");
-    } else if (this.classList.contains("sett")) {
-      setDisplay("settings");
-    } else if (this.classList.contains("profi")) {
-      setDisplay("profile");
-    }  else {
-      console.log("end");
-    }
-  }
-
-  list.forEach((item) => item.addEventListener("click", activeLink));
-
-  const displayProfil = () => {
-    const popup = document.querySelector(".StudentDashboard .profilPopup");
-    //console.log(popup);
-    popup.classList.toggle('show');
-  }
+  
 
   return (
     <div className="StudentDashboard">
@@ -215,7 +126,7 @@ const StudentDashboard = () => {
               </Link>
             </li>
             <li className="sett">
-              <Link to="">
+              <Link to="/student-dashboard/settings">
                 <span class="icon">
                   <ion-icon name="settings-outline"></ion-icon>
                 </span>
@@ -246,54 +157,10 @@ const StudentDashboard = () => {
                 <img src={`http://localhost:8000/${studentInfos.image}`} alt="" /> 
               } 
             </div>
-              <ProfilPopup userObjsImage={studentInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
-          </div>
-          <div class="cardBox">
-            <div class="card">
-              <div>
-                <div class="numbers">{allCourses.length}</div>
-                <div class="cardName">Courses</div>
-              </div>
-
-              <div class="iconBx">
-                 <ion-icon name="book-outline"></ion-icon>
-              </div>
-            </div>
+              <ProfilPopup nameUrl="/student-dashboard" userObjsImage={studentInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
           <div class="details">
-            <div class="recentOrders">
-              <div class="cardHeader">
-                {display === "courses" ? (
-                  <>
-                    <h2>Recent Courses</h2>
-                  </>
-                ) : display === "settings" ? (
-                  <>
-                    <h2 className="pl-x">Change Password</h2>
-                  </>
-                )  : display === "profile" ? (
-                  <>
-                    <h2 className="pl-x">Profile</h2>
-                    <h2 class="blue-color" to="/instructors/new">
-                      Update Profile
-                    </h2>
-                  </>
-                )  : null}
-              </div>
-              {display === "courses" ? (
-                <CourseTableStudent loading={loading} allCourses={allCourses} />
-              ) : null}
-              {display === "settings" ? (
-                <UpdateStudentPassword/>
-              ) : null}
-              {display === "profile" ? (
-                <ProfilPage renderPictureHeader={renderPictureHeader} 
-                updRender={updRender}
-                setDisplay={setDisplay} 
-                url="students" 
-                id={userObjsId}/>
-              ) : null}
-            </div>
+            <Outlet/>
           </div>
         </div>
       </div>

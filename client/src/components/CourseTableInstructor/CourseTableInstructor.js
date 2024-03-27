@@ -212,7 +212,7 @@ const CourseTableInstructor = (props) => {
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
-                     <Link  className="btt blue"  to={"/instructorByCourse/" + instructor}>
+                     <Link  className="btt blue"  to={"/instructor-dashboard/instructorByCourse/" + instructor}>
                        <ion-icon name="eye-outline"></ion-icon>
                      </Link>
               );

@@ -82,7 +82,7 @@ const UpdatePageCourse = (props) => {
       <div className="page-top">
         <h1>Update courses</h1>
         <Link to="" onClick={()=>navigate(-1)}>
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
         </Link>
       </div>
       <h4>Update your course</h4>

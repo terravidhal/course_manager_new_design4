@@ -170,6 +170,7 @@
   .StudentsByCourse .page-content {
     display: flex;
     flex-direction: column;
+    width: 621px;
   }
   .StudentsByCourse .details-img img {
     width: 200px;
@@ -179,6 +180,9 @@
 
 /**/
 @media only screen and (max-width: 850px) {
+  .StudentsByCourse .buttons button {
+    width: 100px;
+  }
   .StudentsByCourse .s-container {
     flex-direction: column;
     gap: 2rem;

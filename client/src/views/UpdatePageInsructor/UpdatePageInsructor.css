@@ -137,3 +137,11 @@
     align-items: start !important;
   }
 }
+
+@media (max-width: 768px) {
+  .UpdatePageInsructor form {
+    width: 301px;
+  }
+}
+
+

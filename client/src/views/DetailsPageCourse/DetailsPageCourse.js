@@ -91,7 +91,7 @@ const DetailsPageCourse = () => {
       <div className="page-top">
         <h1>Details Courses</h1>
         <Link to="" onClick={()=>navigate(-1)}>
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>back to Home
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>back 
         </Link>
       </div>   
       <div className="page-content">

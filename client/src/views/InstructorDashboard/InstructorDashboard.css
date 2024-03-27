@@ -279,6 +279,8 @@
 /*===================================================*/
 .AdminDashboard .details .recentOrders table tr td:last-child {
   text-align: end;
+  display: flex;
+  flex-wrap: nowrap;
 }
 /*===================================================*/
 

@@ -80,7 +80,7 @@ thead tr th.ant-table-cell{
 /*responsive*/
 @media (max-width: 991px) {
   .CourseTable td.ant-table-cell a, .CourseTable td.ant-table-cell a {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
   }
 }
 
@@ -91,6 +91,6 @@ thead tr th.ant-table-cell{
   }
 
 .CourseTable td.ant-table-cell a, .CourseTable td.ant-table-cell a {
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 }

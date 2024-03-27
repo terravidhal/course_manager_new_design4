@@ -172,6 +172,10 @@
   .DashboardAdminDashboard .cardBox {
     grid-template-columns: repeat(2, 1fr);
   }
+  .DashboardAdminDashboard  .stats {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 768px) {
@@ -183,5 +187,14 @@
 @media (max-width: 480px) {
   .DashboardAdminDashboard .cardBox {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .DashboardAdminDashboard .chart {
+    width: 300px;
+  }
+  .DashboardAdminDashboard .featured {
+    width: 300px;
+  }
+  .DashboardAdminDashboard .recentOrderss {
+    width: 300px;
   }
 }

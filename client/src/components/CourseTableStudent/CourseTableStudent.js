@@ -1,33 +1,55 @@
-/** */
-import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import React, { useState, useEffect, useRef } from "react";
-/** */
+import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import "./CourseTableStudent.css";
 import { Link } from "react-router-dom";
-
-/** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import { updateCourseStatuses } from "../../utiles/utiles";
+import axios from "axios";
+
 
 
 const CourseTableStudent = (props) => {
+  // variables datatables
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+
+  const [loading, setLoading] = useState(false);
+  const [allCourses, setAllCourses] = useState([]);
 
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjRole = userObjs.role || 'default';
   const userObjIsInstructor = userObjs.isInstructor || '';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjRole);
-  console.log("userObjIsInstructor+++++++++", userObjIsInstructor);
-  console.log("userObjsId+++++++++", userObjsId);
+  
 
-  const { allCourses, loading} = props;
+    // check and update courses status
+    useEffect(() => {
+      setLoading(true);
+      const GetAllCoursesByStudent = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost:8000/api/courses/student/" + userObjsId,
+            { withCredentials: true }
+          );
+          const courses = response.data.coursesByStudent;
+  
+          // Call the new function to update statuses
+          const updatedCourses = updateCourseStatuses(courses);
+  
+          setAllCourses(updatedCourses);
+          setLoading(false);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+  
+      GetAllCoursesByStudent();
+    }, []);
+  
 
-
-  //=======================================
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
-  const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -139,58 +161,28 @@ const CourseTableStudent = (props) => {
         text
       ),
   });
-  //=======================================
+
 
  
 
   return (
     <div className="CourseTableStudent">
-      <div className="CourseTableStudent">
-      {/* <table>
-         <thead>
-          <tr>
-            <th className="text-left">Name of Course</th>
-            <th>Level</th>
-            <th>field</th>
-            <th className="text-left">Instructor</th>
-            <th className="text-center">Status</th>
-            <th>Options</th>
-          </tr>
-        </thead> 
-        <tbody>
-        {  allCourses.map((elt, index) => {
-            return (
-              <tr className="" key={index}>
-                <td  className="actions">{elt.name}</td>
-                <td  className="actions text-center">{elt.level}</td>
-                <td  className="actions">{elt.field}</td>
-                <td  className="actions instruct">
-                  { userObjsId === elt.instructor ? "Me" :
-                     <Link className="btt blue"  to={"/instructorByCourse/" + elt.instructor}>
-                       <ion-icon name="eye-outline"></ion-icon>
-                     </Link>
-                  }
-                  </td>
-                <td  className="actions text-center">
-                  <button
-                      className={`${
-                        elt.status === "pending"
-                          ? "status inProgress"
-                          : "status pending"
-                      }`}
-                    > {elt.status}</button>
-                </td>
-                <td className="actions text-center options">
-                  <Link className="btt violet"  to={"/courses/" + elt._id}>
-                    <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> &nbsp;
-                </td>
-              </tr>
-            );
-          })} 
-        </tbody>
-      </table> */}
-
+        <div class="cardBox">
+            <div class="card">
+              <div>
+                <div class="numbers">{allCourses.length}</div>
+                <div class="cardName">Courses</div>
+              </div>
+              <div class="iconBx">
+                 <ion-icon name="book-outline"></ion-icon>
+              </div>
+            </div>
+        </div>
+        <div class="recentOrders">
+            <div class="cardHeader">
+              <h2>Recent Courses</h2>
+            </div>
+            <div className="CourseTableStudent">
 <Table
         loading={loading}
         columns={[
@@ -218,7 +210,7 @@ const CourseTableStudent = (props) => {
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
-                     <Link  className="btt blue"  to={"/instructorByCourse/" + instructor}>
+                     <Link  className="btt blue"  to={"/student-dashboard/instructorByCourse/" + instructor}>
                        <ion-icon name="eye-outline"></ion-icon>
                      </Link>
               );
@@ -247,7 +239,7 @@ const CourseTableStudent = (props) => {
             render: (_id) => {
               return (
                 <>
-                 <Link className="btt violet"  to={"/courses/" + _id}>
+                 <Link className="btt violet"  to={"/student-dashboard/courses/" + _id}>
                     <ion-icon name="document-text-outline"></ion-icon>
                   </Link> 
                 </>
@@ -260,7 +252,8 @@ const CourseTableStudent = (props) => {
           pageSize: 3,
         }}
       ></Table>
-    </div>
+            </div>
+        </div>
     </div>
   );
 };

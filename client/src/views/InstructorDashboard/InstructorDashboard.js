@@ -24,8 +24,6 @@ const InstructorDashboard = (props) => {
 
   console.log("userObjRole+++++++++", userObjsRole);
 
-
-
   useEffect(() => {
     if (userObjsRole !== 'instructor' || userObjsIsInstructor === 'false') {
            navigate('/page404NotFound'); 
@@ -77,7 +75,6 @@ const InstructorDashboard = (props) => {
     const popup = document.querySelector(".InstructorDashboard .profilPopup");
     popup.classList.toggle('show');
   }
-
 
   //get  data one specific instructor
   useEffect(() => {

@@ -97,3 +97,8 @@
     align-items: start !important;
   }
 }
+@media (max-width: 480px) {
+  .CourseForm {
+    width: 259px;
+  }
+}
