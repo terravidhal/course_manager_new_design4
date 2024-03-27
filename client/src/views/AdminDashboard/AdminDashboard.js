@@ -186,7 +186,7 @@ const AdminDashboard = (props) => {
                 <img src={`http://localhost:8000/${adminInfos.image}`} alt="" /> 
               } 
             </div>
-              <ProfilPopup userObjsImage={adminInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
+              <ProfilPopup nameUrl="/admin-dashboard" userObjsImage={adminInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
           <div class="details">
             <Outlet/>

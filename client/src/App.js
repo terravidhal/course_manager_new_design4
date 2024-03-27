@@ -41,6 +41,8 @@ import UpdateAdminPassword from "./views/UpdateAdminPassword/UpdateAdminPassword
 import ProfilPage from "./views/profilPage/profilPage";
 import DashboardAdminDashboard from "./components/DashboardAdminDashboard/DashboardAdminDashboard";
 import CourseTableInstructor from "./components/CourseTableInstructor/CourseTableInstructor";
+import UpdatePageInstructorPassword from "./views/UpdatePageInstructorPassword/UpdatePageInstructorPassword";
+import ProfilPageAdmin from "./views/profilPageAdmin/profilPageAdmin";
 
 
 
@@ -83,11 +85,12 @@ const App = () => {
               <Route  path="/admin-dashboard/instructors/:id" element={<DetailsPageInsructor />}/>
               <Route  path="/admin-dashboard/settings" element={<UpdateAdminPassword />}/>
               <Route  path="/admin-dashboard/profile" element={ 
-                      <ProfilPage 
+                      <ProfilPageAdmin 
                        renderPictureHeader={renderPictureHeader} 
                        updRender={updRender}
-                       url="admins" 
-                       id={userObjsId} />}/>  
+                      // url="admins" 
+                      // id={userObjsId}
+                       />}/>  
                <Route path="/admin-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} /> 
                <Route path="/admin-dashboard/instructorByCourse/:id" element={<InstructorByCourse />} />  
                <Route path="/admin-dashboard/courses/addStudents/:id" element={<AddStudentsCourse />}/>      
@@ -95,6 +98,13 @@ const App = () => {
            <Route path="/wait-verification" element={<WaitVerification />} />
            <Route path="/instructor-dashboard" element={<InstructorDashboard renderPictureHeader={renderPictureHeader} />} >
                <Route path="/instructor-dashboard/courses" element={<CourseTableInstructor />} />
+               <Route  path="/instructor-dashboard/settings" element={<UpdatePageInstructorPassword />}/>
+               <Route  path="/instructor-dashboard/profile" element={ 
+                      <ProfilPage 
+                       renderPictureHeader={renderPictureHeader} 
+                       updRender={updRender}
+                       url="instructors" 
+                       id={userObjsId} />}/>  
            </Route>
            <Route path="/student-dashboard" element={<StudentDashboard />} />
            {/* <Route path="/studentsByCourse/:id" element={<StudentsByCourse />} /> */}

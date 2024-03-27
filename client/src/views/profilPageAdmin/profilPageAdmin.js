@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import './profilPage.css';
+import './profilPageAdmin.css';
 
-const ProfilPage = (props) => {
-  const { url, id, updRender, renderPictureHeader,} = props
+
+const ProfilPageAdmin = (props) => {
+  const { updRender, renderPictureHeader,} = props
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
-  const userObjsId = userObjs._id || "default";
+  const id = userObjs._id || "default";
 
-  //console.log("userObjsId+++++++++", userObjsId);
-
+  console.log("userObjsId+++++++++", id);
 
  // const { id } = useParams();
  // const id = userObjs._id ;
   const [confirmReg, setConfirmReg] = useState("");
- // const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
-  const [render, setRender]= useState(false); 
+  const [render, setRender]= useState(false); // update get data one specific admin
   const [errs, setErrs] = useState({});
   const [user, setUser] = useState({
     name: "",
@@ -28,61 +27,60 @@ const ProfilPage = (props) => {
     role: "",
     email: "",
   });
-
-  // upload img
-  const [image, setImage] = useState();
-
-  const formdata = new FormData();
-  formdata.append("image", image);
+ // upload img
+ const [image, setImage] = useState();
+ const formdata = new FormData();
+ formdata.append("image", image);
 //
-  
- 
-
-  const handleChange = (e)=>{
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value 
-    })
-  }
+const handleChange = (e)=>{
+  setUser({
+    ...user,
+    [e.target.name]: e.target.value 
+  })
+}
 
 
-     //get  data one specific user
+     //get data one specific admin
      useEffect(() => {
       axios
-        .get("http://localhost:8000/api/"+url+"/" + id,{withCredentials: true})
+        .get("http://localhost:8000/api/admins/" + id,{withCredentials: true})
         .then((res) => {
-         // console.log("u++++++++++res.data.oneSingle+data",res.data.oneSingleAdmin || res.data.oneSingleInstructor || res.data.oneSingleStudent);
-          let oneSingle = {};
-          if (res.data.oneSingleAdmin ) {
-            oneSingle = res.data.oneSingleAdmin
-          }else if ( res.data.oneSingleInstructor){
-            oneSingle =  res.data.oneSingleInstructor
-          }else if(res.data.oneSingleStudent){
-            oneSingle =  res.data.oneSingleStudent
-          }else{
-            console.log('data not exists!');
-          }
+          console.log("u++++++++++res.data.oneSingleAdmin", res.data.oneSingleAdmin);
           setInfos({
-            name: oneSingle.name ,
-            image: oneSingle.image ,
-            role: oneSingle.role ,
-            email: oneSingle.email ,
+            name: res.data.oneSingleAdmin.name ,
+            image: res.data.oneSingleAdmin.image ,
+            role: res.data.oneSingleAdmin.role ,
+            email: res.data.oneSingleAdmin.email ,
           });
           setUser({
-            name: oneSingle.name ,
-            email: oneSingle.email ,
+            name: res.data.oneSingleAdmin.name ,
+            email: res.data.oneSingleAdmin.email ,
           });
           setLoaded(true); 
         })
         .catch((err) => console.log(err));
         
       }, [id, render]);
+
+
+      useEffect(() => {
+          // handle input files
+          const handleInputFiles = () =>{
+             if (image) {
+               console.log('input.value', image.name);
+               document.querySelector('i.fa-regular.fa-circle-check').classList.remove('valid_picture');
+               document.querySelector('#text').classList.remove('text_picture');
+             }
+           }
+ 
+          handleInputFiles()
+      }, [image]);
   
 
   // update name and email
   const updateUser = (e) =>{
     e.preventDefault();
-    axios.patch('http://localhost:8000/api/me/'+url+'/'+ id,
+    axios.patch('http://localhost:8000/api/me/admins/'+ id,
     user,
     {
       withCredentials: true,
@@ -93,10 +91,9 @@ const ProfilPage = (props) => {
         name:"",
         email:"",
       })
-      setConfirmReg("sucefully , updating", url);
+      setConfirmReg("sucefully , updating", "admins");
       setErrs({});
       render === false ?  setRender(true) : setRender(false)
-     // setDisplay("courses");
     })
     .catch((err)=>{
       console.log(err);
@@ -109,7 +106,7 @@ const ProfilPage = (props) => {
   const updateImageProfile = async (e) => {
     e.preventDefault();
 
-    axios.patch('http://localhost:8000/api/upload-image/'+url+'/'+ id,
+    axios.patch('http://localhost:8000/api/upload-image/'+"admins"+'/'+ id,
     formdata,
     {
       withCredentials: true,
@@ -124,18 +121,7 @@ const ProfilPage = (props) => {
     })
   };
 
-  // handle input files
-  const handleInputFiles = () =>{
-   // const input = document.querySelector('#profile_input');
-   // input.click();
-    if (image) {
-      console.log('input.value', image.name);
-      document.querySelector('i.fa-regular.fa-circle-check').classList.remove('valid_picture');
-      document.querySelector('#text').classList.remove('text_picture');
-    }
-  }
-
-  handleInputFiles()
+ 
 
 
 
@@ -146,7 +132,7 @@ const ProfilPage = (props) => {
           <h2 className="pl-x">Profile</h2>
           <h2 class="blue-color" to="/instructors/new">Update Profile</h2>
         </div>
-        <div className="ProfilPage">
+        <div className="ProfilPageAdmin">
       <div className="bloc-view">
       { loaded === true ?
         <>
@@ -232,5 +218,6 @@ const ProfilPage = (props) => {
   );
 };
 
-export default ProfilPage;
+export default ProfilPageAdmin;
+
 

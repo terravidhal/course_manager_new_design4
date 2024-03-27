@@ -4,7 +4,7 @@ import './profilPopup.css';
 
 const ProfilPopup = (props) => {
 
- const {userObjsImage, userObjsRole, userObjsName,} = props;
+ const {userObjsImage, userObjsRole, userObjsName, nameUrl} = props;
 
   return(
     <div className="profilPopup">
@@ -19,7 +19,7 @@ const ProfilPopup = (props) => {
         <div className="profil-name">{userObjsName}</div>
         <div className="profil-role">{userObjsRole}</div>
       </div>
-        <Link to="/admin-dashboard/profile">
+        <Link to={nameUrl+"/profile"}>
            <li className="view-profile profi">
                  <button>view profile</button>
            </li>

@@ -38,6 +38,11 @@ module.exports = {
 
 
   UpdateImageAdmin : async (req, res) => {
+
+    if (!req.file) {
+      return res.status(400).json({ message: "file is not exist", errors: "Invalid file" });
+    }
+
     const { filename } = req.file;
 
     AdminModel.findOneAndUpdate(

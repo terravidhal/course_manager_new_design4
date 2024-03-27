@@ -133,7 +133,7 @@ const InstructorDashboard = (props) => {
               </Link>
             </li>
             <li className="sett">
-              <Link to="">
+              <Link to="/instructor-dashboard/settings">
                 <span class="icon">
                   <ion-icon name="settings-outline"></ion-icon>
                 </span>
@@ -164,7 +164,7 @@ const InstructorDashboard = (props) => {
                 <img src={`http://localhost:8000/${instructorInfos.image}`} alt="" /> 
               } 
             </div>
-              <ProfilPopup userObjsImage={instructorInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
+              <ProfilPopup nameUrl="/instructor-dashboard" userObjsImage={instructorInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
           {/* <div class="cardBox">
             <div class="card">
