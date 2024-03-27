@@ -122,39 +122,46 @@ const DashboardInstructorDashboard = (props) => {
                 <div class="numbers"><CountUp start={100} end={allCourses.length}/></div>
                 <div class="cardName">Courses</div>
               </div>
-
               <div class="iconBx">
                  <ion-icon name="school-outline"></ion-icon>
               </div>
          </div>
       </div>
       <div className="stats">
-            <div className="stud-customers">
-              <div className="stud-customers-items">
-                  <div className="stud-img">
-                    <img src="" alt="" />
-                  </div>
-                  <div className="stud-infos">
-                    <div className="stud-name">terra</div>
-                    <div className="stud-field">front-end developer</div>
-                  <div className="stud-level">level 1</div>
-                </div>
-              </div>
-           </div>
            <div className="chart">
               <ChartInstructor 
                allCourses={allCourses}
                title="Last 12 Months (courses created)" 
-               aspect={1.8 / 1} />
+               aspect={2 / 1} />
+           </div>
+            <div className="stud-customers">
+              <div className="title">Recent Students</div>
+              {  allStudents.slice(0,5).map((elt, index) => {
+                   return (
+                    <div className="stud-customers-items">
+                        <div className="stud-img">
+                          {elt.image === "" ?
+                            <img src="/assets/images/blank-profile.png" alt="" /> :
+                            <img src={`http://localhost:8000/${elt.image}`} alt="" />
+                          }
+                        </div>
+                        <div className="stud-infos">
+                          <div className="stud-name">{elt.name}</div>
+                          <div className="stud-field">{elt.fieldOfStudy} {elt.levelStudent}</div>
+                        </div>
+                     </div>
+                   );
+                 })
+              }
            </div>
       </div>
       <div className="recent">
         <div class="recentOrderss">
          <div class="cardHeader">
-       <h2>Recent Courses</h2>
+             <h2>Recent Courses</h2>
          </div>
          <div className="CourseTable">
-      <Table
+           <Table
         loading={loading}
         columns={[
           {
@@ -214,26 +221,9 @@ const DashboardInstructorDashboard = (props) => {
         pagination={{
           pageSize: 3,
         }}
-      ></Table>
+            ></Table>
          </div>
         </div>
-        {/* <div class="recentCustomers">
-           <div class="cardHeader">
-               <h2>Recent Customers</h2>
-           </div>
-           <div className="stud-customers">
-              <div className="stud-customers-items">
-                          <div className="stud-img">
-                            <img src="" alt="" />
-                          </div>
-                          <div className="stud-infos">
-                            <div className="stud-name">terra</div>
-                            <div className="stud-field">front-end developer</div>
-                            <div className="stud-level">level 1</div>
-                          </div>
-              </div>
-           </div>   
-        </div> */}
       </div>
    </div>
   );
