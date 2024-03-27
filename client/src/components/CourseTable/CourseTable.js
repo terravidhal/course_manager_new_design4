@@ -10,18 +10,20 @@ import { updateCourseStatuses } from "../../utiles/utiles";
 
  
 const CourseTable = (props) => {
+  const [allCourses, setAllCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  //variables datatables
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null); 
+
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjRole = userObjs.role || 'default';
   const userObjIsInstructor = userObjs.isInstructor || '';
   const userObjsId = userObjs._id || 'default';
-
 //console.log("userObjsId+++++++++", userObjsId);
 
-  const [allCourses, setAllCourses] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-
-
+  
    // check and update courses status
    useEffect(() => {
     setLoading(true);
@@ -60,17 +62,6 @@ const CourseTable = (props) => {
 
 
 
-
-
-
-
-
-
-
-  //=======================================
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
-  const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -182,9 +173,8 @@ const CourseTable = (props) => {
         text
       ),
   });
-  //=======================================
 
- 
+
 
   return (
     <div class="recentOrders">
@@ -195,67 +185,6 @@ const CourseTable = (props) => {
        </Link>
       </div>
       <div className="CourseTable">
-        {/* <table>
-         <thead>
-          <tr>
-            <th className="text-left">Name of Course</th>
-            <th>Level</th>
-            <th>field</th>
-            <th className="text-left">Instructor</th>
-            <th className="text-center">Status</th>
-            <th className="text-center">Students</th>
-            <th>Options</th>
-          </tr>
-        </thead> 
-        <tbody>
-        {  allCourses.map((elt, index) => {
-            return (
-              <tr className="" key={index}>
-                <td  className="actions">{elt.name}</td>
-                <td  className="actions text-center">{elt.level}</td>
-                <td  className="actions">{elt.field}</td>
-                <td  className="actions instruct">
-                  { userObjsId === elt.instructor ? "Me" :
-                     <Link className="btt blue"  to={"/instructorByCourse/" + elt.instructor}>
-                       <ion-icon name="eye-outline"></ion-icon>
-                     </Link>
-                  }
-                  </td>
-                <td  className="actions text-center">
-                  <button
-                      className={`${
-                        elt.status === "pending"
-                          ? "status inProgress"
-                          : "status pending"
-                      }`}
-                    > {elt.status}</button>
-                </td>
-                <td  className="actions instruct">
-                 <ul>
-                    <Link className=""  to={"/studentsByCourse/" + elt._id}>
-                    <ion-icon name="eye-outline"></ion-icon>
-                     </Link>&nbsp;
-                  </ul> 
-                </td>
-                <td className="actions text-center options">
-                  <Link className="btt violet"  to={"/courses/" + elt._id}>
-                    <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt"  to={"/courses/edit/" + elt._id}>
-                    <ion-icon name="create-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt"  to={"/courses/addStudents/" + elt._id}>
-                     <ion-icon name="person-add-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to="">
-                    <ion-icon name="trash-outline" onClick={() => deleteCourse(elt._id)}></ion-icon>
-                  </Link> 
-                </td>
-              </tr>
-            );
-          })} 
-        </tbody>
-      </table>   */}
       <Table
         loading={loading}
         columns={[
@@ -280,7 +209,6 @@ const CourseTable = (props) => {
           {
             title: "Instructor",
             dataIndex: "instructor",
-           // key: 'instructor',
             render: (instructor) => {
               return (
                  userObjsId === instructor ? "Me" :
@@ -293,7 +221,6 @@ const CourseTable = (props) => {
           {
             title: "Status",
             dataIndex: "status",
-           // key: 'status',
             render: (status) => {
               return (
                 <>
@@ -311,7 +238,6 @@ const CourseTable = (props) => {
           {
             title: "Students",
             dataIndex: "_id",
-           // key: 'Students'+ Math.floor(Math.random() * 100) + 1,
             render: (_id) => {
               return (
                 <Link className=""  to={"/admin-dashboard/studentsByCourse/" + _id}>
@@ -323,7 +249,6 @@ const CourseTable = (props) => {
           {
             title: "Options",
             dataIndex: "_id",
-           // key: 'Options'+ Math.floor(Math.random() * 100) + 1,
             render: (_id) => {
               return (
                 <>
