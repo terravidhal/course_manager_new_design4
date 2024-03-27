@@ -288,7 +288,7 @@ const CourseTableInstructor = (props) => {
             dataIndex: "_id",
             render: (_id) => {
               return (
-                <Link className=""  to={"/studentsByCourse/" + _id}>
+                <Link className=""  to={"/instructor-dashboard/studentsByCourse/" + _id}>
                 <ion-icon name="eye-outline"></ion-icon>
                  </Link>
               );
@@ -300,13 +300,13 @@ const CourseTableInstructor = (props) => {
             render: (_id) => {
               return (
                 <>
-                 <Link className="btt violet"  to={"/courses/" + _id}>
+                 <Link className="btt violet"  to={"/instructor-dashboard/courses/" + _id}>
                     <ion-icon name="document-text-outline"></ion-icon>
                   </Link> 
-                  <Link className="btt"  to={"/courses/edit/" + _id}>
+                  <Link className="btt"  to={"/instructor-dashboard/courses/edit/" + _id}>
                     <ion-icon name="create-outline"></ion-icon>
                   </Link>
-                  <Link className="btt"  to={"/courses/addStudents/" + _id}>
+                  <Link className="btt"  to={"/instructor-dashboard/courses/addStudents/" + _id}>
                      <ion-icon name="person-add-outline"></ion-icon>
                   </Link> 
                   <Link className="btt orange"  to="">

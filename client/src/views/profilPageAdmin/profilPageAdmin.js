@@ -12,7 +12,6 @@ const ProfilPageAdmin = (props) => {
   console.log("userObjsId+++++++++", id);
 
  // const { id } = useParams();
- // const id = userObjs._id ;
   const [confirmReg, setConfirmReg] = useState("");
   const [loaded, setLoaded] = useState(false); 
   const [render, setRender]= useState(false); // update get data one specific admin
@@ -72,7 +71,6 @@ const handleChange = (e)=>{
                document.querySelector('#text').classList.remove('text_picture');
              }
            }
- 
           handleInputFiles()
       }, [image]);
   
@@ -106,7 +104,7 @@ const handleChange = (e)=>{
   const updateImageProfile = async (e) => {
     e.preventDefault();
 
-    axios.patch('http://localhost:8000/api/upload-image/'+"admins"+'/'+ id,
+    axios.patch('http://localhost:8000/api/upload-image/admins/'+ id,
     formdata,
     {
       withCredentials: true,
@@ -130,7 +128,7 @@ const handleChange = (e)=>{
     <div class="recentOrders">
         <div class="cardHeader">
           <h2 className="pl-x">Profile</h2>
-          <h2 class="blue-color" to="/instructors/new">Update Profile</h2>
+          <h2 class="blue-color">Update Profile</h2>
         </div>
         <div className="ProfilPageAdmin">
       <div className="bloc-view">

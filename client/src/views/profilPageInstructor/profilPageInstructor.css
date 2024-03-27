@@ -1,0 +1,144 @@
+.ProfilPageInstructor {
+    display: flex;
+    gap: 30px;
+ }
+ .ProfilPageInstructor .none{
+    display: none;
+ }
+ .ProfilPageInstructor .hidden{
+    visibility: hidden;
+ }
+ .ProfilPageInstructor .opacity{
+    opacity: 0;
+ }
+ .ProfilPageInstructor .relative{
+    position: relative;
+ }
+ .ProfilPageInstructor .absolute{
+    position: absolute;
+    left: 170px;
+   top: 210px;
+ }
+ .ProfilPageInstructor .bloc-view{
+     width: 300px;
+     background-color: var(--white);
+   border-radius: 5px;
+   padding: 1.5rem;
+   text-align: center;
+   transition: .2s linear;
+   flex: 1;
+   /* box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2); */
+ }
+ .ProfilPageInstructor .bloc-view .profil-name {
+   margin-bottom: 10px;
+   font-size: 1.2rem;
+   padding-top: 8px;
+ }
+ .ProfilPageInstructor .bloc-view .profil-name::first-letter {
+   text-transform: capitalize;
+ }
+ .ProfilPageInstructor .bloc-view .profil-role {
+   margin-bottom: 10px;
+   font-size: 0.9rem;
+   color: gray;
+ }
+ .ProfilPageInstructor .bloc-view .profil-picture {
+   margin-bottom: 10px;
+ }
+ .ProfilPageInstructor .bloc-view .profil-picture img{
+   width: 200px;
+   height: 200px;
+   border-radius: 50%;
+ }
+ .ProfilPageInstructor .bloc-view .view-profile {
+   list-style-type: none;
+ }
+ .ProfilPageInstructor .bloc-view button {
+   width: 100%;
+   padding: 10px;
+   background-color: var(--white);
+   color: var(--color-theme);
+   border: 1px solid var(--color-theme);
+   border-radius: 5px;
+   font-size: 1.5rem;
+   margin-bottom: 10px;
+ }
+ 
+ .ProfilPageInstructor .bloc-update{
+   flex: 1;
+ }
+ .ProfilPageInstructor .bloc-update.two form{
+   display: flex;
+   gap: 10px;
+ }
+ .ProfilPageInstructor .bloc-update.two i{
+   font-size: 2rem;
+   cursor: pointer;
+   color: var(--color-theme);
+ }
+ .ProfilPageInstructor .bloc-update.two i.valid_picture{
+   color: gray;
+ }
+ .ProfilPageInstructor .bloc-update.two span{
+   color: var(--color-theme);
+ }
+ .ProfilPageInstructor .bloc-update.two span.text_picture{
+   color: gray;
+ }
+ 
+ .ProfilPageInstructor  form{
+ 
+ }
+ .ProfilPageInstructor .error-text {
+   color: var(--oranges);
+   display: block;
+ }
+ 
+ .ProfilPageInstructor .field {
+   display: flex;
+   margin-bottom: 10px;
+   flex-direction: column;
+ }
+ 
+ .ProfilPageInstructor .field input{
+   width: 100%;
+   height: 40px;
+   margin-top: 10px;
+ }
+ .ProfilPageInstructor .bloc-update button{
+   width: 100%;
+   height: 40px;
+   background-color: var(--color-theme);
+   color: var(--white);
+   border: none;
+   border-radius: 5px;
+   margin-top: 10px;
+   cursor: pointer;
+   font-weight: bold;
+ }
+ 
+ @media (max-width: 768px) {
+   .AdminDashboard .details .cardHeader {
+       display: flex;
+       padding: 0 5px;
+   }
+   .ProfilPageInstructor {
+     display: flex;
+     gap: 20px;
+     flex-direction: column;
+     justify-content: center;
+   }
+   .ProfilPageInstructor .bloc-view {
+       margin: 0 auto;
+   }
+   .ProfilPageInstructor .bloc-update {
+     padding: 10px 25px;
+   }
+   .ProfilPageInstructor .absolute {
+     position: absolute;
+     left: 65px;
+     top: 210px;
+   }
+ }
+ 
+ 

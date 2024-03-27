@@ -38,11 +38,11 @@ import CourseTable from "./components/CourseTable/CourseTable";
 import StudentTable from "./components/StudentTable/StudentTable";
 import InstructorTable from "./components/InstructorTable/InstructorTable";
 import UpdateAdminPassword from "./views/UpdateAdminPassword/UpdateAdminPassword";
-import ProfilPage from "./views/profilPage/profilPage";
 import DashboardAdminDashboard from "./components/DashboardAdminDashboard/DashboardAdminDashboard";
 import CourseTableInstructor from "./components/CourseTableInstructor/CourseTableInstructor";
 import UpdatePageInstructorPassword from "./views/UpdatePageInstructorPassword/UpdatePageInstructorPassword";
 import ProfilPageAdmin from "./views/profilPageAdmin/profilPageAdmin";
+import ProfilPageInstructor from "./views/profilPageInstructor/profilPageInstructor";
 
 
 
@@ -98,13 +98,19 @@ const App = () => {
            <Route path="/wait-verification" element={<WaitVerification />} />
            <Route path="/instructor-dashboard" element={<InstructorDashboard renderPictureHeader={renderPictureHeader} />} >
                <Route path="/instructor-dashboard/courses" element={<CourseTableInstructor />} />
+               <Route path="/instructor-dashboard/courses/new" element={<CreatePageCourse />} />
+               <Route  path="/instructor-dashboard/courses/edit/:id" element={<UpdatePageCourse />}/>
+               <Route  path="/instructor-dashboard/courses/:id" element={<DetailsPageCourse />}/>
                <Route  path="/instructor-dashboard/settings" element={<UpdatePageInstructorPassword />}/>
                <Route  path="/instructor-dashboard/profile" element={ 
-                      <ProfilPage 
+                      <ProfilPageInstructor 
                        renderPictureHeader={renderPictureHeader} 
                        updRender={updRender}
-                       url="instructors" 
-                       id={userObjsId} />}/>  
+                      // url="instructors" 
+                      // id={userObjsId} 
+                       />}/>  
+               <Route path="/instructor-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} />         
+               <Route path="/instructor-dashboard/courses/addStudents/:id" element={<AddStudentsCourse />}/>        
            </Route>
            <Route path="/student-dashboard" element={<StudentDashboard />} />
            {/* <Route path="/studentsByCourse/:id" element={<StudentsByCourse />} /> */}
