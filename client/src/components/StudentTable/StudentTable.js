@@ -1,24 +1,23 @@
-/** */
 import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import React, { useState, useEffect, useRef } from "react";
-/** */
-
 import './StudentTable.css'
 import { Link } from "react-router-dom";
-
-/** */
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from "axios";
+import ConfirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 
 
 
 const StudentTable = (props) => {
- // const { allStudents, deleteStudent, loading2 } = props;
-  
   const [allStudents, setAllStudents] = useState([]);
   const [loading2, setLoading2] = useState(false);
- 
+  const [idStudentss, setIdStudentss] = useState('');
+  // variables datatables
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+
 
    // get all students
    useEffect(() => {
@@ -33,9 +32,15 @@ const StudentTable = (props) => {
       .catch((err) => console.log(err));
   }, []);
 
+  
+  const displayPopupConfirm = (id) => {
+    setIdStudentss(id);
+    const popup = document.querySelector('.ConfirmDeletePopup');
+    popup.classList.toggle('switch');
+ };
 
    // delete One specific student
-   const deleteStudent = (studentId) => {
+ /*  const deleteStudent = (studentId) => {
     axios
       .delete("http://localhost:8000/api/students/" + studentId, {
         withCredentials: true,
@@ -47,14 +52,9 @@ const StudentTable = (props) => {
         );
       })
       .catch((err) => console.log(err));
-  };
+  }; */
 
 
-
-  //=======================================
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
-  const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -166,7 +166,7 @@ const StudentTable = (props) => {
         text
       ),
   });
-  //=======================================
+  
 
 
   return (
@@ -176,6 +176,9 @@ const StudentTable = (props) => {
            <Link class="blue-color" to="/admin-dashboard/students/new">
                  +Add
            </Link>
+           <ConfirmDeletePopup isitems="student" allItems={allStudents} 
+        setAllItems={setAllStudents} 
+        id={idStudentss}/>
         </div>
         <div className="StudentTable">
      
@@ -224,7 +227,8 @@ const StudentTable = (props) => {
                      <ion-icon name="create-outline"></ion-icon>
                   </Link> &nbsp;
                   <Link className="btt orange"  to="">
-                    <ion-icon name="trash-outline" onClick={() => deleteStudent(_id)}></ion-icon>
+                    {/* <ion-icon name="trash-outline" onClick={() => deleteStudent(_id)}></ion-icon> */}
+                    <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
                   </Link>
                 </>
               );

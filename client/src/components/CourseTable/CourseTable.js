@@ -57,7 +57,7 @@ const CourseTable = (props) => {
   };
 
    // delete One specific course
-   const deleteCourse = (courseId) => {
+ /*  const deleteCourse = (courseId) => {
     axios
       .delete("http://localhost:8000/api/courses/" + courseId, {
         withCredentials: true,
@@ -67,7 +67,7 @@ const CourseTable = (props) => {
         setAllCourses(allCourses.filter((course) => course._id !== courseId));
       })
       .catch((err) => console.log(err));
-  };
+  }; */
 
 
 
@@ -192,8 +192,8 @@ const CourseTable = (props) => {
        <Link className="blue-color" to="/admin-dashboard/courses/new">
          +Add
        </Link>
-       <ConfirmDeletePopup allCourses={allCourses} 
-        setAllCourses={setAllCourses} 
+       <ConfirmDeletePopup isitems="course" allItems={allCourses} 
+        setAllItems={setAllCourses} 
         id={idCoursess}/>
       </div>
       <div className="CourseTable">
