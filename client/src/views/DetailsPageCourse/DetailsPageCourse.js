@@ -11,9 +11,6 @@ const DetailsPageCourse = () => {
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
-  
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
 
   const [OneCourse, setOneCourse] = useState({});
   const [arrReviews, setArrReviews] = useState([]);
@@ -27,7 +24,7 @@ const DetailsPageCourse = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/courses/" + id,{withCredentials: true})
         .then( res => {
-          console.log("u++++++++++",res.data);
+          //console.log("u++++++++++",res.data);
           setOneCourse(res.data);
           setLoaded(true); 
         })
@@ -39,9 +36,8 @@ const DetailsPageCourse = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/reviews/course/" + id,{withCredentials: true})
         .then( res => {
-          console.log("reviewsby course++++++++++",res.data.reviews);
+         // console.log("reviewsby course++++++++++",res.data.reviews);
           setArrReviews(res.data.reviews);
-          console.log("OneCourse++++++++++",OneCourse);
         })
         .catch( err => console.log(err) );
   }, [loadedArrReview]); 

@@ -9,7 +9,6 @@ const ProfilPageInstructor = (props) => {
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
   const id = userObjs._id || "default";
 
-  console.log("userObjsId+++++++++", id);
 
  // const { id } = useParams();
   const [confirmReg, setConfirmReg] = useState("");

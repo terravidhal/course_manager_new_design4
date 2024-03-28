@@ -31,7 +31,6 @@ const StudentDashboard = (props) => {
     // active link auto
     const activeLinkAuto = () =>{
       document.querySelectorAll(".StudentDashboard li").forEach((item) => {
-      
            if (item.classList.contains("crs") ) {
              item.classList.add("terra");
            } 
@@ -77,7 +76,7 @@ const StudentDashboard = (props) => {
     axios
       .get("http://localhost:8000/api/students/"+ userObjsId,{withCredentials: true})
       .then((res) => {
-        console.log("res.data.oneSingleStudent+++++++",res.data.oneSingleStudent);
+       // console.log("res.data.oneSingleStudent+++++++",res.data.oneSingleStudent);
         setStudentInfos({
           image: res.data.oneSingleStudent.image ,
         });

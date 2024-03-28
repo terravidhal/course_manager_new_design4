@@ -16,8 +16,7 @@ const Page404NotFound = () => {
     navigate('/login_page');
   } 
 
-  const logout = (event) => {
-  //  event.preventDefault();
+  const logout = () => {
     axios
       .post("http://localhost:8000/api/logout", {}, { withCredentials: true })
       .then((res) => {

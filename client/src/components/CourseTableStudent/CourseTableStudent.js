@@ -185,75 +185,75 @@ const CourseTableStudent = (props) => {
               <h2>Recent Courses</h2>
             </div>
             <div className="CourseTableStudent">
-        <Table
-        loading={loading}
-        columns={[
-          {
-            title: "Name of Course",
-            dataIndex: "name",
-            key: 'name',
-            ...getColumnSearchProps('name'),
-          },
-          {
-            title: "Level",
-            dataIndex: "level",
-            key: 'level',
-            ...getColumnSearchProps('level'),
-          },
-          {
-            title: "Field",
-            dataIndex: "field",
-            key: 'field',
-            ...getColumnSearchProps('field'),
-          },
-          {
-            title: "Instructor",
-            dataIndex: "instructor",
-            render: (instructor) => {
-              return (
-                 userObjsId === instructor ? "Me" :
-                     <Link  className="btt blue"  to={"/student-dashboard/instructorByCourse/" + instructor}>
-                       <ion-icon name="eye-outline"></ion-icon>
-                     </Link>
-              );
-            },
-          },
-          {
-            title: "Status",
-            dataIndex: "status",
-            render: (status) => {
-              return (
-                <>
-                    <Tag color={`${
-                        status === "pending"
-                          ? "geekblue"
-                          : "volcano"
-                      }`}>
-                       {status}
-                   </Tag>
-                </>
-              );
-            },
-          },
-          {
-            title: "Options",
-            dataIndex: "_id",
-            render: (_id) => {
-              return (
-                <>
-                 <Link className="btt violet"  to={"/student-dashboard/courses/" + _id}>
-                    <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> 
-                </>
-              );
-            },
-          },
-        ]}
-        dataSource={allCourses}
-        pagination={{
-          pageSize: 3,
-        }}
-      ></Table>
+              <Table
+                loading={loading}
+                columns={[
+                  {
+                    title: "Name of Course",
+                    dataIndex: "name",
+                    key: 'name',
+                    ...getColumnSearchProps('name'),
+                  },
+                  {
+                    title: "Level",
+                    dataIndex: "level",
+                    key: 'level',
+                    ...getColumnSearchProps('level'),
+                  },
+                  {
+                    title: "Field",
+                    dataIndex: "field",
+                    key: 'field',
+                    ...getColumnSearchProps('field'),
+                  },
+                  {
+                    title: "Instructor",
+                    dataIndex: "instructor",
+                    render: (instructor) => {
+                      return (
+                         userObjsId === instructor ? "Me" :
+                             <Link  className="btt blue"  to={"/student-dashboard/instructorByCourse/" + instructor}>
+                               <ion-icon name="eye-outline"></ion-icon>
+                             </Link>
+                      );
+                    },
+                  },
+                  {
+                    title: "Status",
+                    dataIndex: "status",
+                    render: (status) => {
+                      return (
+                        <>
+                            <Tag color={`${
+                                status === "pending"
+                                  ? "geekblue"
+                                  : "volcano"
+                              }`}>
+                               {status}
+                           </Tag>
+                        </>
+                      );
+                    },
+                  },
+                  {
+                    title: "Options",
+                    dataIndex: "_id",
+                    render: (_id) => {
+                      return (
+                        <>
+                         <Link className="btt violet"  to={"/student-dashboard/courses/" + _id}>
+                            <ion-icon name="document-text-outline"></ion-icon>
+                          </Link> 
+                        </>
+                      );
+                    },
+                  },
+                ]}
+                dataSource={allCourses}
+                pagination={{
+                  pageSize: 3,
+                }}
+              ></Table>
             </div>
         </div>
     </div>

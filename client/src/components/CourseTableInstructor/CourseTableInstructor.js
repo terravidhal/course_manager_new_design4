@@ -54,19 +54,7 @@ const CourseTableInstructor = (props) => {
     popup.classList.toggle('switch');
  };
 
-  // delete One specific course
- /* const deleteCourse = (courseId) => {
-    axios
-      .delete("http://localhost:8000/api/courses/" + courseId, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data.result);
-        setAllCourses(allCourses.filter((course) => course._id !== courseId)); 
-      })
-      .catch((err) => console.log(err));
-  }; */
-
+  
 
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -271,7 +259,6 @@ const CourseTableInstructor = (props) => {
                      <ion-icon name="person-add-outline"></ion-icon>
                   </Link> 
                   <Link className="btt orange"  to="">
-                    {/* <ion-icon name="trash-outline" onClick={() => deleteCourse(_id)}></ion-icon> */}
                     <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
                   </Link> 
                 </>

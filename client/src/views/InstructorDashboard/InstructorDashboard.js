@@ -7,7 +7,6 @@ import ProfilPopup from "../../components/profilPopup/profilPopup";
 
 
 
-
 const InstructorDashboard = (props) => {
   
   const { renderPictureHeader } = props;
@@ -35,7 +34,6 @@ const InstructorDashboard = (props) => {
     // active link auto
     const activeLinkAuto = () =>{
       document.querySelectorAll(".InstructorDashboard li").forEach((item) => {
-      
            if (item.classList.contains("adm") ) {
              item.classList.add("terra");
            } 
@@ -171,59 +169,7 @@ const InstructorDashboard = (props) => {
             </div>
               <ProfilPopup nameUrl="/instructor-dashboard" userObjsImage={instructorInfos.image} userObjsRole={userObjsRole} userObjsName={userObjsName} />
           </div>
-          {/* <div class="cardBox">
-            <div class="card">
-              <div>
-                <div class="numbers">{allCourses.length}</div>
-                <div class="cardName">Courses</div>
-              </div>
-
-              <div class="iconBx">
-                 <ion-icon name="school-outline"></ion-icon>
-              </div>
-            </div>
-          </div> */}
           <div class="details">
-            {/* <div class="recentOrders">
-              <div class="cardHeader">
-              {display === "courses" ? (
-                  <>
-                    <h2>Recent Courses</h2>
-                    <Link className="blue-color" to="/courses/new">
-                      +Add
-                    </Link>
-                  </>
-                ) : display === "settings" ? (
-                  <>
-                    <h2 className="pl-x">Change Password</h2>
-                  </>
-                )  :  display === "profile" ? (
-                  <>
-                    <h2 className="pl-x">Profile</h2>
-                    <h2 class="blue-color" to="/instructors/new">
-                      Update Profile
-                    </h2>
-                  </>
-                )  : null}
-              </div>
-              {display === "courses" ? (
-                <CourseTableInstructor
-                  loading={loading}
-                  allCourses={allCourses}
-                  deleteCourse={deleteCourse}
-                />
-              ) : null}
-              {display === "settings" ? (
-                <UpdatePageInstructorPassword />
-              ) : null}
-              {display === "profile" ? (
-                <ProfilPage renderPictureHeader={renderPictureHeader} 
-                updRender={updRender}
-                setDisplay={setDisplay} 
-                url="instructors" 
-                id={userObjsId}/>
-              ) : null}
-            </div> */}
             <Outlet/>
           </div>
         </div>
