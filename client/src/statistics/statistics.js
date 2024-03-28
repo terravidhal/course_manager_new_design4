@@ -35,7 +35,6 @@ export const processStudentData2  = (data) => {
           if (!monthCounts.hasOwnProperty(month)) {
             monthCounts[month] = { CoursesTotal1: 0, InstructorsTotal2: 0, StudentsTotal3: 0 };
           }
-  
           monthCounts[month][`${nameData[i]}Total${i}`] += 1;
           //console.log('monthCounts55', monthCounts);
         }
@@ -74,7 +73,7 @@ export const processStudentData2  = (data) => {
  export  const getInstructorsPercentage = (data) => {
     // Calculer le nombre total d'étudiants
     const totalInstructors = data.reduce((acc, month) => acc + month.InstructorsTotal2, 0);
-   console.log('totalInstructors', totalInstructors);
+   //console.log('totalInstructors', totalInstructors);
     const percentages = {};
   
     // Parcourir chaque mois
@@ -91,7 +90,7 @@ export const processStudentData2  = (data) => {
   export const getCoursesPercentage = (data) => {
     // Calculer le nombre total d'étudiants
     const totalCourses = data.reduce((acc, month) => acc + month.CoursesTotal1, 0);
-   console.log('totalCourses', totalCourses);
+  // console.log('totalCourses', totalCourses);
     const percentages = {};
   
     // Parcourir chaque mois
@@ -138,7 +137,7 @@ export const  processStudentData = (data)=> {
       }
       monthCounts[month]+=1;                                              
     }
-    console.log(monthCounts);
+    //console.log(monthCounts);
   
     // Convert monthCounts object to desired array format
     const chartData = [];

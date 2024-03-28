@@ -50,6 +50,7 @@ const RegisterInstructor = (props)=>{
         setErrs({});
         if (res.data.instructor.isInstructor === "true") {
           localStorage.setItem('USER_OBJ', JSON.stringify(res.data.instructor));
+          localStorage.setItem('USER_INSTRUCTOR', JSON.stringify(res.data.instructor));
           navigate("/instructor-dashboard");
        } else {
           localStorage.setItem('USER_OBJ', JSON.stringify(res.data.instructor));

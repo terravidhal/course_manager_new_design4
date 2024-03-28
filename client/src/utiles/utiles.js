@@ -40,7 +40,7 @@ export const updateCourseStatuses = (courses) => {
       } else if (currentDate === courseDate && currentTime > endTIME) {
         course.status = "resolved";
       } else {
-        console.log("pending");
+        //console.log("pending");
       }
 
       return course;

@@ -33,7 +33,6 @@ const DashboardAdminDashboard = (props) => {
   const data25 = processStudentData2(datachart25);
 
   const percentagesStudents = getStudentPercentage(data25);
-  console.log(Object.entries(percentagesStudents)[2]);
   // sum of percentages
   const sumStud = sumPositivePercentages(percentagesStudents);
   const percentagesCourses = getCoursesPercentage(data25);
@@ -58,14 +57,12 @@ const DashboardAdminDashboard = (props) => {
       key: '1',
     },
   ];
-
   const itemsInstructors = [
     {
       label: `(${totalInstructorsCurrentMonth}/${allInstructors.length})*100 = ${(totalInstructorsCurrentMonth /allInstructors.length)*100}%`,
       key: '1',
     },
   ];
-
   const itemsStudents = [  
     {
       label: `(${totalStudentsCurrentMonth}/${allStudents.length})*100 = ${(totalStudentsCurrentMonth /allStudents.length)*100}%`,
@@ -82,7 +79,7 @@ const DashboardAdminDashboard = (props) => {
           withCredentials: true,
         });
         const courses = response.data.allDaCourses;
-        console.log("courses------------", courses);
+       // console.log("courses------------", courses);
         // Call the new function to update statuses
         const updatedCourses = updateCourseStatuses(courses);
         setAllCourses(updatedCourses);
@@ -101,7 +98,7 @@ const DashboardAdminDashboard = (props) => {
       .get("http://localhost:8000/api/students", { withCredentials: true })
       .then((res) => {
         setAllStudents(res.data);
-        console.log("r+++++++", res.data);
+        //console.log("r+++++++", res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -112,13 +109,12 @@ const DashboardAdminDashboard = (props) => {
       .get("http://localhost:8000/api/instructors", { withCredentials: true })
       .then((res) => {
         setAllInstructors(res.data);
-        console.log("r+++++++", res.data);
+        //console.log("r+++++++", res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
 
- 
  
   return (
     <div className="DashboardAdminDashboard">

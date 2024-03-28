@@ -15,12 +15,14 @@ const AdminDashboard = (props) => {
     image: "",
   });
   const userObjs = JSON.parse(localStorage.getItem("USER_OBJ")) || {};
+  const notifInstructorObjs = JSON.parse(localStorage.getItem("USER_INSTRUCTOR")) || {};
   const userObjsRole = userObjs.role || "default";
   const userObjsId = userObjs._id || "default";
   const userObjsName = userObjs.name || "default";
   
 
   console.log("userObjRole+++++++++", userObjsRole);
+  console.log("notifInstructorObjs+++++++++", notifInstructorObjs);
  
   useEffect(() => {
     if (userObjsRole !== 'admin') {
@@ -77,7 +79,7 @@ const AdminDashboard = (props) => {
     axios
       .get("http://localhost:8000/api/admins/"+ userObjsId,{withCredentials: true})
       .then((res) => {
-        console.log("res.data.oneSingleAdmin+++++++",res.data.oneSingleAdmin);
+       // console.log("res.data.oneSingleAdmin+++++++",res.data.oneSingleAdmin);
         setAdminInfos({
           image: res.data.oneSingleAdmin.image ,
         });
