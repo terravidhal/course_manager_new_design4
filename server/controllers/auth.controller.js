@@ -38,7 +38,7 @@ module.exports = {
 
         const cookieOptions = {
           httpOnly: true,
-          expires: new Date(Date.now() + 7200000),
+          expires: new Date(Date.now() + 14400000), // 4 heures
         };
 
         res.cookie("usertoken", studentToken, cookieOptions).json({

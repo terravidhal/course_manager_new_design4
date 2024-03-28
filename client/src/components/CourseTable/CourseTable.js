@@ -48,7 +48,6 @@ const CourseTable = (props) => {
   }, []);
 
 
-
    
    const displayPopupConfirm = (id) => {
      setIdCoursess(id);

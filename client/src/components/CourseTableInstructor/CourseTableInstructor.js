@@ -6,16 +6,17 @@ import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from "axios";
 import { updateCourseStatuses } from "../../utiles/utiles";
+import ConfirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 
 
 const CourseTableInstructor = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [allCourses, setAllCourses] = useState([]);
+  const [idCoursess, setIdCoursess] = useState('');
   // variables dataTables
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
-  
-  const [loading, setLoading] = useState(false);
-  const [allCourses, setAllCourses] = useState([]);
  
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjsRole = userObjs.role || 'default';
@@ -47,9 +48,14 @@ const CourseTableInstructor = (props) => {
   }, []);
 
  
+  const displayPopupConfirm = (id) => {
+    setIdCoursess(id);
+    const popup = document.querySelector('.ConfirmDeletePopup');
+    popup.classList.toggle('switch');
+ };
 
   // delete One specific course
-  const deleteCourse = (courseId) => {
+ /* const deleteCourse = (courseId) => {
     axios
       .delete("http://localhost:8000/api/courses/" + courseId, {
         withCredentials: true,
@@ -59,7 +65,7 @@ const CourseTableInstructor = (props) => {
         setAllCourses(allCourses.filter((course) => course._id !== courseId)); 
       })
       .catch((err) => console.log(err));
-  };
+  }; */
 
 
 
@@ -183,6 +189,9 @@ const CourseTableInstructor = (props) => {
        <Link className="blue-color" to="/instructor-dashboard/courses/new">
          +Add
        </Link>
+       <ConfirmDeletePopup isitems="course" allItems={allCourses} 
+        setAllItems={setAllCourses} 
+        id={idCoursess}/>
       </div>
        <div className="CourseTableInstructor">
       <Table
@@ -262,7 +271,8 @@ const CourseTableInstructor = (props) => {
                      <ion-icon name="person-add-outline"></ion-icon>
                   </Link> 
                   <Link className="btt orange"  to="">
-                    <ion-icon name="trash-outline" onClick={() => deleteCourse(_id)}></ion-icon>
+                    {/* <ion-icon name="trash-outline" onClick={() => deleteCourse(_id)}></ion-icon> */}
+                    <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
                   </Link> 
                 </>
               );

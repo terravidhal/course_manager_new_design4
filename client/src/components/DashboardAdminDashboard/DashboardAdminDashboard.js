@@ -10,6 +10,8 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import { updateCourseStatuses } from "../../utiles/utiles";
+import ProgressProvider from "../ProgressProvider/ProgressProvider";
+import DropdownComp from "../DropdownComp/DropdownComp";
 
 
 
@@ -29,6 +31,9 @@ const DashboardAdminDashboard = (props) => {
 
   const datachart25 = mergeDataByIndex(allCourses, allInstructors, allStudents);
   const data25 = processStudentData2(datachart25);
+  // variables circular progress bar
+  
+
 
   const percentagesStudents = getStudentPercentage(data25);
   console.log(Object.entries(percentagesStudents)[2]);
@@ -38,6 +43,7 @@ const DashboardAdminDashboard = (props) => {
   const percentagesCourses = getCoursesPercentage(data25);
   // Calculer la somme des pourcentages
    const sumCourses = sumPositivePercentages(percentagesCourses);
+   console.log(`Somme des pourcentages: ${typeof(sumCourses)}`);
    console.log(`Somme des pourcentages: ${sumCourses}%`);
   const percentagesInstructors = getInstructorsPercentage(data25);
   // Calculer la somme des pourcentages
@@ -53,8 +59,6 @@ const DashboardAdminDashboard = (props) => {
 
   let percentStudentsCurrentMonth = percentagesStudents[Object.entries(percentagesStudents)[new Date().getMonth()][0]];
   let totalStudentsCurrentMonth = (percentStudentsCurrentMonth * allStudents.length) / 100; 
-
-
 
 
    // check and update courses status
@@ -77,6 +81,27 @@ const DashboardAdminDashboard = (props) => {
     };
     GetAllCourses();
   }, []);
+
+
+ /* function filterByDate(data) {
+    // 1. Créer une copie du tableau d'origine
+const sortedData = [...data];
+
+// 2. Convertir les dates et heures en objets Date dans la copie
+const t =  sortedData.map((item) => new Date(item.createdAt));
+
+// 3. Trier la copie par date décroissante
+t.sort((a, b) => b.createdAt - a.createdAt);
+
+// 4. Afficher le tableau trié
+console.log('sortedData',t);
+return sortedData
+  } */
+
+  
+
+  
+  
 
 
   // get all students
@@ -102,6 +127,28 @@ const DashboardAdminDashboard = (props) => {
   }, []);
 
 
+  const itemsCourses = [
+    {
+      label: `(${totalCoursesCurrentMonth}/${allCourses.length})*100 = ${(totalCoursesCurrentMonth /allCourses.length)*100}%`,
+      key: '1',
+    },
+  ];
+
+  const itemsInstructors = [
+    {
+      label: `(${totalInstructorsCurrentMonth}/${allInstructors.length})*100 = ${(totalInstructorsCurrentMonth /allInstructors.length)*100}%`,
+      key: '1',
+    },
+  ];
+
+  const itemsStudents = [  
+    {
+      label: `(${totalStudentsCurrentMonth}/${allStudents.length})*100 = ${(totalStudentsCurrentMonth /allStudents.length)*100}%`,
+      key: '1',
+    },
+  ];
+  
+ 
   return (
     <div className="DashboardAdminDashboard">
       <div class="cardBox">
@@ -145,7 +192,50 @@ const DashboardAdminDashboard = (props) => {
                  <div className="bottom">
                    <div className="featuredChart">
                    <Flex gap="small" >
-                     <div style={{ width: 76, height: 76, }}>
+                   <ProgressProvider valueStart={0} valueEnd={sumCourses}>
+                     {value => <CircularProgressbar value={value} text={`${value}%`} 
+                       styles={buildStyles({
+                         rotation: 0.25,
+                         strokeLinecap: 'round',
+                         textSize: '16px',
+                         pathTransitionDuration: 2.5, // 0.5
+                         pathColor:' #09b4a6',
+                         textColor: '#09b4a6',
+                         trailColor: '#d6d6d6',
+                         backgroundColor: '#3e98c7',
+                       })}
+                     />}
+                   </ProgressProvider>
+                   <ProgressProvider valueStart={0} valueEnd={sumInstructors}>
+                     {value => <CircularProgressbar value={value} text={`${value}%`} 
+                       styles={buildStyles({
+                         rotation: 0.25,
+                         strokeLinecap: 'round',
+                         textSize: '16px',
+                         pathTransitionDuration: 2.5, // 0.5
+                        // pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
+                         textColor: '#3e98c7',
+                         trailColor: '#d6d6d6',
+                         backgroundColor: '#3e98c7',
+                       })}
+                     />}
+                   </ProgressProvider>
+                   <ProgressProvider valueStart={0} valueEnd={sumStud}>
+                     {value => <CircularProgressbar value={value} text={`${value}%`} 
+                       styles={buildStyles({
+                         rotation: 0.25,
+                         strokeLinecap: 'round',
+                         textSize: '16px',
+                         pathTransitionDuration: 2.5, // 0.5
+                         pathColor:' #f79623',
+                         textColor: '#f79623',
+                         trailColor: '#d6d6d6',
+                         backgroundColor: '#3e98c7',
+                       })}
+                     />}
+                   </ProgressProvider>
+        
+                     {/* <div style={{ width: 76, height: 76, }}>
                         <CircularProgressbar value={100} text={`${sumCourses}%`} strokeWidth={5}
                           styles={buildStyles({
                             // Colors
@@ -177,7 +267,7 @@ const DashboardAdminDashboard = (props) => {
                             backgroundColor: '#3e98c7',
                           })}
                          />
-                     </div>
+                     </div> */}
                    </Flex>
                    </div>
                    <p className="title">current month</p>
@@ -191,7 +281,8 @@ const DashboardAdminDashboard = (props) => {
                        <div className="itemResult green">
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
-                         ({totalCoursesCurrentMonth}/{allCourses.length})*{100} = {(totalCoursesCurrentMonth /allCourses.length)*100}% 
+                          <DropdownComp items={itemsCourses} />
+                         {/* ({totalCoursesCurrentMonth}/{allCourses.length})*{100} = {(totalCoursesCurrentMonth /allCourses.length)*100}%  */}
                           </div>
                        </div>
                      </div>
@@ -200,7 +291,8 @@ const DashboardAdminDashboard = (props) => {
                        <div className="itemResult blue">
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
-                          ({totalInstructorsCurrentMonth}/{allInstructors.length})*{100} = {(totalInstructorsCurrentMonth /allInstructors.length)*100}% 
+                          <DropdownComp items={itemsInstructors} />
+                          {/* ({totalInstructorsCurrentMonth}/{allInstructors.length})*{100} = {(totalInstructorsCurrentMonth /allInstructors.length)*100}%  */}
                           </div>
                        </div>
                      </div>
@@ -209,7 +301,8 @@ const DashboardAdminDashboard = (props) => {
                        <div className="itemResult orange">
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
-                         ({totalStudentsCurrentMonth}/{allStudents.length})*{100} = {(totalStudentsCurrentMonth /allStudents.length)*100}% 
+                          <DropdownComp items={itemsStudents} />
+                         {/* ({totalStudentsCurrentMonth}/{allStudents.length})*{100} = {(totalStudentsCurrentMonth /allStudents.length)*100}%  */}
                           </div>
                        </div>
                      </div>
@@ -236,6 +329,7 @@ const DashboardAdminDashboard = (props) => {
           {
             title: "Photo",
             dataIndex: "image",
+            key: "image",
             render: (image) => {
                 return ( image === "" ?
                    <Avatar src="/assets/images/blank-profile.png"  />
@@ -274,7 +368,7 @@ const DashboardAdminDashboard = (props) => {
             },
           },
         ]}
-        dataSource={allCourses.slice(0,2)}
+        dataSource={allCourses}
         pagination={{
           pageSize: 3,
         }}
