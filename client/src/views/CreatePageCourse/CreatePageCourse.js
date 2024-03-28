@@ -11,9 +11,6 @@ const CreatePageCourse = () => {
   const userObjsRole = userObjs.role || "default";
   const userObjsId = userObjs._id || "default";
 
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-
   const [errors, setErrors] = useState({});
   const [errors2, setErrors2] = useState({});
   const navigate = useNavigate();

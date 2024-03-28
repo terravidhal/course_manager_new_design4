@@ -8,17 +8,7 @@ const UpdatePageInsructor = (props)=>{
     const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
     const userObjsRole = userObjs.role || 'default';
     const userObjsId = userObjs._id || 'default';
-    
-    console.log("userObjRole+++++++++", userObjsRole);
-    console.log("userObjsId+++++++++", userObjsId);
   
-    useEffect(() => {
-      if (userObjsRole !== 'admin' ) {
-             navigate('/page404NotFound'); 
-      }
-    }, []);
-
-
     const { id } = useParams();
     const [confirmReg, setConfirmReg] = useState("");
     const [errs, setErrs] = useState({});
@@ -29,9 +19,14 @@ const UpdatePageInsructor = (props)=>{
       email: "",
       isInstructor: "false",
     });
-   
-
   
+    useEffect(() => {
+      if (userObjsRole !== 'admin' ) {
+             navigate('/page404NotFound'); 
+      }
+    }, []);
+
+
     const handleChange = (e)=>{
       setUser({
         ...user,

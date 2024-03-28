@@ -38,20 +38,6 @@ const InstructorTable = (props) => {
     popup.classList.toggle('switch');
  };
 
-  // delete One specific instructor
- /* const deleteInstructor = (instructorId) => {
-    axios
-      .delete("http://localhost:8000/api/instructors/" + instructorId, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data.result);
-        setAllInstructors(
-          allInstructors.filter((instructor) => instructor._id !== instructorId)
-        );
-      })
-      .catch((err) => console.log(err));
-  }; */
 
 
 
@@ -181,60 +167,57 @@ const InstructorTable = (props) => {
         id={idInstructorss}/>
         </div>
         <div className="InstructorTable">
-    
-
-<Table
-        loading={loading3}
-        columns={[
-          {
-            title: "Photo",
-            dataIndex: "image",
-            render: (image) => {
-                return ( image === "" ?
-                   <Avatar src="/assets/images/blank-profile.png"  />
-                : 
-                 <Avatar src={`http://localhost:8000/${image}`} /> );
-               
-            },
-          },
-          {
-            title: "Name of Instructor",
-            dataIndex: "name",
-            key: 'name',
-            ...getColumnSearchProps('name'),
-          },
-          {
-            title: "Skills",
-            dataIndex: "skills",
-            key: 'skills',
-            ...getColumnSearchProps('skills'),
-          },
-          {
-            title: "Options",
-            dataIndex: "_id",
-            render: (_id) => {
-              return (
-                <>
-                 <Link className="btt violet"  to={"/admin-dashboard/instructors/" + _id}>
-                      <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to={"/admin-dashboard/instructors/edit/" + _id}>
-                       <ion-icon name="create-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to="">
-                    {/* <ion-icon name="trash-outline" onClick={() => deleteInstructor(_id)}></ion-icon> */}
-                    <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
-                  </Link>
-                </>
-              );
-            },
-          },
-        ]}
-        dataSource={allInstructors}
-        pagination={{
-          pageSize: 3,
-        }}
-      ></Table>
+           <Table
+              loading={loading3}
+              columns={[
+                {
+                  title: "Photo",
+                  dataIndex: "image",
+                  render: (image) => {
+                      return ( image === "" ?
+                         <Avatar src="/assets/images/blank-profile.png"  />
+                      : 
+                       <Avatar src={`http://localhost:8000/${image}`} /> );
+                     
+                  },
+                },
+                {
+                  title: "Name of Instructor",
+                  dataIndex: "name",
+                  key: 'name',
+                  ...getColumnSearchProps('name'),
+                },
+                {
+                  title: "Skills",
+                  dataIndex: "skills",
+                  key: 'skills',
+                  ...getColumnSearchProps('skills'),
+                },
+                {
+                  title: "Options",
+                  dataIndex: "_id",
+                  render: (_id) => {
+                    return (
+                      <>
+                       <Link className="btt violet"  to={"/admin-dashboard/instructors/" + _id}>
+                            <ion-icon name="document-text-outline"></ion-icon>
+                        </Link> &nbsp;
+                        <Link className="btt orange"  to={"/admin-dashboard/instructors/edit/" + _id}>
+                             <ion-icon name="create-outline"></ion-icon>
+                        </Link> &nbsp;
+                        <Link className="btt orange"  to="">
+                          <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
+                        </Link>
+                      </>
+                    );
+                  },
+                },
+              ]}
+              dataSource={allInstructors}
+              pagination={{
+                pageSize: 3,
+              }}
+            ></Table>
         </div>
     </div>
   );

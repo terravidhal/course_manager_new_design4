@@ -12,8 +12,6 @@ const AddStudentsCourse = (props) => {
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
 
   useEffect(() => {
     if (userObjsRole === 'default' ||  userObjsRole === 'student') {

@@ -31,24 +31,15 @@ const DashboardAdminDashboard = (props) => {
 
   const datachart25 = mergeDataByIndex(allCourses, allInstructors, allStudents);
   const data25 = processStudentData2(datachart25);
-  // variables circular progress bar
-  
-
 
   const percentagesStudents = getStudentPercentage(data25);
   console.log(Object.entries(percentagesStudents)[2]);
-  // Calculer la somme des pourcentages
-   const sumStud = sumPositivePercentages(percentagesStudents);
-   console.log(`Somme des pourcentages: ${sumStud}%`);
+  // sum of percentages
+  const sumStud = sumPositivePercentages(percentagesStudents);
   const percentagesCourses = getCoursesPercentage(data25);
-  // Calculer la somme des pourcentages
-   const sumCourses = sumPositivePercentages(percentagesCourses);
-   console.log(`Somme des pourcentages: ${typeof(sumCourses)}`);
-   console.log(`Somme des pourcentages: ${sumCourses}%`);
+  const sumCourses = sumPositivePercentages(percentagesCourses);
   const percentagesInstructors = getInstructorsPercentage(data25);
-  // Calculer la somme des pourcentages
-   const sumInstructors = sumPositivePercentages(percentagesInstructors);
-   console.log(`Somme des pourcentages: ${sumInstructors}%`);
+  const sumInstructors = sumPositivePercentages(percentagesInstructors);
   
 
   let percentCoursesCurrentMonth = percentagesCourses[Object.entries(percentagesCourses)[new Date().getMonth()][0]];
@@ -60,7 +51,7 @@ const DashboardAdminDashboard = (props) => {
   let percentStudentsCurrentMonth = percentagesStudents[Object.entries(percentagesStudents)[new Date().getMonth()][0]];
   let totalStudentsCurrentMonth = (percentStudentsCurrentMonth * allStudents.length) / 100; 
 
-
+   // variables dropdown component
   const itemsCourses = [
     {
       label: `(${totalCoursesCurrentMonth}/${allCourses.length})*100 = ${(totalCoursesCurrentMonth /allCourses.length)*100}%`,
@@ -104,29 +95,6 @@ const DashboardAdminDashboard = (props) => {
   }, []);
 
 
- /* function filterByDate(data) {
-    // 1. Créer une copie du tableau d'origine
-const sortedData = [...data];
-
-// 2. Convertir les dates et heures en objets Date dans la copie
-const t =  sortedData.map((item) => new Date(item.createdAt));
-
-// 3. Trier la copie par date décroissante
-t.sort((a, b) => b.createdAt - a.createdAt);
-
-// 4. Afficher le tableau trié
-console.log('sortedData',t);
-return sortedData
-  } */
-
-
-  
-  
-
-  
-  
-
-
   // get all students
   useEffect(() => {
     axios
@@ -151,7 +119,6 @@ return sortedData
 
 
  
-  
  
   return (
     <div className="DashboardAdminDashboard">
@@ -243,7 +210,7 @@ return sortedData
                    <p className="title">current month</p>
                    <p className="amount">{Object.entries(percentagesStudents)[new Date().getMonth()][0]}</p>
                    <p className="desc">
-                   over a period of 12 months, the percentage of data created on the site is distributed as follows
+                     over a period of 12 months, the percentage of data created on the site is distributed as follows
                    </p>
                    <div className="summary">
                      <div className="item">

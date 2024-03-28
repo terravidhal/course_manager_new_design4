@@ -9,15 +9,10 @@ const DetailsPageInsructor = () => {
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-
-
   const [OneInstructor, setOneInstructor] = useState({})
   const {id} = useParams(); 
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
-  /** */
   const [allCoursesSpec, setAllCoursesSpec] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
 
@@ -34,7 +29,7 @@ const DetailsPageInsructor = () => {
         .catch( err => console.log(err) );
   }, [id]); 
 
-  /** */
+ 
   useEffect(() => {
     axios.get("http://localhost:8000/api/courses/instructor2/" + id,{withCredentials: true})
         .then( res => {
@@ -64,8 +59,7 @@ const DetailsPageInsructor = () => {
   };
 
   const filteredReviews = filterReviewsByCourses(allReviews, allCoursesSpec);
-  //console.log('filteredReviews', filteredReviews);
-
+  
 
 
 
@@ -97,8 +91,6 @@ const DetailsPageInsructor = () => {
                     <button className="two">{filteredReviews.length} comments</button>
                 </div>
                 <div className="icons">
-                    {/* <i class="fa-brands fa-linkedin"></i> */}
-                    {/* <i class="fa-brands fa-github"></i> */}
                     <i class="fa-brands fa-html5"></i>
                     <i class="fa-brands fa-css3-alt"></i>
                     <i class="fa-brands fa-js"></i>

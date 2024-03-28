@@ -11,16 +11,10 @@ const InstructorByCourse = () => {
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-
-
-
   const [InstructByCourse, setInstructByCourse] = useState({});
   const {id} = useParams(); 
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false); 
-  /** */
   const [allCoursesSpec, setAllCoursesSpec] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
   
@@ -28,7 +22,7 @@ const InstructorByCourse = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/instructorOradmin/" + id,{withCredentials: true})
         .then( res => {
-          console.log("u++++++++++",res.data.result);
+         // console.log("u++++++++++",res.data.result);
           setInstructByCourse(res.data.result);
           setLoaded(true); 
         })
@@ -40,7 +34,7 @@ const InstructorByCourse = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/courses/instructor2/" + id,{withCredentials: true})
         .then( res => {
-          console.log("u*****5*****",res.data.coursesByInstructor);
+         // console.log("u*****5*****",res.data.coursesByInstructor);
           setAllCoursesSpec(res.data.coursesByInstructor);
         })
         .catch( err => console.log(err) );
@@ -50,7 +44,7 @@ const InstructorByCourse = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/reviews" ,{withCredentials: true})
         .then( res => {
-          console.log("u**********",res.data.allReviews);
+         // console.log("u**********",res.data.allReviews);
           setAllReviews(res.data.allReviews);
         })
         .catch( err => console.log(err) );
@@ -66,7 +60,7 @@ const InstructorByCourse = () => {
   };
 
   const filteredReviews = filterReviewsByCourses(allReviews, allCoursesSpec);
-  //console.log('filteredReviews', filteredReviews);
+
 
  
   
@@ -99,8 +93,6 @@ const InstructorByCourse = () => {
                     <button className="two">{filteredReviews.length} comments</button>
                 </div>
                 <div className="icons">
-                    {/* <i class="fa-brands fa-linkedin"></i> */}
-                    {/* <i class="fa-brands fa-github"></i> */}
                     <i class="fa-brands fa-html5"></i>
                     <i class="fa-brands fa-css3-alt"></i>
                     <i class="fa-brands fa-js"></i>

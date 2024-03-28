@@ -8,28 +8,23 @@ import CourseForm from '../../components/CourseForm/CourseForm';
 
 
 const UpdatePageCourse = (props) => {
-
- 
   const userObjs = JSON.parse(localStorage.getItem('USER_OBJ')) || {};
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-
-  useEffect(() => {
-    if (userObjsRole === 'default' ||  userObjsRole === 'student') {
-           navigate('/page404NotFound'); 
-    }
-  }, []);
-
-
   const { id } = useParams();
   const [coursObj, setCoursObj] = useState({});
   const [loaded, setLoaded] = useState(false); // check if the data is available
   const navigate = useNavigate();
   const [errors, setErrors] = useState({}); 
   const [errors2, setErrors2] = useState({}); 
+
+
+  useEffect(() => {
+    if (userObjsRole === 'default' ||  userObjsRole === 'student') {
+           navigate('/page404NotFound'); 
+    }
+  }, []);
 
 
   //get  data one specific course
@@ -40,7 +35,6 @@ const UpdatePageCourse = (props) => {
         console.log("u++++++++++",res.data);
         setCoursObj(res.data);
         setLoaded(true); // data available => set "true"
-        //console.log("k++++++++++",coursObj.course.name);
       })
       .catch((err) => console.log(err));
       
@@ -58,7 +52,6 @@ const UpdatePageCourse = (props) => {
       )
       .then((res) => {
        // console.log(res.data.course);
-        
         setErrors({});
         if (userObjsRole === 'admin') {
           navigate("/admin-dashboard/courses");

@@ -77,11 +77,6 @@ const DetailsPageCourse = () => {
   }
 
  
-   
-
-   
-
-
 
  
   return(

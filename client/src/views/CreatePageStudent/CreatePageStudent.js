@@ -9,7 +9,6 @@ const CreatePageStudent = (props)=>{
     const [confirmReg, setConfirmReg] = useState("");
     const [errs, setErrs] = useState({});
     const navigate = useNavigate();
-  
     const [user, setUser] = useState({
       name: "",
       email: "",
@@ -24,8 +23,7 @@ const CreatePageStudent = (props)=>{
     const userObjsRole = userObjs.role || "default";
     const userObjsId = userObjs._id || "default";
   
-    console.log("userObjRole+++++++++", userObjsRole);
-    console.log("userObjsId+++++++++", userObjsId);
+
 
     useEffect(() => {
       if (userObjsRole !== 'admin') {

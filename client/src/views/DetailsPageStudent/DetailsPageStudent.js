@@ -9,11 +9,6 @@ const DetailsPageStudent = () => {
   const userObjsRole = userObjs.role || 'default';
   const userObjsId = userObjs._id || 'default';
   
-  console.log("userObjRole+++++++++", userObjsRole);
-  console.log("userObjsId+++++++++", userObjsId);
-
-
-
   const [OneStudent, setOneStudent] = useState({});
   const {id} = useParams(); 
   const navigate = useNavigate();
@@ -25,10 +20,9 @@ const DetailsPageStudent = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/students/" + id,{withCredentials: true})
         .then( res => {
-          console.log("u++++++++++",res.data.oneSingleStudent);
+         // console.log("u++++++++++",res.data.oneSingleStudent);
           setOneStudent(res.data.oneSingleStudent);
           setLoaded(true); 
-          console.log("y++++++++++",OneStudent.students);
         })
         .catch( err => console.log(err) );
   }, [id]); 
@@ -65,8 +59,6 @@ const DetailsPageStudent = () => {
                     <button className="two">{OneStudent.fieldOfStudy}</button>
                 </div>
                 <div className="icons">
-                    {/* <i class="fa-brands fa-linkedin"></i> */}
-                    {/* <i class="fa-brands fa-github"></i> */}
                     <i class="fa-brands fa-html5"></i>
                     <i class="fa-brands fa-css3-alt"></i>
                     <i class="fa-brands fa-js"></i>

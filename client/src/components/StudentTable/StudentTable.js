@@ -27,7 +27,7 @@ const StudentTable = (props) => {
       .then((res) => {
         setAllStudents(res.data);
         setLoading2(false);
-        console.log("r+++++++", res.data);
+        //console.log("r+++++++", res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -38,21 +38,6 @@ const StudentTable = (props) => {
     const popup = document.querySelector('.ConfirmDeletePopup');
     popup.classList.toggle('switch');
  };
-
-   // delete One specific student
- /*  const deleteStudent = (studentId) => {
-    axios
-      .delete("http://localhost:8000/api/students/" + studentId, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data.result);
-        setAllStudents(
-          allStudents.filter((student) => student._id !== studentId)
-        );
-      })
-      .catch((err) => console.log(err));
-  }; */
 
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -181,65 +166,63 @@ const StudentTable = (props) => {
         id={idStudentss}/>
         </div>
         <div className="StudentTable">
-     
-<Table
-        loading={loading2}
-        columns={[
-          {
-            title: "Photo",
-            dataIndex: "image",
-            render: (image) => {
-                return ( image === "" ?
-                   <Avatar src="/assets/images/blank-profile.png"  />
-                : 
-                 <Avatar src={`http://localhost:8000/${image}`} /> );
-               
-            },
-          },
-          {
-            title: "Name of Student",
-            dataIndex: "name",
-            key: 'name',
-            ...getColumnSearchProps('name'),
-          },
-          {
-            title: "Level",
-            dataIndex: "levelStudent",
-            key: 'levelStudent',
-            ...getColumnSearchProps('levelStudent'),
-          },
-          {
-            title: "Field of Study",
-            dataIndex: "fieldOfStudy",
-            key: 'fieldOfStudy',
-            ...getColumnSearchProps('fieldOfStudy'),
-          },
-          {
-            title: "Options",
-            dataIndex: "_id",
-            render: (_id) => {
-              return (
-                <>
-                 <Link className="btt violet"  to={"/admin-dashboard/students/" + _id}>
-                     <ion-icon name="document-text-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt"  to={"/admin-dashboard/students/edit/" + _id}>
-                     <ion-icon name="create-outline"></ion-icon>
-                  </Link> &nbsp;
-                  <Link className="btt orange"  to="">
-                    {/* <ion-icon name="trash-outline" onClick={() => deleteStudent(_id)}></ion-icon> */}
-                    <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
-                  </Link>
-                </>
-              );
-            },
-          },
-        ]}
-        dataSource={allStudents}
-        pagination={{
-          pageSize: 2,
-        }}
-      ></Table>
+           <Table
+              loading={loading2}
+              columns={[
+                {
+                  title: "Photo",
+                  dataIndex: "image",
+                  render: (image) => {
+                      return ( image === "" ?
+                         <Avatar src="/assets/images/blank-profile.png"  />
+                      : 
+                       <Avatar src={`http://localhost:8000/${image}`} /> );
+                     
+                  },
+                },
+                {
+                  title: "Name of Student",
+                  dataIndex: "name",
+                  key: 'name',
+                  ...getColumnSearchProps('name'),
+                },
+                {
+                  title: "Level",
+                  dataIndex: "levelStudent",
+                  key: 'levelStudent',
+                  ...getColumnSearchProps('levelStudent'),
+                },
+                {
+                  title: "Field of Study",
+                  dataIndex: "fieldOfStudy",
+                  key: 'fieldOfStudy',
+                  ...getColumnSearchProps('fieldOfStudy'),
+                },
+                {
+                  title: "Options",
+                  dataIndex: "_id",
+                  render: (_id) => {
+                    return (
+                      <>
+                       <Link className="btt violet"  to={"/admin-dashboard/students/" + _id}>
+                           <ion-icon name="document-text-outline"></ion-icon>
+                        </Link> &nbsp;
+                        <Link className="btt"  to={"/admin-dashboard/students/edit/" + _id}>
+                           <ion-icon name="create-outline"></ion-icon>
+                        </Link> &nbsp;
+                        <Link className="btt orange"  to="">
+                          <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
+                        </Link>
+                      </>
+                    );
+                  },
+                },
+              ]}
+              dataSource={allStudents}
+              pagination={{
+                pageSize: 2,
+              }}
+           ></Table>
         </div>
     </div>
   );
