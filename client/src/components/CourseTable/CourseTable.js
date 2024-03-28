@@ -6,12 +6,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from "axios";
 import { updateCourseStatuses } from "../../utiles/utiles";
+import ConfirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 
 
  
 const CourseTable = (props) => {
   const [allCourses, setAllCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [idCoursess, setIdCoursess] = useState('');
   //variables datatables
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
@@ -46,6 +48,13 @@ const CourseTable = (props) => {
   }, []);
 
 
+
+   
+   const displayPopupConfirm = (id) => {
+     setIdCoursess(id);
+     const popup = document.querySelector('.ConfirmDeletePopup');
+     popup.classList.toggle('switch');
+  };
 
    // delete One specific course
    const deleteCourse = (courseId) => {
@@ -183,6 +192,9 @@ const CourseTable = (props) => {
        <Link className="blue-color" to="/admin-dashboard/courses/new">
          +Add
        </Link>
+       <ConfirmDeletePopup allCourses={allCourses} 
+        setAllCourses={setAllCourses} 
+        id={idCoursess}/>
       </div>
       <div className="CourseTable">
       <Table
@@ -262,7 +274,8 @@ const CourseTable = (props) => {
                      <ion-icon name="person-add-outline"></ion-icon>
                   </Link> 
                   <Link className="btt orange"  to="">
-                    <ion-icon name="trash-outline" onClick={() => deleteCourse(_id)}></ion-icon>
+                    {/* <ion-icon name="trash-outline" onClick={() => deleteCourse(_id)}></ion-icon> */}
+                    <ion-icon name="trash-outline" onClick={() => displayPopupConfirm(_id)}></ion-icon>
                   </Link> 
                 </>
               );

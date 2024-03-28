@@ -91,8 +91,7 @@ const App = () => {
               <Route  path="/admin-dashboard/profile" element={ 
                       <ProfilPageAdmin 
                        renderPictureHeader={renderPictureHeader} 
-                       updRender={updRender}
-                       />}/>  
+                       updRender={updRender}/>}/>  
                <Route path="/admin-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} /> 
                <Route path="/admin-dashboard/instructorByCourse/:id" element={<InstructorByCourse />} />  
                <Route path="/admin-dashboard/courses/addStudents/:id" element={<AddStudentsCourse />}/>      
@@ -108,8 +107,7 @@ const App = () => {
                <Route  path="/instructor-dashboard/profile" element={ 
                       <ProfilPageInstructor 
                        renderPictureHeader={renderPictureHeader} 
-                       updRender={updRender}
-                       />}/>  
+                       updRender={updRender}/>}/>  
                <Route path="/instructor-dashboard/studentsByCourse/:id" element={<StudentsByCourse />} /> 
                {/* <Route path="/instructor-dashboard/instructorByCourse/:id" element={<InstructorByCourse />} />          */}
                <Route path="/instructor-dashboard/courses/addStudents/:id" element={<AddStudentsCourse />}/>        
@@ -122,21 +120,8 @@ const App = () => {
               <Route  path="/student-dashboard/profile" element={ 
                       <ProfilPageStudent 
                        renderPictureHeader={renderPictureHeader} 
-                       updRender={updRender}
-                       />}/>  
+                       updRender={updRender}/>}/>  
            </Route>
-           {/* <Route path="/studentsByCourse/:id" element={<StudentsByCourse />} /> */}
-           {/* <Route path="/instructorByCourse/:id" element={<InstructorByCourse />} /> */}
-           {/* <Route path="/courses/new" element={<CreatePageCourse />} /> */}
-           {/* <Route path="/students/new" element={<CreatePageStudent />} /> */}
-           {/* <Route path="/instructors/new" element={<CreatePageInstructor />} /> */}
-           {/* <Route path="/courses/edit/:id" element={<UpdatePageCourse />}/> */}
-           {/* <Route path="/courses/addStudents/:id" element={<AddStudentsCourse />}/> */}
-           {/* <Route path="/students/edit/:id" element={<UpdatePageStudent />}/> */}
-           {/* <Route path="/instructors/edit/:id" element={<UpdatePageInsructor />}/> */}
-           {/* <Route path="/courses/:id" element={<DetailsPageCourse />}/> */}
-           {/* <Route path="/students/:id" element={<DetailsPageStudent />}/> */}
-           {/* <Route path="/instructors/:id" element={<DetailsPageInsructor />}/> */}
            <Route path="/route/regist/loaded25" element={<RegisterAdmin />}/>
            <Route path="*" element={<Page404NotFound />}/>
            <Route path="/page404NotFound" element={<Page404NotFound />}/>

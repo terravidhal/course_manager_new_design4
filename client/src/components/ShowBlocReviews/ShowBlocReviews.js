@@ -16,7 +16,7 @@ const ShowBlocReviews = (props) => {
      const formattedDate = `${day}-${month.toString().padStart(2, '0')}-${year}`; 
      return formattedDate;
   }
-
+  console.log('arrReviews',arrReviews);
 
 
   return(
@@ -27,16 +27,16 @@ const ShowBlocReviews = (props) => {
               <>
                     <div class="box-container"  key={index}>
                        <div class="box">
-                           <div class="user">
+                           <div class="userss">
                                 {OneReview.studentId.image === "" ?
                                   <img src="/assets/images/blank-profile.png" alt="" />
                                   : 
                                   <img src={`http://localhost:8000/${OneReview.studentId.image}`} alt="" /> 
                                 } 
                                <div>
-                                <div className="name-stars">
-                                  <h3>{OneReview.studentId.name}</h3>
-                                  <div class="stars">
+                                   <div className="name-stars">
+                                     <h3>{OneReview.studentId.name}</h3>
+                                     <div class="stars">
                                       {OneReview.rating === 1 ?
                                         <i class="fas fa-star"></i>
                                         : OneReview.rating === 2 ?
@@ -66,8 +66,8 @@ const ShowBlocReviews = (props) => {
                                         <i class="fas fa-star"></i>
                                         </> : null
                                       }
-                                  </div>
-                                </div>
+                                     </div>
+                                   </div>
                                   <span>{handleChangeDate(OneReview.createdAt)}</span>
                                </div>
                            </div>

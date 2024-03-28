@@ -183,7 +183,7 @@ const CourseTableStudent = (props) => {
               <h2>Recent Courses</h2>
             </div>
             <div className="CourseTableStudent">
-<Table
+        <Table
         loading={loading}
         columns={[
           {

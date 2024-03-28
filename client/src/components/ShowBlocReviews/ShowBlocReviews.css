@@ -5,27 +5,27 @@
 .ShowBlocReviews .box-container .box  {
   margin-bottom: 2rem;
 }
-.ShowBlocReviews .box-container .box .user {
+.ShowBlocReviews .box-container .box .userss {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-.ShowBlocReviews .box-container .box .user img {
+.ShowBlocReviews .box-container .box .userss img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
 }
 
-.ShowBlocReviews .box-container .box .user h3 {
+.ShowBlocReviews .box-container .box .userss h3 {
   color: var(--black);
   margin-bottom: 0.2rem;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.ShowBlocReviews .box-container .box .user span {
+.ShowBlocReviews .box-container .box .userss span {
   color: var(--light-color);
 }
 .ShowBlocReviews .box-container .box .comment-box {

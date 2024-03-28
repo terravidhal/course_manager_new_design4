@@ -1,0 +1,56 @@
+.ConfirmDeletePopup {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    background-color: white;
+    z-index: 2;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+    /* height: 150px; */
+    width: 360px;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    border-radius: 5px;
+    display: none;
+}
+.ConfirmDeletePopup.switch{
+  display: block;
+}
+.ConfirmDeletePopup .titles{
+ font-size: 1.1rem;
+ font-weight: bold;
+ padding: 0px 0 10px 0;
+ color: gray;
+ display: flex;
+ justify-content: space-between;
+}
+.ConfirmDeletePopup .icons-1{
+  cursor: pointer;
+}
+.ConfirmDeletePopup .message{
+    color: rgb(74, 70, 70);
+ font-size: 0.9rem;
+ font-weight: bold;
+ border-top: 1px solid #cccc;
+ border-bottom: 1px solid #cccc;
+ padding: 20px 0;
+}
+.ConfirmDeletePopup .buttons-cfr{
+   display: flex;
+   justify-content: space-between;
+   margin-top: 30px;
+}
+.ConfirmDeletePopup .buttons-cfr .bt{
+   border: 0;
+   padding: 15px 30px;
+   color: var(--white);
+   font-weight: bold;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.ConfirmDeletePopup .buttons-cfr .bt.red{
+  background-color: red;
+}
+.ConfirmDeletePopup .buttons-cfr .bt.green{
+  background-color: var(--color-theme);;
+}

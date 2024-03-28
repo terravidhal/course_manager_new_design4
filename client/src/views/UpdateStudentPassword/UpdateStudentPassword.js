@@ -64,7 +64,11 @@ const UpdateStudentPassword = (props)=>{
   
    
   return(
-    <div className="UpdateStudentPassword">
+    <div class="recentOrders">
+        <div class="cardHeader">
+          <h2 className="pl-x">Change Password</h2>
+        </div>
+        <div className="UpdateStudentPassword">
       {
         confirmReg?
         <h2 style={{color: "grey", paddingLeft:"17px"}}>{confirmReg}</h2>
@@ -100,6 +104,7 @@ const UpdateStudentPassword = (props)=>{
         </div>
         <button type="submit">Update</button>
       </form>  
+        </div>
     </div>
   );
   };

@@ -35,9 +35,9 @@ const CreatePageCourse = () => {
         console.log(res.data);
         setErrors({});
         if (userObjsRole === "admin") {
-          navigate("/admin-dashboard");
+          navigate("/admin-dashboard/courses");
         } else {
-          navigate("/instructor-dashboard");
+          navigate("/instructor-dashboard/courses");
         }
       })
       .catch((err) => {
