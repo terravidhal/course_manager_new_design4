@@ -9,7 +9,7 @@ import { getCoursesPercentage, getInstructorsPercentage, getStudentPercentage, m
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
-import { updateCourseStatuses } from "../../utiles/utiles";
+import { filterByDate, updateCourseStatuses } from "../../utiles/utiles";
 import ProgressProvider from "../ProgressProvider/ProgressProvider";
 import DropdownComp from "../DropdownComp/DropdownComp";
 
@@ -61,6 +61,27 @@ const DashboardAdminDashboard = (props) => {
   let totalStudentsCurrentMonth = (percentStudentsCurrentMonth * allStudents.length) / 100; 
 
 
+  const itemsCourses = [
+    {
+      label: `(${totalCoursesCurrentMonth}/${allCourses.length})*100 = ${(totalCoursesCurrentMonth /allCourses.length)*100}%`,
+      key: '1',
+    },
+  ];
+
+  const itemsInstructors = [
+    {
+      label: `(${totalInstructorsCurrentMonth}/${allInstructors.length})*100 = ${(totalInstructorsCurrentMonth /allInstructors.length)*100}%`,
+      key: '1',
+    },
+  ];
+
+  const itemsStudents = [  
+    {
+      label: `(${totalStudentsCurrentMonth}/${allStudents.length})*100 = ${(totalStudentsCurrentMonth /allStudents.length)*100}%`,
+      key: '1',
+    },
+  ];
+
    // check and update courses status
    useEffect(() => {
     setLoading(true);
@@ -98,6 +119,8 @@ console.log('sortedData',t);
 return sortedData
   } */
 
+
+  
   
 
   
@@ -127,26 +150,7 @@ return sortedData
   }, []);
 
 
-  const itemsCourses = [
-    {
-      label: `(${totalCoursesCurrentMonth}/${allCourses.length})*100 = ${(totalCoursesCurrentMonth /allCourses.length)*100}%`,
-      key: '1',
-    },
-  ];
-
-  const itemsInstructors = [
-    {
-      label: `(${totalInstructorsCurrentMonth}/${allInstructors.length})*100 = ${(totalInstructorsCurrentMonth /allInstructors.length)*100}%`,
-      key: '1',
-    },
-  ];
-
-  const itemsStudents = [  
-    {
-      label: `(${totalStudentsCurrentMonth}/${allStudents.length})*100 = ${(totalStudentsCurrentMonth /allStudents.length)*100}%`,
-      key: '1',
-    },
-  ];
+ 
   
  
   return (
@@ -192,7 +196,7 @@ return sortedData
                  <div className="bottom">
                    <div className="featuredChart">
                    <Flex gap="small" >
-                   <ProgressProvider valueStart={0} valueEnd={sumCourses}>
+                      <ProgressProvider valueStart={0} valueEnd={sumCourses}>
                      {value => <CircularProgressbar value={value} text={`${value}%`} 
                        styles={buildStyles({
                          rotation: 0.25,
@@ -205,8 +209,8 @@ return sortedData
                          backgroundColor: '#3e98c7',
                        })}
                      />}
-                   </ProgressProvider>
-                   <ProgressProvider valueStart={0} valueEnd={sumInstructors}>
+                      </ProgressProvider>
+                      <ProgressProvider valueStart={0} valueEnd={sumInstructors}>
                      {value => <CircularProgressbar value={value} text={`${value}%`} 
                        styles={buildStyles({
                          rotation: 0.25,
@@ -219,8 +223,8 @@ return sortedData
                          backgroundColor: '#3e98c7',
                        })}
                      />}
-                   </ProgressProvider>
-                   <ProgressProvider valueStart={0} valueEnd={sumStud}>
+                      </ProgressProvider>
+                      <ProgressProvider valueStart={0} valueEnd={sumStud}>
                      {value => <CircularProgressbar value={value} text={`${value}%`} 
                        styles={buildStyles({
                          rotation: 0.25,
@@ -233,41 +237,7 @@ return sortedData
                          backgroundColor: '#3e98c7',
                        })}
                      />}
-                   </ProgressProvider>
-        
-                     {/* <div style={{ width: 76, height: 76, }}>
-                        <CircularProgressbar value={100} text={`${sumCourses}%`} strokeWidth={5}
-                          styles={buildStyles({
-                            // Colors
-                            pathColor: '#09b4a6',
-                            textColor: '#09b4a6',
-                            trailColor: '#d6d6d6',
-                            backgroundColor: '#3e98c7',
-                          })}
-                         />
-                     </div>
-                     <div style={{ width: 76, height: 76, }}>
-                        <CircularProgressbar value={100} text={`${sumInstructors}%`} strokeWidth={5}
-                          styles={buildStyles({
-                            // Colors
-                            pathColor: '#1d0dd4',
-                            textColor: '#1d0dd4',
-                            trailColor: '#d6d6d6',
-                            backgroundColor: '#3e98c7',
-                          })}
-                         />
-                     </div>
-                     <div style={{ width: 76, height: 76, }}>
-                        <CircularProgressbar value={100} text={`${sumStud}%`} strokeWidth={5}
-                          styles={buildStyles({
-                            // Colors
-                            pathColor: '#f79623',
-                            textColor: '#f79623',
-                            trailColor: '#d6d6d6',
-                            backgroundColor: '#3e98c7',
-                          })}
-                         />
-                     </div> */}
+                      </ProgressProvider>
                    </Flex>
                    </div>
                    <p className="title">current month</p>
@@ -282,7 +252,6 @@ return sortedData
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
                           <DropdownComp items={itemsCourses} />
-                         {/* ({totalCoursesCurrentMonth}/{allCourses.length})*{100} = {(totalCoursesCurrentMonth /allCourses.length)*100}%  */}
                           </div>
                        </div>
                      </div>
@@ -292,7 +261,6 @@ return sortedData
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
                           <DropdownComp items={itemsInstructors} />
-                          {/* ({totalInstructorsCurrentMonth}/{allInstructors.length})*{100} = {(totalInstructorsCurrentMonth /allInstructors.length)*100}%  */}
                           </div>
                        </div>
                      </div>
@@ -302,7 +270,6 @@ return sortedData
                          <div className="resultAmount">
                           {Object.entries(percentagesStudents)[new Date().getMonth()][0]} :
                           <DropdownComp items={itemsStudents} />
-                         {/* ({totalStudentsCurrentMonth}/{allStudents.length})*{100} = {(totalStudentsCurrentMonth /allStudents.length)*100}%  */}
                           </div>
                        </div>
                      </div>
@@ -368,7 +335,7 @@ return sortedData
             },
           },
         ]}
-        dataSource={allCourses}
+        dataSource={filterByDate(allCourses).slice(0,3)}
         pagination={{
           pageSize: 3,
         }}

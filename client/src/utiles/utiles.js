@@ -48,5 +48,8 @@ export const updateCourseStatuses = (courses) => {
   };
 
 
-
+  // affiche les elements du tableau du plus recents au moins recent
+  export const filterByDate = (data)=> {
+    return data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
  

@@ -6,7 +6,7 @@ import CountUp from 'react-countup';
 import 'react-circular-progressbar/dist/styles.css';
 import { Avatar, Rate, Space, Table, Typography, Button, Input, Tag  } from "antd";
 import ChartInstructor from "../ChartInstructor/ChartInstructor";
-import { updateCourseStatuses } from "../../utiles/utiles";
+import { filterByDate, updateCourseStatuses } from "../../utiles/utiles";
 
 
 
@@ -87,7 +87,7 @@ const DashboardInstructorDashboard = (props) => {
            </div>
             <div className="stud-customers">
               <div className="title">Recent Students</div>
-              {  allStudents.slice(0,5).map((elt, index) => {
+              {  filterByDate(allStudents).slice(0,5).map((elt, index) => {
                    return (
                     <div className="stud-customers-items">
                         <div className="stud-img">
@@ -168,7 +168,7 @@ const DashboardInstructorDashboard = (props) => {
             },
           },
         ]}
-        dataSource={allCourses.slice(0,2)}
+        dataSource={filterByDate(allCourses).slice(0,2)}
         pagination={{
           pageSize: 3,
         }}

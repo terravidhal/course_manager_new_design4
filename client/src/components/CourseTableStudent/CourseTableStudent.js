@@ -6,7 +6,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { updateCourseStatuses } from "../../utiles/utiles";
 import axios from "axios";
-
+import CountUp from 'react-countup';
 
 
 const CourseTableStudent = (props) => {
@@ -170,7 +170,9 @@ const CourseTableStudent = (props) => {
         <div class="cardBox">
             <div class="card">
               <div>
-                <div class="numbers">{allCourses.length}</div>
+                <div class="numbers">
+                  <CountUp start={100}  end={allCourses.length} />
+                </div>
                 <div class="cardName">Courses</div>
               </div>
               <div class="iconBx">
